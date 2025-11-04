@@ -12,6 +12,6 @@ public class TestScriptCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // tutaj bedzie super zaawansowany kod
     }
 }
