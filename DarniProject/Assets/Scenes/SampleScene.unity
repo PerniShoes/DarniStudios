@@ -1014,7 +1014,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  yOffset: 0
+  yOffset: 2
   maxAlive: 30
 --- !u!4 &1006862490
 Transform:

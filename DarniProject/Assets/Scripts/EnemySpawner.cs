@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
 
     public float groundProbeHeight = 30f;
     public LayerMask groundLayer = ~0;
-    public float yOffset = 0f;
+    public float yOffset = 2f;
 
     public int maxAlive = 30;
     private int _aliveCount = 0;
