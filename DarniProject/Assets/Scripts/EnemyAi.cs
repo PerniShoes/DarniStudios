@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
 
         transform.position += transform.forward * moveSpeed * Time.deltaTime;
     }
-    // DODAC ANIMACJE DO ENEMY ABY PODARZAL ZA GRACZEM A NIE SLIZGAL
+    // DODAC ANIMACJE DO ENEMY ABY PODARZAL ZA GRACZEM A NIE 
 
 
 
