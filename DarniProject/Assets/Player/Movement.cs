@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class Movement : MonoBehaviour
 {
@@ -38,5 +39,5 @@ public class Movement : MonoBehaviour
         }
 
 
-    }
+}
 }
