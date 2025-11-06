@@ -6,9 +6,26 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed = 3.5f;
     public float rotateSpeed = 5f;
     public float attackRange = 2f;
+    public float turnSpeed = 10f;
 
-    public Animator animator;    
+    public Animator animator;
 
+
+
+
+    public void Start()
+    {
+        if (!player) return;
+
+        Vector3 toPlayer = player.position - transform.position;
+        toPlayer.y = 0f;
+        if (toPlayer.sqrMagnitude < 0.0001f) return;
+
+        Quaternion look = Quaternion.LookRotation(toPlayer);
+        transform.rotation = Quaternion.Slerp(transform.rotation, look, turnSpeed * Time.deltaTime);
+
+        transform.position += transform.forward * moveSpeed * Time.deltaTime;
+    }
     void Update()
     {
         // if there is no player, do nothing
