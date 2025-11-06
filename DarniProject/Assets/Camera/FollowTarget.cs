@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class FollowTarget : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public Transform target;
+    public float smoothSpeed;
+    public Vector3 offset;
+
+    void LateUpdate()
     {
-        
+        if (target == null) return;
+
+        Vector3 desiredPosition = target.position + offset;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        transform.position = smoothedPosition;
+
     }
 }
