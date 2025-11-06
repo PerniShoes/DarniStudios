@@ -136,7 +136,7 @@ Animator:
   m_GameObject: {fileID: 2562387189551011770}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bcb36e1a354bb304ea085d1b1ce0323a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 93d9d8dc0847c8f4fa2e4363eeb86123, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -173,7 +173,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &-1913004125582441606
 MonoBehaviour:
@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801914df04dee0041a1b1180b7069955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  moveSpeed: 3.5
+  player: {fileID: 9002083860350584164, guid: d090deb61ee265d4094726a6e8c54aeb, type: 3}
+  moveSpeed: 3
   rotateSpeed: 10
-  player: {fileID: 0}
-  attackRange: 1.5
-  useRootMotion: 0
+  attackRange: 3
+  animator: {fileID: 2722828699185014972}
