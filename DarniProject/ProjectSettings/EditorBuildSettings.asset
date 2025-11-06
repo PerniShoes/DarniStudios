@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Perni.unity
     guid: 200bdf650868a234dac487e96662b98d
   - enabled: 1
-    path: Assets/Scenes/Dagger.unity
+    path: Assets/Prefabs/Scenes/DaggerScena.unity
     guid: 89f977db8219d6c4fa15ef3900183752
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
