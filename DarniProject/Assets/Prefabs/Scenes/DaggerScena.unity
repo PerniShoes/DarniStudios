@@ -789,6 +789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWithHealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 6231907250638334966, guid: 7e6d2a7e78aaaf743abb15d91f83e39b, type: 3}
+      propertyPath: gradient.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1562553827069275474, guid: 7e6d2a7e78aaaf743abb15d91f83e39b, type: 3}
     m_RemovedGameObjects: []
