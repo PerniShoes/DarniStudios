@@ -14,17 +14,23 @@ public class EnemySpawner : MonoBehaviour
     public float minDistanceFromPlayer = 10f;
     public float groupSpread = 3f;
 
-    [Header("Detection")]
-    public LayerMask groundMask;
-    public LayerMask obstacleMask;
+    [Header("Map Bounds (ściany znajdowane automatycznie)")]
+    public Transform leftWall;
+    public Transform rightWall;
+    public Transform topWall;
+    public Transform bottomWall;
 
     private float timer;
     private static int aliveEnemies = 0;
 
+    void Start()
+    {
+        AutoFindWalls(); // Auto wall finding
+    }
+
     void Update()
     {
-        if (!player || enemyPrefabs == null || enemyPrefabs.Length == 0)
-            return;
+        if (!player || enemyPrefabs.Length == 0) return;
 
         timer += Time.deltaTime;
         if (timer >= spawnInterval)
@@ -40,8 +46,13 @@ public class EnemySpawner : MonoBehaviour
         {
             if (aliveEnemies >= maxAlive) break;
 
-            Vector3 spawnPos;
-            if (!TryGetValidSpawn(out spawnPos)) continue;
+            Vector3 spawnPos = GetRandomSpawnPosition();
+
+            if (!IsInsideWalls(spawnPos))
+                continue;
+
+            if (Vector3.Distance(spawnPos, player.position) < minDistanceFromPlayer)
+                continue;
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
@@ -57,46 +68,59 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    bool TryGetValidSpawn(out Vector3 spawnPos)
+    Vector3 GetRandomSpawnPosition()
     {
-        for (int attempt = 0; attempt < 15; attempt++)
-        {
-            Vector2 r = Random.insideUnitCircle * spawnRadius;
-            Vector3 candidate = player.position + new Vector3(r.x, 10f, r.y);
-
-            // Searching for ground/some sort of flor
-            if (Physics.Raycast(candidate, Vector3.down, out RaycastHit hit, 20f, groundMask))
-            {
-                Vector3 pos = hit.point;
-
-                // Not to close to player
-                if (Vector3.Distance(pos, player.position) < minDistanceFromPlayer)
-                    continue;
-
-                // Avoid spawning in walls
-                if (Physics.CheckSphere(pos, 1f, obstacleMask))
-                    continue;
-
-                // OP code cheking if player see walls and avoid to spawn enemy behind them
-                Vector3 dirToPlayer = (player.position - pos).normalized;
-                float distToPlayer = Vector3.Distance(pos, player.position);
-
-                if (Physics.Raycast(pos + Vector3.up * 1f, dirToPlayer, distToPlayer, obstacleMask))
-                {
-                    // Id REYCAST hit wall cancel spawning
-                    continue;
-                }
-
-                spawnPos = pos + Random.insideUnitSphere * groupSpread;
-                spawnPos.y = hit.point.y;
-                return true;
-            }
-        }
-
-        spawnPos = Vector3.zero;
-        return false;
+        Vector2 r = Random.insideUnitCircle * spawnRadius;
+        Vector3 pos = player.position + new Vector3(r.x, 0f, r.y);
+        pos += new Vector3(Random.Range(-groupSpread, groupSpread), 0f, Random.Range(-groupSpread, groupSpread));
+        return pos;
     }
 
+    bool IsInsideWalls(Vector3 pos)
+    {
+        if (!leftWall || !rightWall || !topWall || !bottomWall)
+            return true; // If walls not found dont block spawn
+
+        float leftX = leftWall.position.x;
+        float rightX = rightWall.position.x;
+        float topZ = topWall.position.z;
+        float bottomZ = bottomWall.position.z;
+
+        bool insideX = pos.x > leftX && pos.x < rightX;
+        bool insideZ = pos.z < topZ && pos.z > bottomZ;
+
+        return insideX && insideZ;
+    }
+
+    void AutoFindWalls()
+    {
+        // Finding walls from Names
+        if (!leftWall)
+            leftWall = GameObject.Find("LeftWall")?.transform;
+        if (!rightWall)
+            rightWall = GameObject.Find("RightWall")?.transform;
+        if (!topWall)
+            topWall = GameObject.Find("TopWall")?.transform;
+        if (!bottomWall)
+            bottomWall = GameObject.Find("BottomWall")?.transform;
+
+        // IDK if its good but if not fin names check wall tags
+        if (!leftWall)
+            leftWall = GameObject.FindGameObjectWithTag("WallLeft")?.transform;
+        if (!rightWall)
+            rightWall = GameObject.FindGameObjectWithTag("WallRight")?.transform;
+        if (!topWall)
+            topWall = GameObject.FindGameObjectWithTag("WallTop")?.transform;
+        if (!bottomWall)
+            bottomWall = GameObject.FindGameObjectWithTag("WallBottom")?.transform;
+
+        // Log to know what to find
+        Debug.Log($"[Spawner] Ściany znalezione: " +
+                  $"\nLewa: {(leftWall ? leftWall.name : "❌")}" +
+                  $"\nPrawa: {(rightWall ? rightWall.name : "❌")}" +
+                  $"\nGóra: {(topWall ? topWall.name : "❌")}" +
+                  $"\nDół: {(bottomWall ? bottomWall.name : "❌")}");
+    }
 
     public class EnemyDestroyHandler : MonoBehaviour
     {

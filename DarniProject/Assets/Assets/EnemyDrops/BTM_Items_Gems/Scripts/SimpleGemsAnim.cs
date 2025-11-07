@@ -5,6 +5,8 @@ namespace Benjathemaker
 {
     public class SimpleGemsAnim : MonoBehaviour
     {
+        [HideInInspector] public bool isBeingAttracted = false;
+
         public bool isRotating = false;
         public bool rotateX = false;
         public bool rotateY = false;
@@ -39,6 +41,9 @@ namespace Benjathemaker
 
         void Update()
         {
+            if (isBeingAttracted)
+                return;
+
             if (isRotating)
             {
                 Vector3 rotationVector = new Vector3(

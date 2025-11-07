@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class EnemyHP : MonoBehaviour
 {
@@ -11,21 +10,21 @@ public class EnemyHP : MonoBehaviour
     public HealthBar healthBar;
     public Animator animator;
 
-    [Header("EXP Settings")]
-    public GameObject expPrefab; 
-    public int expAmount = 10;   
-
     private bool isDead = false;
+
+    public delegate void EnemyDeathEvent(EnemyHP enemy);
+    public event EnemyDeathEvent OnDeath; 
 
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        if (healthBar != null)
+            healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
     {
-        // Test DMG (Delete after testing)
+        // Test damage (delete after tests)
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             TakeDamage(25);
@@ -37,12 +36,11 @@ public class EnemyHP : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        if (healthBar != null)
+            healthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     void Die()
@@ -50,24 +48,22 @@ public class EnemyHP : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        // Stop AI 
+        // Stop AI
         EnemyAI ai = GetComponent<EnemyAI>();
         if (ai != null) ai.enabled = false;
 
-        // Play Animation of Death
-        animator.SetBool("isDead", true);
+        // Death Anim
+        if (animator != null)
+            animator.SetBool("isDead", true);
 
-        // Delete hp bar
+        // DeleteHealthBar
         if (healthBar != null)
             Destroy(healthBar.gameObject);
 
-        // BUM BUM Enemy
-        Destroy(gameObject, 1f);
+        // Let other scripts know that enemy is dead
+        OnDeath?.Invoke(this);
 
-        if (expPrefab != null)
-        {
-            Instantiate(expPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
-        }
-
+        // Delete Ragdoll After few Seconds
+        Destroy(gameObject, 1.5f);
     }
 }
