@@ -1517,6 +1517,10 @@ PrefabInstance:
       propertyPath: 'dashCharges.Array.data[3]'
       value: 
       objectReference: {fileID: 1268731854}
+    - target: {fileID: 3778470622348744756, guid: 7e6d2a7e78aaaf743abb15d91f83e39b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3864762135740256813, guid: 7e6d2a7e78aaaf743abb15d91f83e39b, type: 3}
       propertyPath: healthBar
       value: 
