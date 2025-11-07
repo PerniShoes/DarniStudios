@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 150628665}
   - component: {fileID: 150628664}
   m_Layer: 5
-  m_Name: Charge 2
+  m_Name: Charge 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,17 +282,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150628662}
-  m_LocalRotation: {x: -0, y: 0.000000007450582, z: 0.3665781, w: 0.9303873}
+  m_LocalRotation: {x: -0, y: -0, z: 0.38676265, w: 0.92217934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.73484, y: 0.73484, z: 0.73484}
+  m_LocalScale: {x: 0.7348399, y: 0.7348399, z: 0.73484}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1650246790}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 43.009}
+  m_Father: {fileID: 1474485337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.506}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.66, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 175, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &150628664
 MonoBehaviour:
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 0.05, y: 0.05}
+  m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
 --- !u!114 &150628665
 MonoBehaviour:
@@ -533,17 +533,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676173337}
-  m_LocalRotation: {x: -0, y: 0.000000007450582, z: 0.3665781, w: 0.9303873}
+  m_LocalRotation: {x: -0, y: -0, z: 0.38676265, w: 0.92217934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.73484, y: 0.73484, z: 0.73484}
+  m_LocalScale: {x: 0.7348399, y: 0.7348399, z: 0.73484}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1650246790}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 43.009}
+  m_Father: {fileID: 1474485337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.506}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -175, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &676173339
 MonoBehaviour:
@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 0.05, y: 0.05}
+  m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
 --- !u!114 &676173340
 MonoBehaviour:
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 822039692}
   - component: {fileID: 822039691}
   m_Layer: 5
-  m_Name: Charge 4
+  m_Name: Charge 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -870,17 +870,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822039689}
-  m_LocalRotation: {x: -0, y: 0.000000007450582, z: 0.3665781, w: 0.9303873}
+  m_LocalRotation: {x: -0, y: -0, z: 0.38676265, w: 0.92217934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.73484, y: 0.73484, z: 0.73484}
+  m_LocalScale: {x: 0.7348399, y: 0.7348399, z: 0.73484}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1650246790}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 43.009}
+  m_Father: {fileID: 1474485337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.506}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -60, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &822039691
 MonoBehaviour:
@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 0.05, y: 0.05}
+  m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
 --- !u!114 &822039692
 MonoBehaviour:
@@ -1453,10 +1453,10 @@ MonoBehaviour:
   delayBetweenDashes: 0.3
   trailRenderer: {fileID: 1189715104}
   dashCharges:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 676173340}
+  - {fileID: 822039692}
+  - {fileID: 1342061574}
+  - {fileID: 150628665}
 --- !u!114 &1189715110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1496,8 +1496,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226649929}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30070576, y: -0, z: -0, w: 0.953717}
-  m_LocalPosition: {x: -1502.98, y: 18.37, z: 390.69}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1531,17 +1531,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342061571}
-  m_LocalRotation: {x: -0, y: 0.000000007450582, z: 0.3665781, w: 0.9303873}
+  m_LocalRotation: {x: -0, y: -0, z: 0.38676265, w: 0.92217934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.73484, y: 0.73484, z: 0.73484}
+  m_LocalScale: {x: 0.7348399, y: 0.7348399, z: 0.73484}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1650246790}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 43.009}
+  m_Father: {fileID: 1474485337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.506}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.66, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 60, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1342061573
 MonoBehaviour:
@@ -1556,7 +1556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 0.05, y: 0.05}
+  m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
 --- !u!114 &1342061574
 MonoBehaviour:
@@ -1782,6 +1782,45 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e81271d256b3da141b5b8ec81dd96827, type: 3}
   m_PrefabInstance: {fileID: 1464544779}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1474485336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1474485337}
+  m_Layer: 5
+  m_Name: Charges
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1474485337
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474485336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.19575001, y: 0.19575001, z: 0.19575001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 676173338}
+  - {fileID: 822039690}
+  - {fileID: 1342061572}
+  - {fileID: 150628663}
+  m_Father: {fileID: 1650246790}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -70}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1494801741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,12 +1887,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 676173338}
-  - {fileID: 150628663}
-  - {fileID: 1342061572}
-  - {fileID: 822039690}
+  - {fileID: 1474485337}
   m_Father: {fileID: 1226649930}
-  m_LocalEulerAnglesHint: {x: 37.833, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -31.13}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
