@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
 
     public Rigidbody body;
     public Animator animator;
-    
+
     [Header("Run settings")]
     public float acceleration;
     public float deceleration;
@@ -91,7 +91,7 @@ public class Movement : MonoBehaviour
 
         body.linearVelocity = new Vector3(flatVector.x, velocity.y, flatVector.z);
 
-        if (flatVector.magnitude > 0.5f )
+        if (flatVector.magnitude > 0.5f)
         {
             animator.SetBool("isRunning", true);
         }
@@ -104,7 +104,7 @@ public class Movement : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(Dash());
         }
@@ -128,7 +128,7 @@ public class Movement : MonoBehaviour
 
         float timePassedSinceDash = 0f;
 
-        while(timePassedSinceDash < dashDuration)
+        while (timePassedSinceDash < dashDuration)
         {
             body.linearVelocity = dashDir * dashSpeed;
             timePassedSinceDash += Time.deltaTime;
