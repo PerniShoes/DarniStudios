@@ -80,7 +80,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestAnimationController
+  m_Name: PlayerAnimator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isSpawned
@@ -109,7 +109,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: TestAnimation
+    m_Name: PlayerAnimator
     m_StateMachine: {fileID: 6510226553767399305}
     m_Mask: {fileID: 0}
     m_Motions: []
@@ -227,7 +227,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestAnimation
+  m_Name: PlayerAnimator
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7538262188189287860}

@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     public float minDistanceFromPlayer = 10f;
     public float groupSpread = 3f;
 
-    [Header("Map Bounds (ściany znajdowane automatycznie)")]
+    [Header("Map Bounds")]
     public Transform leftWall;
     public Transform rightWall;
     public Transform topWall;
