@@ -60,7 +60,7 @@ namespace FullOpaqueVFX
             foreach (ParticleSystem ps in particleSystems)
             {
                 var main = ps.main; 
-                main.startSizeMultiplier *= 10f;     
+                main.startSizeMultiplier *= 3f;     
                 main.startSpeedMultiplier *= 1f;    
                 
             }
