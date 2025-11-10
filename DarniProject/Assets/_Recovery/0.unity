@@ -860,12 +860,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8490003123620361702}
     - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
+      propertyPath: spawnRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: maxDistanceFromPlayer
-      value: 40
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: minDistanceFromPlayer
-      value: 35
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -10,8 +10,9 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 1.5f;
     public int groupSize = 4;
     public int maxAlive = 60;
-    public float spawnRadius = 40f;
-    public float minDistanceFromPlayer = 10f;
+    public float minDistanceFromPlayer = 5f;
+    public float maxDistanceFromPlayer = 20f;
+
     public float groupSpread = 3f;
 
     [Header("Map Bounds")]
@@ -51,8 +52,14 @@ public class EnemySpawner : MonoBehaviour
             if (!IsInsideWalls(spawnPos))
                 continue;
 
-            if (Vector3.Distance(spawnPos, player.position) < minDistanceFromPlayer)
-                continue;
+            // Twój kod generował losową pozycje po czym tutaj sprawdzał czy jest w min dystansie. Jeśli nie jest to "continue" czyli pomijał dany resp
+            // Czyli ten resp zamiast pójść gdzie indziej to wgl się nie dział. Jak min dystans był za duży to wtedy naturalnie nic, nigdy się nie respiło
+
+            // Na przyszłość: Zamiast generować losowo a potem sprawdzać czy jest okej i musieć generować znowu, to lepiej od razu wygenerować losowy, 
+            // ale poprawny punkt. Teraz w GetRandomSpawnPosition respi losowy punkt, ale w odpowiednim zakresie
+
+            //if (Vector3.Distance(spawnPos, player.position) < minDistanceFromPlayer)
+            //    continue;
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
@@ -70,11 +77,26 @@ public class EnemySpawner : MonoBehaviour
 
     Vector3 GetRandomSpawnPosition()
     {
-        Vector2 r = Random.insideUnitCircle * spawnRadius;
-        Vector3 pos = player.position + new Vector3(r.x, 0f, r.y);
-        pos += new Vector3(Random.Range(-groupSpread, groupSpread), 0f, Random.Range(-groupSpread, groupSpread));
-        return pos;
-    }
+        float x, z;
+
+        // Check Random.value return    (it's just a 50/50 here)
+        if (Random.value < 0.5f)
+        {
+            x = Random.Range(-maxDistanceFromPlayer, maxDistanceFromPlayer);
+            z = Random.value < 0.5f
+                ? Random.Range(-maxDistanceFromPlayer, -minDistanceFromPlayer)
+                : Random.Range(minDistanceFromPlayer, maxDistanceFromPlayer);
+        }
+        else
+        {
+            z = Random.Range(-maxDistanceFromPlayer, maxDistanceFromPlayer);
+            x = Random.value < 0.5f
+                ? Random.Range(-maxDistanceFromPlayer, -minDistanceFromPlayer)
+                : Random.Range(minDistanceFromPlayer, maxDistanceFromPlayer);
+        }
+
+        return player.position + new Vector3(x, 0f, z);
+}
 
     bool IsInsideWalls(Vector3 pos)
     {
