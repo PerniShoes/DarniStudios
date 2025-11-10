@@ -43,7 +43,7 @@ namespace FullOpaqueVFX
             if (prefab != null)
             {
                 GameObject obj = Instantiate(prefab, position, rotation);
-                obj.transform.localScale *= 10;
+                obj.transform.localScale *= 5;
                 
                 ApplyColorToParticles(obj);
                 return obj;
@@ -61,7 +61,7 @@ namespace FullOpaqueVFX
             {
                 var main = ps.main; 
                 main.startSizeMultiplier *= 10f;     
-                main.startSpeedMultiplier *= 10f;    
+                main.startSpeedMultiplier *= 1f;    
                 
             }
 

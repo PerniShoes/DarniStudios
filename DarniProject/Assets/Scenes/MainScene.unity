@@ -413,7 +413,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8396899899253425982}
   serializedVersion: 5
-  m_Mass: 5
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -427,10 +427,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1001 &830240774111914054
 PrefabInstance:
@@ -549,6 +549,10 @@ PrefabInstance:
     - target: {fileID: 1711327887296591521, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588069146151259878, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -363
       objectReference: {fileID: 0}
     - target: {fileID: 5875261667953868652, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
       propertyPath: m_RaycastTarget
@@ -725,7 +729,15 @@ PrefabInstance:
     - target: {fileID: 1924020323832420889, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: target
       value: 
+      objectReference: {fileID: 5394228012547623173}
+    - target: {fileID: 1924020323832420889, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1924020323832420889, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
+      propertyPath: currentSpell
+      value: 
+      objectReference: {fileID: 11400000, guid: 67858d5269f74de6902da67b1c1b6c62, type: 2}
     - target: {fileID: 3269263784554324420, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_Name
       value: SpellManager
@@ -894,28 +906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!195 &3730785468336548641
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8396899899253425982}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &3735229534259674329 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8783242933723515021, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
@@ -1296,7 +1286,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8396899899253425982}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 20bcdbbfb1777164588b79bc68613260, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 2a2a106c4f1e3bf4c83343cd2147f4d2, type: 3}
   m_Controller: {fileID: 9100000, guid: bcb36e1a354bb304ea085d1b1ce0323a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -1304,39 +1294,11 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'upperarm.l'\n\tTransform 'upperleg.l'\n\tTransform
-    'upperleg.r'\n\tTransform 'hips'\n\tTransform 'upperarm.r'\n\tTransform 'lowerarm.r'\n\tTransform
-    'upperarm.l'\n\tTransform 'chest'\n\tTransform 'lowerarm.l'\n\tTransform 'lowerleg.r'\n\tand
-    more ...\n\tFrom animation clip 'Throw'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &5706987765057386444
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8396899899253425982}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.477191
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.1545815, z: -0}
 --- !u!4 &6835922832888063648 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5472015735593517531, guid: f5246f95677dbe14db2a428792405585, type: 3}
@@ -1500,8 +1462,6 @@ GameObject:
   - component: {fileID: 5394228012547623173}
   - component: {fileID: 1220992352545078486}
   - component: {fileID: 787255548817171947}
-  - component: {fileID: 5706987765057386444}
-  - component: {fileID: 3730785468336548641}
   - component: {fileID: 5693432523147528607}
   - component: {fileID: 74583284289541419}
   - component: {fileID: 4025574327722206658}

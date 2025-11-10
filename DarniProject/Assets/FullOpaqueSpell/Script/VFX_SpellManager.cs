@@ -20,7 +20,7 @@ namespace FullOpaqueVFX
         {
             if (!Application.isPlaying) return;
 
-            if (currentSpell != null && Input.GetKeyDown(currentSpell.activationKey) && !isOnCooldown)
+            if (currentSpell != null && !isOnCooldown)
             {
                 StartCoroutine(CastSpell());
             }

@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: SD_Arcane_Rain
   m_EditorClassIdentifier: 
   spellName: Arcane Rain
-  incantationPrefab: {fileID: 3993457813523650357, guid: 3b5c58a4954847748b248bb1cb55132b,
-    type: 3}
-  spellBurstPrefab: {fileID: 696709159327299983, guid: 345a7000797345899cfc3701ac5969b9,
-    type: 3}
-  mainSpellPrefab: {fileID: 1761242518713448578, guid: d3abcca2f5494135bbe915129a38172e,
-    type: 3}
+  incantationPrefab: {fileID: 3993457813523650357, guid: 3b5c58a4954847748b248bb1cb55132b, type: 3}
+  spellBurstPrefab: {fileID: 696709159327299983, guid: 345a7000797345899cfc3701ac5969b9, type: 3}
+  mainSpellPrefab: {fileID: 1761242518713448578, guid: d3abcca2f5494135bbe915129a38172e, type: 3}
   castTime: 1
-  cooldown: 1
+  cooldown: 3
   activationKey: 101
   shakeEnabled: 1
   shakeStrengthIncantation: 0.01

@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: SD_Plasma_Nova
   m_EditorClassIdentifier: 
   spellName: Plasma Nova
-  incantationPrefab: {fileID: 1400834752714809453, guid: cb0bbecf44ab4788af4e14a8e3f59b36,
-    type: 3}
-  spellBurstPrefab: {fileID: 1399132805510176293, guid: 0813002f00b0403eb40e00e1e8a02b71,
-    type: 3}
-  mainSpellPrefab: {fileID: 178319006128910955, guid: da61706905304b61a8af6a0dbfdda1c5,
-    type: 3}
+  incantationPrefab: {fileID: 1400834752714809453, guid: cb0bbecf44ab4788af4e14a8e3f59b36, type: 3}
+  spellBurstPrefab: {fileID: 1399132805510176293, guid: 0813002f00b0403eb40e00e1e8a02b71, type: 3}
+  mainSpellPrefab: {fileID: 178319006128910955, guid: da61706905304b61a8af6a0dbfdda1c5, type: 3}
   castTime: 1
-  cooldown: 1
+  cooldown: 5
   activationKey: 101
   shakeEnabled: 1
   shakeStrengthIncantation: 0.01
