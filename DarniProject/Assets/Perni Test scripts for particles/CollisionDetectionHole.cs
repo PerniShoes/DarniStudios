@@ -19,7 +19,6 @@ public class ParticleEnemyDetector : MonoBehaviour
             Collider[] hits = Physics.OverlapSphere(particlePos, detectionRadius, enemyLayer);
             foreach (var hit in hits)
             {
-                Debug.Log("Particle detected enemy: " + hit.name);
                 GameObject enemyObj = hit.gameObject;
                 EnemyHP enemyHealth = enemyObj.GetComponent<EnemyHP>();
                 enemyHealth.TakeDamage(10);

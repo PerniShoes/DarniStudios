@@ -35,7 +35,6 @@ public class PlayerXP : MonoBehaviour
         if (amount <= 0) return;
 
         currentXP += amount;
-        Debug.Log($"+{amount} XP (total: {currentXP}/{xpToNextLevel})");
 
         // Level Up logic
         while (currentXP >= xpToNextLevel)
@@ -43,7 +42,6 @@ public class PlayerXP : MonoBehaviour
             currentXP -= xpToNextLevel;
             currentLevel++;
             xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpGrowthRate);
-            Debug.Log($"LEVEL UP! Current level: {currentLevel}");
         }
 
         UpdateUI();
@@ -72,7 +70,6 @@ public class PlayerXP : MonoBehaviour
             float distance = Vector3.Distance(gem.position, transform.position);
             if (distance <= 2f) // enlarged pickup radius
             {
-                Debug.Log("Absorbed gem: " + hit.name);
                 AddExp(expPerGem);
                 Destroy(gem.gameObject);
             }
