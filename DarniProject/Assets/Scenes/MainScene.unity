@@ -335,7 +335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4714412204129672560, guid: 090d7df222fc64a47abfe34e327fa152, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4714412204129672560, guid: 090d7df222fc64a47abfe34e327fa152, type: 3}
       propertyPath: m_TagString
@@ -490,7 +490,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1286561078}
   - component: {fileID: 1286561079}
-  - component: {fileID: 1286561081}
   m_Layer: 0
   m_Name: Combined Mesh
   m_TagString: Untagged
@@ -592,14 +591,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.8308416, z: 0.016738892}
     m_Extent: {x: 0.9712601, y: 1.4161654, z: 0.98324585}
   m_DirtyAABB: 0
---- !u!33 &1286561081
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286561077}
-  m_Mesh: {fileID: 4300000, guid: bdc0d067b49b19141b0e786d305f5269, type: 2}
 --- !u!4 &1443241652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8052791189861519797, guid: 090d7df222fc64a47abfe34e327fa152, type: 3}
