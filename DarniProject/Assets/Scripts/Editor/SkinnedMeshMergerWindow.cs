@@ -52,13 +52,27 @@ public class SkinnedMeshMergerWindow : EditorWindow
             Mesh baked = new Mesh();
             parts[i].BakeMesh(baked);
             combineInstances[i].mesh = baked;
-            combineInstances[i].transform = Matrix4x4.identity;
+            combineInstances[i].transform = parts[i].transform.localToWorldMatrix * instance.transform.worldToLocalMatrix;
+
         }
 
         combinedMesh.CombineMeshes(combineInstances, true, true);
 
         SkinnedMeshRenderer mergedRenderer = instance.AddComponent<SkinnedMeshRenderer>();
-        mergedRenderer.sharedMesh = combinedMesh;
+
+        // Make sure folder exists
+        System.IO.Directory.CreateDirectory("Assets/MergedMeshes");
+
+        // Save the combined mesh as an asset
+        string meshPath = "Assets/MergedMeshes/" + prefab.name + "_MergedMesh.asset";
+        AssetDatabase.CreateAsset(combinedMesh, meshPath);
+        AssetDatabase.SaveAssets();
+
+        // Assign the saved mesh to the renderer
+        mergedRenderer.sharedMesh = AssetDatabase.LoadAssetAtPath<Mesh>(meshPath);
+
+
+
         mergedRenderer.bones = parts[0].bones; // assumes all share the same skeleton
         mergedRenderer.rootBone = parts[0].rootBone;
         mergedRenderer.sharedMaterial = mergedMaterial;

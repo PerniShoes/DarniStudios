@@ -4,12 +4,14 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - UMAKeepChain
   - Enemy
   - WallLeft
   - WallRight
   - WallTop
   - WallBottom
   - Gem
+  - UMAIgnore
   layers:
   - Default
   - TransparentFX
