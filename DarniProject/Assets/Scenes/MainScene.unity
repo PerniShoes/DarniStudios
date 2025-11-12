@@ -1429,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1597470391951415031, guid: 71615c499a99ae54a82d3827276c40fe, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 126
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2225406982022921984, guid: 71615c499a99ae54a82d3827276c40fe, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1855,6 +1855,7 @@ MonoBehaviour:
   xpToNextLevel: 100
   xpGrowthRate: 1.2
   pickupRange: 10
+  absorbDistance: 0.6
   pickupSpeed: 8
   expPerGem: 10
   xpBar: {fileID: 0}

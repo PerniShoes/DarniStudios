@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerXP : MonoBehaviour
 {
@@ -11,32 +11,97 @@ public class PlayerXP : MonoBehaviour
     public float xpGrowthRate = 1.2f;
 
     [Header("Pickup Settings")]
-    public float pickupRange = 2.5f;
+    public float pickupRange = 3f;
+    public float absorbDistance = 0.6f;
     public float pickupSpeed = 8f;
     public int expPerGem = 10;
 
-    [Header("UI (Work in Progress)")]
+    [Header("UI")]
     public Slider xpBar;
     public Text levelText;
+
+    private List<Transform> activeGems = new List<Transform>();
+    private float gemRefreshTimer = 0f;
+    private const float gemRefreshInterval = 2f;
 
     private void Start()
     {
         UpdateUI();
+        RefreshGemList();
     }
 
     private void Update()
     {
-        AttractNearbyGems();
+        gemRefreshTimer += Time.deltaTime;
+        if (gemRefreshTimer >= gemRefreshInterval)
+        {
+            gemRefreshTimer = 0f;
+            RefreshGemList();
+        }
+
+        AttractAndAbsorbGems();
     }
 
-    // Adds XP to player
+    private void RefreshGemList()
+    {
+        activeGems.Clear();
+        GameObject[] gems = GameObject.FindGameObjectsWithTag("Gem");
+        foreach (var gem in gems)
+        {
+            if (gem != null)
+                activeGems.Add(gem.transform);
+        }
+    }
+
+    private void AttractAndAbsorbGems()
+    {
+        if (activeGems.Count == 0) return;
+
+        for (int i = activeGems.Count - 1; i >= 0; i--)
+        {
+            Transform gem = activeGems[i];
+            if (gem == null)
+            {
+                activeGems.RemoveAt(i);
+                continue;
+            }
+
+            Vector3 playerPos = transform.position + Vector3.up * 0.8f;
+            float dist = Vector3.Distance(playerPos, gem.position);
+
+            
+            if (dist <= pickupRange)
+            {
+                // Faster if close to player
+                float dynamicSpeed = Mathf.Lerp(pickupSpeed * 0.5f, pickupSpeed * 2f, 1f - (dist / pickupRange));
+
+                gem.position = Vector3.MoveTowards(gem.position, playerPos, dynamicSpeed * Time.deltaTime);
+
+                var anim = gem.GetComponent<Benjathemaker.SimpleGemsAnim>();
+                if (anim != null)
+                    anim.isBeingAttracted = true;
+            }
+
+            
+            dist = Vector3.Distance(playerPos, gem.position);
+
+            // If close eat
+            if (dist <= absorbDistance)
+            {
+                AddExp(expPerGem);
+                Destroy(gem.gameObject);
+                activeGems.RemoveAt(i);
+            }
+        }
+    }
+
     public void AddExp(int amount)
     {
         if (amount <= 0) return;
 
         currentXP += amount;
 
-        // Level Up logic
+        // LVL UP
         while (currentXP >= xpToNextLevel)
         {
             currentXP -= xpToNextLevel;
@@ -47,36 +112,6 @@ public class PlayerXP : MonoBehaviour
         UpdateUI();
     }
 
-    // Pulls nearby XP gems toward player
-    private void AttractNearbyGems()
-    {
-        Collider[] hits = Physics.OverlapSphere(transform.position, pickupRange, ~0, QueryTriggerInteraction.Collide);
-
-        foreach (var hit in hits)
-        {
-            if (!hit.CompareTag("Gem")) continue;
-
-            Transform gem = hit.transform;
-            Vector3 targetPos = transform.position + Vector3.up * 1f;
-
-            // Stop floating anim
-            var anim = gem.GetComponent<Benjathemaker.SimpleGemsAnim>();
-            if (anim != null) anim.isBeingAttracted = true;
-
-            // Move toward player
-            gem.position = Vector3.MoveTowards(gem.position, targetPos, pickupSpeed * Time.deltaTime);
-
-            // Absorb
-            float distance = Vector3.Distance(gem.position, transform.position);
-            if (distance <= 2f) // enlarged pickup radius
-            {
-                AddExp(expPerGem);
-                Destroy(gem.gameObject);
-            }
-        }
-    }
-
-    // Update XP bar and level text
     private void UpdateUI()
     {
         if (xpBar != null)
@@ -86,10 +121,9 @@ public class PlayerXP : MonoBehaviour
             levelText.text = $"LVL {currentLevel}";
     }
 
-    // Draw pickup range for debug in editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0.3f, 1f, 0.3f, 0.25f);
-        Gizmos.DrawSphere(transform.position, pickupRange);
+        Gizmos.DrawWireSphere(transform.position, pickupRange);
     }
 }
