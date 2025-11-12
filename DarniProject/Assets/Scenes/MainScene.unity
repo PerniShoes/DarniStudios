@@ -397,6 +397,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EditorOnly
       objectReference: {fileID: 0}
+    - target: {fileID: 7116785954168059035, guid: 090d7df222fc64a47abfe34e327fa152, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7253693634380043143, guid: 090d7df222fc64a47abfe34e327fa152, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1141,7 +1145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3269263784554324420, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4058602336130843155, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1202,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1230467604928749198, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1460381254305176709, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: m_LocalPosition.x
