@@ -117,8 +117,8 @@ public class PlayerXP : MonoBehaviour
         if (xpBar != null)
             xpBar.value = (float)currentXP / xpToNextLevel;
 
-        if (levelText != null)
-            levelText.text = $"LVL {currentLevel}";
+        //if (levelText != null)
+        //    levelText.text = $"LVL {currentLevel}";
     }
 
     private void OnDrawGizmosSelected()
