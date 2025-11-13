@@ -60,6 +60,11 @@ namespace FullOpaqueVFX
 
             yield return new WaitForSeconds(currentSpell.castTime);
 
+
+            // MIGHT NEED TO REASSIGN TARGET HERE
+
+
+
                 if (incantation != null)
                 Destroy(incantation);
 
