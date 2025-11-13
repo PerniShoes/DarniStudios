@@ -7,6 +7,7 @@ namespace FullOpaqueVFX
     {
         public SpellData currentSpell;
         public Transform target;
+        public bool targetRandomEnemy = false;
         private bool isOnCooldown = false;
         private CameraShake cameraShake;
 
@@ -22,6 +23,18 @@ namespace FullOpaqueVFX
 
             if (currentSpell != null && !isOnCooldown)
             {
+                if (targetRandomEnemy)
+                {
+                    GameObject found = GameObject.FindWithTag("Enemy");
+
+                    if (found != null)
+                    {
+                        Vector3 pos = found.transform.position;
+                        pos.y += 1f;
+                        target = found.transform;
+                        target.position = pos;
+                    }
+                }
                 StartCoroutine(CastSpell());
             }
         }
@@ -47,7 +60,7 @@ namespace FullOpaqueVFX
 
             yield return new WaitForSeconds(currentSpell.castTime);
 
-            if (incantation != null)
+                if (incantation != null)
                 Destroy(incantation);
 
             // 2️⃣ Détermination de la position et de la rotation du Main Spell

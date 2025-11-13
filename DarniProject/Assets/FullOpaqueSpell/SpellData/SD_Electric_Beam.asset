@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: SD_Electric_Beam
   m_EditorClassIdentifier: 
   spellName: Electric_Beam
-  incantationPrefab: {fileID: 2905666689437318915, guid: 4768141875174f91b87ba0d53922fcae,
-    type: 3}
-  spellBurstPrefab: {fileID: 7248386473986964264, guid: 49a62d3927f84d66bca6836eeff3e428,
-    type: 3}
-  mainSpellPrefab: {fileID: 6216075307111844637, guid: cf7053d8789c444b8b15103fa387a8f4,
-    type: 3}
-  castTime: 1
-  cooldown: 1
+  incantationPrefab: {fileID: 2905666689437318915, guid: 4768141875174f91b87ba0d53922fcae, type: 3}
+  spellBurstPrefab: {fileID: 7248386473986964264, guid: 49a62d3927f84d66bca6836eeff3e428, type: 3}
+  mainSpellPrefab: {fileID: 6216075307111844637, guid: cf7053d8789c444b8b15103fa387a8f4, type: 3}
+  castTime: 0.5
+  cooldown: 0.3
   activationKey: 101
   shakeEnabled: 1
   shakeStrengthIncantation: 0.01

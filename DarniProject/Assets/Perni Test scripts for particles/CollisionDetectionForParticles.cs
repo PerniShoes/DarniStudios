@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class ParticleEnemyDetector : MonoBehaviour
 {
-    public ParticleSystem ps;
+    public ParticleSystem damageParticleSystem;
     public LayerMask enemyLayer;
     public float detectionRadius = 0.1f;
+
+    void Start()
+    {
+        detectionRadius = damageParticleSystem.main.startSize.constant;
+    }
 
     void Update()
     {
 
-        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[ps.particleCount];
-        int count = ps.GetParticles(particles);
+        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[damageParticleSystem.particleCount];
+        int count = damageParticleSystem.GetParticles(particles);
 
         for (int i = 0; i < count; i++)
         {
