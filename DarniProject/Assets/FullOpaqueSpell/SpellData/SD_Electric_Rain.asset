@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: SD_Electric_Rain
   m_EditorClassIdentifier: 
   spellName: Electric Rain
-  incantationPrefab: {fileID: 2905666689437318915, guid: 4768141875174f91b87ba0d53922fcae,
-    type: 3}
-  spellBurstPrefab: {fileID: 8026296608122095936, guid: f8dde93cbfb346569c9f1957e01018a9,
-    type: 3}
-  mainSpellPrefab: {fileID: 3300406336262876018, guid: dc12ba30641f4ef198ab9c6f887d25eb,
-    type: 3}
+  incantationPrefab: {fileID: 2905666689437318915, guid: 4768141875174f91b87ba0d53922fcae, type: 3}
+  spellBurstPrefab: {fileID: 8026296608122095936, guid: f8dde93cbfb346569c9f1957e01018a9, type: 3}
+  mainSpellPrefab: {fileID: 3300406336262876018, guid: dc12ba30641f4ef198ab9c6f887d25eb, type: 3}
   castTime: 1
-  cooldown: 1
+  cooldown: 3
   activationKey: 101
   shakeEnabled: 1
   shakeStrengthIncantation: 0.01

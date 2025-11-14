@@ -10,8 +10,7 @@ public class EnemyAI : MonoBehaviour
     public bool isDead = false;    
 
     void Update()
-    {
-        // IF Ded Calm Down 
+    { 
         if (isDead) return;
 
         if (player == null) return;
@@ -20,7 +19,7 @@ public class EnemyAI : MonoBehaviour
         Vector3 direction = player.position - transform.position;
         direction.y = 0f;
 
-        // If Player is far from atack go to him
+        // If Player is out of range, go to him
         if (direction.magnitude > attackRange)
         {
             transform.position += direction.normalized * moveSpeed * Time.deltaTime;

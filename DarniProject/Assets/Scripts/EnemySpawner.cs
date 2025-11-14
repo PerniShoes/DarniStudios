@@ -10,11 +10,11 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 1.5f;
     public int groupSize = 4;
     public int maxAlive = 60;
-    public float spawnRadius = 40f;
-    public float minDistanceFromPlayer = 10f;
+    public float minDistanceFromPlayer = 5f;
+    public float maxDistanceFromPlayer = 20f;
     public float groupSpread = 3f;
 
-    [Header("Map Bounds (ściany znajdowane automatycznie)")]
+    [Header("Map Walls")]
     public Transform leftWall;
     public Transform rightWall;
     public Transform topWall;
@@ -23,12 +23,12 @@ public class EnemySpawner : MonoBehaviour
     private float timer;
     private static int aliveEnemies = 0;
 
-    void Start()
+    private void Start()
     {
-        AutoFindWalls(); // Auto wall finding
+        FindWalls(); // Always find walls at start
     }
 
-    void Update()
+    private void Update()
     {
         if (!player || enemyPrefabs.Length == 0) return;
 
@@ -40,19 +40,14 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnGroup()
+    private void SpawnGroup()
     {
         for (int i = 0; i < groupSize; i++)
         {
             if (aliveEnemies >= maxAlive) break;
 
             Vector3 spawnPos = GetRandomSpawnPosition();
-
-            if (!IsInsideWalls(spawnPos))
-                continue;
-
-            if (Vector3.Distance(spawnPos, player.position) < minDistanceFromPlayer)
-                continue;
+            if (!IsInsideWalls(spawnPos)) continue;
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
@@ -68,63 +63,52 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    Vector3 GetRandomSpawnPosition()
+    // Generates a valid random spawn position around the player
+    private Vector3 GetRandomSpawnPosition()
     {
-        Vector2 r = Random.insideUnitCircle * spawnRadius;
-        Vector3 pos = player.position + new Vector3(r.x, 0f, r.y);
+        float distance = Random.Range(minDistanceFromPlayer, maxDistanceFromPlayer);
+        float angle = Random.Range(0f, Mathf.PI * 2f);
+
+        Vector3 offset = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * distance;
+        Vector3 pos = player.position + offset;
+
+        // Random group spread offset
         pos += new Vector3(Random.Range(-groupSpread, groupSpread), 0f, Random.Range(-groupSpread, groupSpread));
+
         return pos;
     }
 
-    bool IsInsideWalls(Vector3 pos)
+    // Check if a point is within map walls
+    private bool IsInsideWalls(Vector3 pos)
     {
-        if (!leftWall || !rightWall || !topWall || !bottomWall)
-            return true; // If walls not found dont block spawn
+        if (!leftWall || !rightWall || !topWall || !bottomWall) return true;
 
         float leftX = leftWall.position.x;
         float rightX = rightWall.position.x;
         float topZ = topWall.position.z;
         float bottomZ = bottomWall.position.z;
 
-        bool insideX = pos.x > leftX && pos.x < rightX;
-        bool insideZ = pos.z < topZ && pos.z > bottomZ;
-
-        return insideX && insideZ;
+        return (pos.x > leftX && pos.x < rightX && pos.z < topZ && pos.z > bottomZ);
     }
 
-    void AutoFindWalls()
+    // Auto-finds walls each time the game starts
+    private void FindWalls()
     {
-        // Finding walls from Names
-        if (!leftWall)
-            leftWall = GameObject.Find("LeftWall")?.transform;
-        if (!rightWall)
-            rightWall = GameObject.Find("RightWall")?.transform;
-        if (!topWall)
-            topWall = GameObject.Find("TopWall")?.transform;
-        if (!bottomWall)
-            bottomWall = GameObject.Find("BottomWall")?.transform;
+        leftWall = GameObject.Find("LeftWall")?.transform ?? GameObject.FindGameObjectWithTag("WallLeft")?.transform;
+        rightWall = GameObject.Find("RightWall")?.transform ?? GameObject.FindGameObjectWithTag("WallRight")?.transform;
+        topWall = GameObject.Find("TopWall")?.transform ?? GameObject.FindGameObjectWithTag("WallTop")?.transform;
+        bottomWall = GameObject.Find("BottomWall")?.transform ?? GameObject.FindGameObjectWithTag("WallBottom")?.transform;
 
-        // IDK if its good but if not fin names check wall tags
-        if (!leftWall)
-            leftWall = GameObject.FindGameObjectWithTag("WallLeft")?.transform;
-        if (!rightWall)
-            rightWall = GameObject.FindGameObjectWithTag("WallRight")?.transform;
-        if (!topWall)
-            topWall = GameObject.FindGameObjectWithTag("WallTop")?.transform;
-        if (!bottomWall)
-            bottomWall = GameObject.FindGameObjectWithTag("WallBottom")?.transform;
-
-        // Log to know what to find
-        Debug.Log($"[Spawner] Ściany znalezione: " +
-                  $"\nLewa: {(leftWall ? leftWall.name : "❌")}" +
-                  $"\nPrawa: {(rightWall ? rightWall.name : "❌")}" +
-                  $"\nGóra: {(topWall ? topWall.name : "❌")}" +
-                  $"\nDół: {(bottomWall ? bottomWall.name : "❌")}");
+        Debug.Log($"[Spawner] Walls detected:" +
+                  $"\nLeft: {(leftWall ? leftWall.name : "❌")}" +
+                  $"\nRight: {(rightWall ? rightWall.name : "❌")}" +
+                  $"\nTop: {(topWall ? topWall.name : "❌")}" +
+                  $"\nBottom: {(bottomWall ? bottomWall.name : "❌")}");
     }
 
     public class EnemyDestroyHandler : MonoBehaviour
     {
         public System.Action OnDestroyed;
-        void OnDestroy() => OnDestroyed?.Invoke();
+        private void OnDestroy() => OnDestroyed?.Invoke();
     }
 }
