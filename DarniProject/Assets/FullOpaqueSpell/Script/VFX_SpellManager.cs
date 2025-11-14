@@ -10,11 +10,11 @@ namespace FullOpaqueVFX
         public bool targetRandomEnemy = false;
         private bool isOnCooldown = false;
         private CameraShake cameraShake;
+        public CoolddownTracker cdTracker;
 
         void Start()
         {
             if (!Application.isPlaying) return;
-            cameraShake = FindObjectOfType<CameraShake>();
         }
 
         void Update()
@@ -130,6 +130,12 @@ namespace FullOpaqueVFX
                     StartCoroutine(DestroyAfterParticles(spellBurst));
                 }
             }
+
+            string name = gameObject.name;
+            char lastLetter = name[name.Length - 1];
+            // Works only on 0-9 for now
+            int index = lastLetter - '0';
+            cdTracker.StartCooldown(index);
 
             yield return new WaitForSeconds(currentSpell.cooldown);
             isOnCooldown = false;

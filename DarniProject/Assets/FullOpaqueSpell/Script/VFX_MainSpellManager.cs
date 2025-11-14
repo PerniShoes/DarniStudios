@@ -15,7 +15,6 @@ namespace FullOpaqueVFX
 
         void Start()
         {
-            cameraShake = FindObjectOfType<CameraShake>();
 
             if (forceFieldTarget == null)
             {

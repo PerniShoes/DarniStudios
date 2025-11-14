@@ -1,6 +1,8 @@
 using FullOpaqueVFX;
 using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CoolddownTracker : MonoBehaviour
 {
@@ -15,9 +17,13 @@ public class CoolddownTracker : MonoBehaviour
 
     private float[] spellCooldowns;
     private float[] currentSpellCooldowns;
+    private List<GameObject> imageSpellSlots;
 
     void Start()
     {
+
+        FindAndSetSpellSlots();
+
         currentSpellCooldowns = Enumerable.Repeat(0.0f, 6).ToArray();
         spellCooldowns = new float[6];
 
@@ -52,11 +58,17 @@ public class CoolddownTracker : MonoBehaviour
 
     void UpdateImages()
     {
+        for(int i = 0; i< currentSpellCooldowns.Length; ++i)
+        {
+            float fillAmountCD = 1.0f - (currentSpellCooldowns[i]/ spellCooldowns[i]);
+            imageSpellSlots[i].GetComponent<Image>().fillAmount = fillAmountCD;
 
+        }
     }
 
-    void StartCooldown(int spellSlotId)
+    public void StartCooldown(int spellSlotId)
     {
+        spellSlotId -= 1;
         currentSpellCooldowns[spellSlotId] = spellCooldowns[spellSlotId];
     }
 
@@ -68,6 +80,23 @@ public class CoolddownTracker : MonoBehaviour
         }
     }
 
+    void FindAndSetSpellSlots()
+    {
+        GameObject parent = GameObject.Find("SpellCDTracker");
+
+        if (parent == null)
+        {
+            return;
+        }
+        int childrenCount = parent.transform.childCount;
+        imageSpellSlots = new List<GameObject>(childrenCount);
+
+        for (int i = 0; i < childrenCount; i++)
+        { 
+            imageSpellSlots.Add(null);
+            imageSpellSlots[i] = parent.transform.GetChild(i).gameObject;
+        }
+    }
 
 
 }
