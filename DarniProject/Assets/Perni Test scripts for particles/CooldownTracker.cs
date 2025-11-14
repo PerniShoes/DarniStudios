@@ -60,8 +60,10 @@ public class CoolddownTracker : MonoBehaviour
     {
         for(int i = 0; i< currentSpellCooldowns.Length; ++i)
         {
-            float fillAmountCD = 1.0f - (currentSpellCooldowns[i]/ spellCooldowns[i]);
-            imageSpellSlots[i].GetComponent<Image>().fillAmount = fillAmountCD;
+            float fillAmountCD = (currentSpellCooldowns[i]/ spellCooldowns[i]);
+            Transform child = imageSpellSlots[i].transform.Find("Cooldown Layer");
+
+            child.GetComponent<Image>().fillAmount = fillAmountCD;
 
         }
     }
