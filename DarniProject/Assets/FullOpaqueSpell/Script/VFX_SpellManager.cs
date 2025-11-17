@@ -45,28 +45,26 @@ namespace FullOpaqueVFX
 
             isOnCooldown = true;
 
-            // 1️⃣ Incantation
-            GameObject incantation = currentSpell.SpawnEffect(currentSpell.incantationPrefab, transform.position, Quaternion.identity);
-            if (incantation != null)
-            {
-                AdjustParticleLifetime(incantation, currentSpell.castTime);
-                incantation.SetActive(true);
-                PlayParticleSystem(incantation);
-                if (currentSpell.shakeEnabled && cameraShake != null)
-                {
-                    cameraShake.Shake(currentSpell.shakeStrengthIncantation, currentSpell.shakeDurationIncantation);
-                }
-            }
+            //// 1️⃣ Incantation
+            //GameObject incantation = currentSpell.SpawnEffect(currentSpell.incantationPrefab, transform.position, Quaternion.identity);
+            //if (incantation != null)
+            //{
+            //    AdjustParticleLifetime(incantation, currentSpell.castTime);
+            //    incantation.SetActive(true);
+            //    PlayParticleSystem(incantation);
+            //    if (currentSpell.shakeEnabled && cameraShake != null)
+            //    {
+            //        cameraShake.Shake(currentSpell.shakeStrengthIncantation, currentSpell.shakeDurationIncantation);
+            //    }
+            //}
 
-            yield return new WaitForSeconds(currentSpell.castTime);
+            //yield return new WaitForSeconds(currentSpell.castTime);
+
+                //if (incantation != null)
+                //Destroy(incantation);
 
 
-            // MIGHT NEED TO REASSIGN TARGET HERE
 
-
-
-                if (incantation != null)
-                Destroy(incantation);
 
             // 2️⃣ Détermination de la position et de la rotation du Main Spell
             Vector3 spawnPosition = transform.position;
@@ -114,22 +112,22 @@ namespace FullOpaqueVFX
                 PlayParticleSystem(mainSpell);
             }
 
-            // 3️⃣ Gestion du Spell Burst
-            if (currentSpell.spellBurstPrefab != null)
-            {
-                Vector3 burstPosition = transform.position;
-                GameObject spellBurst = currentSpell.SpawnEffect(currentSpell.spellBurstPrefab, burstPosition, Quaternion.identity);
-                if (spellBurst != null)
-                {
-                    spellBurst.SetActive(true);
-                    PlayParticleSystem(spellBurst);
-                    if (currentSpell.shakeEnabled && cameraShake != null)
-                    {
-                        cameraShake.Shake(currentSpell.shakeStrengthBurst, currentSpell.shakeDurationBurst);
-                    }
-                    StartCoroutine(DestroyAfterParticles(spellBurst));
-                }
-            }
+            //// 3️⃣ Gestion du Spell Burst
+            //if (currentSpell.spellBurstPrefab != null)
+            //{
+            //    Vector3 burstPosition = transform.position;
+            //    GameObject spellBurst = currentSpell.SpawnEffect(currentSpell.spellBurstPrefab, burstPosition, Quaternion.identity);
+            //    if (spellBurst != null)
+            //    {
+            //        spellBurst.SetActive(true);
+            //        PlayParticleSystem(spellBurst);
+            //        if (currentSpell.shakeEnabled && cameraShake != null)
+            //        {
+            //            cameraShake.Shake(currentSpell.shakeStrengthBurst, currentSpell.shakeDurationBurst);
+            //        }
+            //        StartCoroutine(DestroyAfterParticles(spellBurst));
+            //    }
+            //}
 
             string name = gameObject.name;
             char lastLetter = name[name.Length - 1];
