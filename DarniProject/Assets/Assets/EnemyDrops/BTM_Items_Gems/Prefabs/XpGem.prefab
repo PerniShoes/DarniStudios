@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6c8f3faefe517b04a8a459b2e554a758, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c8f3faefe517b04a8a459b2e554a758, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c8f3faefe517b04a8a459b2e554a758, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c8f3faefe517b04a8a459b2e554a758, type: 3}
       propertyPath: m_LocalPosition.x
@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBeingAttracted: 0
-  rotationSpeed: 3
-  floatAmplitude: 0.2
-  floatFrequency: 2
+  rotationSpeed: 5
+  floatAmplitude: 1
+  floatFrequency: 0.5
+  dropMoveDistance: 6
+  dropDuration: 0.5
