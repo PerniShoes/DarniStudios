@@ -30,7 +30,7 @@ public class ParticleEnemyDetector : MonoBehaviour
             {
                 GameObject enemyObj = hitBuffer[j].gameObject;
                 EnemyHP enemyHealth = enemyObj.GetComponent<EnemyHP>();
-                enemyHealth.TakeDamage(10);
+                enemyHealth.TakeDamage(1);
             }
         }
     }

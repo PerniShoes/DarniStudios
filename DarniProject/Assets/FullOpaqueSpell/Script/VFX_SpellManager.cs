@@ -30,7 +30,7 @@ namespace FullOpaqueVFX
                     if (found != null)
                     {
                         Vector3 pos = found.transform.position;
-                        pos.y += 1f;
+                        pos.y = 1.2f;
                         target = found.transform;
                         target.position = pos;
                     }

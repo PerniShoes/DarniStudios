@@ -18,13 +18,11 @@ namespace Benjathemaker
 
         private Vector3 startPos;
         private Vector3 dropTargetPos;
-        private float randomOffset;
         private bool isDropping = true;
 
         void Start()
         {
             startPos = transform.position;
-            randomOffset = Random.Range(0f, Mathf.PI * 2f);
 
             // Random direction for initial "drop"
             Vector2 random2D = Random.insideUnitCircle.normalized;
@@ -56,14 +54,14 @@ namespace Benjathemaker
         {
             if (isBeingAttracted || isDropping) return;
 
-            // Rotate gem
-            transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.Self);
+            //// Rotate gem
+            //transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.Self);
 
-            // Floating idle animation
-            float newY = startPos.y + Mathf.Sin(Time.time * floatFrequency + randomOffset) * floatAmplitude;
-            Vector3 pos = transform.position;
-            pos.y = newY;
-            transform.position = pos;
+            //// Floating idle animation
+            //float newY = startPos.y + Mathf.Sin(Time.time * floatFrequency) * floatAmplitude;
+            //Vector3 pos = transform.position;
+            //pos.y = newY;
+            //transform.position = pos;
         }
     }
 }

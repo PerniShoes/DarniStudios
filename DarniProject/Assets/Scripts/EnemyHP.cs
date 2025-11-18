@@ -3,7 +3,7 @@
 public class EnemyHP : MonoBehaviour
 {
     [Header("Health Settings")]
-    public int maxHealth = 100;
+    public int maxHealth;
     private int currentHealth;
 
     [Header("References")]
@@ -17,6 +17,7 @@ public class EnemyHP : MonoBehaviour
 
     void Start()
     {
+        maxHealth = 300;
         currentHealth = maxHealth;
         if (healthBar != null)
             healthBar.SetMaxHealth(maxHealth);
