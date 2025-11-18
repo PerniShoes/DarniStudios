@@ -24,8 +24,9 @@ public class Movement : MonoBehaviour
     private bool isDashing = false;
     [SerializeField] private TrailRenderer trailRenderer;
 
-    private int currentDashChargess;
+    private int currentDashCharges;
     private bool canDash = true;
+    private float dashRecharge = 0f;
 
     [Header("Dash UI")]
     public List<Image> dashCharges = new List<Image>();
@@ -33,7 +34,7 @@ public class Movement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentDashChargess = totalDashes;
+        currentDashCharges = totalDashes;
 
     }
 
@@ -47,7 +48,16 @@ public class Movement : MonoBehaviour
         }
         HandleInput();
         UpdateDashUI();
+        if (currentDashCharges < totalDashes)
+        {
+            dashRecharge += Time.deltaTime;
 
+            if (dashRecharge >= dashCooldown)
+            {
+                currentDashCharges++;
+                dashRecharge = 0f;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -113,7 +123,7 @@ public class Movement : MonoBehaviour
     }
     private IEnumerator Dash()
     {
-        if (currentDashChargess <= 0 || !canDash) yield break;
+        if (currentDashCharges <= 0 || !canDash) yield break;
         if (!isDashing)
         {
 
@@ -122,7 +132,7 @@ public class Movement : MonoBehaviour
         canDash = false;
         isDashing = true;
         trailRenderer.emitting = true;
-        currentDashChargess -= 1;
+        currentDashCharges -= 1;
 
         Vector3 dashDir = transform.forward;
 
@@ -140,30 +150,29 @@ public class Movement : MonoBehaviour
 
         yield return new WaitForSeconds(delayBetweenDashes);
         canDash = true;
-        StartCoroutine(RechargeDashCharge());
-
-    }
-
-    private IEnumerator RechargeDashCharge()
-    {
-        yield return new WaitForSeconds(dashCooldown);
-        currentDashChargess = Mathf.Min(currentDashChargess + 1, totalDashes);
     }
 
     private void UpdateDashUI()
     {
+        bool skipRest = false;
         for (int i = 0; i < dashCharges.Count; i++)
         {
-            if (i < currentDashChargess)
+            if (skipRest)
             {
-                dashCharges[i].color = Color.orange;
+                dashCharges[i].fillAmount = 0f;
+                continue;
+            }
+            if (i < currentDashCharges)
+            {
                 dashCharges[i].fillAmount = 1f;
             }
             else
             {
-                dashCharges[i].color = Color.gray;
-                dashCharges[i].fillAmount = 1f;
+                dashCharges[i].fillAmount = dashRecharge/dashCooldown;
+                skipRest = true;
             }
         }
     }
+
+
 }
