@@ -19,17 +19,8 @@ public class EnemyDrop : MonoBehaviour
     {
         if (expPrefab == null) return;
 
-        int gemCount = Mathf.Max(1, expAmount / 10); 
-        for (int i = 0; i < gemCount; i++)
-        {
-            Vector3 offset = new Vector3(Random.Range(-0.4f, 0.4f), 0.6f, Random.Range(-0.4f, 0.4f));
-            GameObject gem = Instantiate(expPrefab, transform.position + offset, Quaternion.identity);
-
-            
-            Rigidbody rb = gem.GetComponent<Rigidbody>();
-            if (rb != null)
-                rb.AddForce(Vector3.up * 2f, ForceMode.Impulse);
-        }
+        Vector3 offset = new Vector3(Random.Range(-0.4f, 0.4f), 0.6f, Random.Range(-0.4f, 0.4f));
+        GameObject gem = Instantiate(expPrefab, transform.position + offset, Quaternion.identity);
     }
 }
 

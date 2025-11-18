@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 namespace Benjathemaker
 {
@@ -6,33 +7,61 @@ namespace Benjathemaker
     {
         [HideInInspector] public bool isBeingAttracted = false;
 
-        [Header("Animation Settings")]
-        public float rotationSpeed = 50f;   // degrees per second
-        public float floatAmplitude = 0.2f; // how high it floats
-        public float floatFrequency = 1f;   // how fast it floats
+        [Header("Idle Animation")]
+        public float rotationSpeed = 50f;    // How fast the gem spins
+        public float floatAmplitude = 0.2f;  // Floating height
+        public float floatFrequency = 1f;    // Floating speed
 
-        private Vector3 startPosition;
-        private float randomOffset; // random phase so gems don't float identically
+        [Header("Drop Animation")]
+        public float dropMoveDistance = 0.5f;  // How far it moves away after spawn
+        public float dropDuration = 0.3f;      // How long the drop animation lasts
+
+        private Vector3 startPos;
+        private Vector3 dropTargetPos;
+        private bool isDropping = true;
 
         void Start()
         {
-            startPosition = transform.position;
-            randomOffset = Random.Range(0f, Mathf.PI * 2f); // random wave phase
+            startPos = transform.position;
+
+            // Random direction for initial "drop"
+            Vector2 random2D = Random.insideUnitCircle.normalized;
+            dropTargetPos = startPos + new Vector3(random2D.x, Random.Range(0.2f, 0.6f), random2D.y) * dropMoveDistance;
+
+            // Start simple drop animation
+            StartCoroutine(DropAnimation());
+        }
+
+        IEnumerator DropAnimation()
+        {
+            float t = 0f;
+            while (t < dropDuration)
+            {
+                t += Time.deltaTime;
+                float progress = t / dropDuration;
+
+                // Smooth curve (ease out)
+                transform.position = Vector3.Lerp(startPos, dropTargetPos, 1 - Mathf.Pow(1 - progress, 2));
+
+                yield return null;
+            }
+
+            startPos = transform.position;
+            isDropping = false;
         }
 
         void Update()
         {
-            // No animation if going to player
-            if (isBeingAttracted) return;
+            if (isBeingAttracted || isDropping) return;
 
-            // Rotate
-            transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.Self);
+            //// Rotate gem
+            //transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.Self);
 
-            // Sinusoida :3
-            float newY = startPosition.y + Mathf.Sin(Time.time * floatFrequency + randomOffset) * floatAmplitude;
-            Vector3 pos = transform.position;
-            pos.y = newY;
-            transform.position = pos;
+            //// Floating idle animation
+            //float newY = startPos.y + Mathf.Sin(Time.time * floatFrequency) * floatAmplitude;
+            //Vector3 pos = transform.position;
+            //pos.y = newY;
+            //transform.position = pos;
         }
     }
 }
