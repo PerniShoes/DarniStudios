@@ -1900,6 +1900,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1792551732}
   - {fileID: 2130081565552649220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -2147,6 +2148,11 @@ Transform:
   - {fileID: 725735877}
   m_Father: {fileID: 5394228012547623173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1792551732 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+  m_PrefabInstance: {fileID: 3878152699436296493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1862176906 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2590872625184655399, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
@@ -2337,6 +2343,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c8957f50494b1fa3488216c4c10d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2139999024 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4567763587220680116, guid: f18b483fd36ef214dbcd19087c597ccc, type: 3}
+  m_PrefabInstance: {fileID: 1539689882427268566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!96 &74583284289541419
 TrailRenderer:
   serializedVersion: 3
@@ -2575,7 +2592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3550086725971916897, guid: 2da9db7c0275b9b4195b8127c45c3652, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -449
+      value: -436
       objectReference: {fileID: 0}
     - target: {fileID: 4579953355060046076, guid: 2da9db7c0275b9b4195b8127c45c3652, type: 3}
       propertyPath: m_Name
@@ -3092,10 +3109,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3559636726575106317, guid: f18b483fd36ef214dbcd19087c597ccc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5592
-      objectReference: {fileID: 0}
     - target: {fileID: 7430737063997228245, guid: f18b483fd36ef214dbcd19087c597ccc, type: 3}
       propertyPath: m_Name
       value: ExpCanvas
@@ -3388,6 +3401,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba5b55e3c39bfd4692e1e065f3a2587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1001 &3878152699436296493
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1494801742}
+    m_Modifications:
+    - target: {fileID: 2832554321421242777, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_Name
+      value: XP_GemMenager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.282124
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -32.85659
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 534.30493
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
 --- !u!1001 &3895408863929521807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3939,6 +4009,7 @@ MonoBehaviour:
   expPerGem: 10
   xpBar: {fileID: 586803955}
   levelText: {fileID: 0}
+  levelTMP: {fileID: 2139999024}
 --- !u!136 &9045814279619542253
 CapsuleCollider:
   m_ObjectHideFlags: 0

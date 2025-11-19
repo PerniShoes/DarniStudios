@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro; // ← dodaj to
 using System.Collections.Generic;
 
 public class PlayerXP : MonoBehaviour
@@ -18,7 +19,8 @@ public class PlayerXP : MonoBehaviour
 
     [Header("UI")]
     public Slider xpBar;
-    public Text levelText;
+    public Text levelText;               // ← stary UI Text (zostaje)
+    public TextMeshProUGUI levelTMP;     // ← nowy TMP text (opcjonalny)
 
     private List<Transform> activeGems = new List<Transform>();
     private float gemRefreshTimer = 0f;
@@ -69,12 +71,9 @@ public class PlayerXP : MonoBehaviour
             Vector3 playerPos = transform.position + Vector3.up * 0.8f;
             float dist = Vector3.Distance(playerPos, gem.position);
 
-            
             if (dist <= pickupRange)
             {
-                // Faster if close to player
                 float dynamicSpeed = Mathf.Lerp(pickupSpeed * 0.5f, pickupSpeed * 2f, 1f - (dist / pickupRange));
-
                 gem.position = Vector3.MoveTowards(gem.position, playerPos, dynamicSpeed * Time.deltaTime);
 
                 var anim = gem.GetComponent<Benjathemaker.SimpleGemsAnim>();
@@ -82,14 +81,12 @@ public class PlayerXP : MonoBehaviour
                     anim.isBeingAttracted = true;
             }
 
-            
             dist = Vector3.Distance(playerPos, gem.position);
 
-            // If close eat
             if (dist <= absorbDistance)
             {
                 AddExp(expPerGem);
-                Destroy(gem.gameObject);
+                GemManager.Instance.DespawnGem(gem.gameObject);
                 activeGems.RemoveAt(i);
             }
         }
@@ -101,7 +98,6 @@ public class PlayerXP : MonoBehaviour
 
         currentXP += amount;
 
-        // LVL UP
         while (currentXP >= xpToNextLevel)
         {
             currentXP -= xpToNextLevel;
@@ -117,8 +113,11 @@ public class PlayerXP : MonoBehaviour
         if (xpBar != null)
             xpBar.value = (float)currentXP / xpToNextLevel;
 
-        //if (levelText != null)
-        //    levelText.text = $"LVL {currentLevel}";
+        if (levelText != null)
+            levelText.text = $"LVL {currentLevel}";
+
+        if (levelTMP != null)
+            levelTMP.text = $"{currentLevel}"; // ← nowy TMP text
     }
 
     private void OnDrawGizmosSelected()
