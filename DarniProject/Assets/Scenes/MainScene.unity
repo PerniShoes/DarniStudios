@@ -1125,7 +1125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3269263784554324420, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4058602336130843155, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1957,7 +1957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3269263784554324420, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4058602336130843155, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3236,7 +3236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3269263784554324420, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4058602336130843155, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3418,6 +3418,10 @@ PrefabInstance:
     - target: {fileID: 2832554321421242777, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
       propertyPath: m_Name
       value: XP_GemManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2832554321421242777, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
       propertyPath: m_LocalPosition.x
