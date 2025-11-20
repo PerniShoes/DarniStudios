@@ -3417,7 +3417,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2832554321421242777, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
       propertyPath: m_Name
-      value: XP_GemMenager
+      value: XP_GemManager
       objectReference: {fileID: 0}
     - target: {fileID: 7862932530746455541, guid: a27077376a7f2f54da5c10a4f4428ec6, type: 3}
       propertyPath: m_LocalPosition.x
