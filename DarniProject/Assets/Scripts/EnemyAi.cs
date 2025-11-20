@@ -2,37 +2,48 @@
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform player;      
-    public float moveSpeed = 3.5f; 
-    public float attackRange = 2f; 
-    public Animator animator;      
+    public Transform player;
+    public float moveSpeed = 3.5f;
+    public float attackRange = 2f;
+    public Animator animator;
 
-    public bool isDead = false;    
+    public bool isDead = false;
+
+    void Start()
+    {
+        // Auto find player (by tag)
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+                player = playerObj.transform;
+        }
+
+        // Auto assign Animator if not set
+        if (animator == null)
+            animator = GetComponent<Animator>();
+
+    }
 
     void Update()
-    { 
-        if (isDead) return;
+    {
+        if (isDead || player == null) return;
 
-        if (player == null) return;
-
-        // Move to player
         Vector3 direction = player.position - transform.position;
         direction.y = 0f;
 
-        // If Player is out of range, go to him
         if (direction.magnitude > attackRange)
         {
             transform.position += direction.normalized * moveSpeed * Time.deltaTime;
             animator.SetBool("isMoveing", true);
             animator.SetBool("isAttack", false);
         }
-        else 
+        else
         {
             animator.SetBool("isMoveing", false);
             animator.SetBool("isAttack", true);
         }
 
-        // Turn to player
         if (direction != Vector3.zero)
             transform.rotation = Quaternion.LookRotation(direction);
     }

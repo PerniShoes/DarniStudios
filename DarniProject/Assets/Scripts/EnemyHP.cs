@@ -13,15 +13,21 @@ public class EnemyHP : MonoBehaviour
     private bool isDead = false;
 
     public delegate void EnemyDeathEvent(EnemyHP enemy);
-    public event EnemyDeathEvent OnDeath; 
+    public event EnemyDeathEvent OnDeath;
 
     void Start()
     {
         maxHealth = 300;
         currentHealth = maxHealth;
+
+        // Automatycznie przypisz pasek życia, jeśli nie został ustawiony w Inspectorze
+        if (healthBar == null)
+            healthBar = GetComponentInChildren<HealthBar>();
+
         if (healthBar != null)
             healthBar.SetMaxHealth(maxHealth);
     }
+
 
     void Update()
     {

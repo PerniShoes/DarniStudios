@@ -872,8 +872,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
   maxHealth: 100
-  healthBar: {fileID: 2038728583568147344}
+  healthBar: {fileID: 0}
   animator: {fileID: 2722828699185014972}
+  healthCanvasPrefab: {fileID: 0}
 --- !u!4 &2937680931886157056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a127a5b0eb1b4cd41a173eb56c98783e, type: 3}
@@ -1065,17 +1066,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
---- !u!114 &2038728583568147344 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7230903123937213290, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
-  m_PrefabInstance: {fileID: 8652066674767952122}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba5b55e3c39bfd4692e1e065f3a2587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!224 &3077721997791815169 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5954905589971721979, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
