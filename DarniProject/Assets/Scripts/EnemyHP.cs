@@ -15,7 +15,7 @@ public class EnemyHP : MonoBehaviour
 
     public delegate void EnemyDeathEvent(EnemyHP enemy);
     private float destroyTime = 1.5f;
-    // Not sure why I store the Coroutine instead of just calling tbh
+    // Not sure why I store the Coroutine instead of just calling it, tbh
     Coroutine _returnToPoolTimerCoroutine; 
 
 
@@ -23,9 +23,6 @@ public class EnemyHP : MonoBehaviour
     {
         maxHealth = 300;
         currentHealth = maxHealth;
-
-        if (healthBar == null)
-            healthBar = GetComponentInChildren<HealthBar>();
 
         if (healthBar != null)
             healthBar.SetMaxHealth(maxHealth);
@@ -66,7 +63,6 @@ public class EnemyHP : MonoBehaviour
 
 
         _returnToPoolTimerCoroutine = StartCoroutine(ReturnToPoolAfterTime());
-        // Destroy(gameObject, 1.5f);
     }
 
     private IEnumerator ReturnToPoolAfterTime()

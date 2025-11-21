@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
             if (!IsInsideWalls(spawnPos)) continue;
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-            GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
+            GameObject enemy = ObjectPoolManager.SpawnObject(prefab, spawnPos, Quaternion.identity, ObjectPoolManager.PoolType.Enemies);
 
             var ai = enemy.GetComponent<EnemyAI>();
             if (ai != null)
@@ -57,12 +57,9 @@ public class EnemySpawner : MonoBehaviour
 
             aliveEnemies++;
 
-            var destroyHandler = enemy.AddComponent<EnemyDestroyHandler>();
-            destroyHandler.OnDestroyed += () => aliveEnemies = Mathf.Max(0, aliveEnemies - 1);
         }
     }
 
-    // Generates a valid random spawn position around the player
     private Vector3 GetRandomSpawnPosition()
     {
         float distance = Random.Range(minDistanceFromPlayer, maxDistanceFromPlayer);
@@ -76,8 +73,6 @@ public class EnemySpawner : MonoBehaviour
 
         return pos;
     }
-
-    // Check if a point is within map walls
     private bool IsInsideWalls(Vector3 pos)
     {
         if (!leftWall || !rightWall || !topWall || !bottomWall) return true;
@@ -89,7 +84,6 @@ public class EnemySpawner : MonoBehaviour
 
         return (pos.x > leftX && pos.x < rightX && pos.z < topZ && pos.z > bottomZ);
     }
-
     private void FindWalls()
     {
         leftWall = GameObject.Find("LeftWall")?.transform ?? GameObject.FindGameObjectWithTag("WallLeft")?.transform;
@@ -104,9 +98,4 @@ public class EnemySpawner : MonoBehaviour
                   $"\nBottom: {(bottomWall ? bottomWall.name : "❌")}");
     }
 
-    public class EnemyDestroyHandler : MonoBehaviour
-    {
-        public System.Action OnDestroyed;
-        private void OnDestroy() => OnDestroyed?.Invoke();
-    }
 }

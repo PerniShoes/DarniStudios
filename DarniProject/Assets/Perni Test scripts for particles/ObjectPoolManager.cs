@@ -86,7 +86,31 @@ public class ObjectPoolManager : MonoBehaviour
 
         return spawnableObject;
     }
-    
+
+    // Overload for objects that have parent's transform
+    public static GameObject SpawnObject(GameObject target,Transform parentTransform)
+    {
+        PooledObjectInfo pool = ObjectPools.Find(storedPools => storedPools.LookupString == target.name);
+
+        if (pool == null)
+        {
+            pool = new PooledObjectInfo() { LookupString = target.name };
+            ObjectPools.Add(pool);
+        }
+        GameObject spawnableObject = pool.InactiveObjects.FirstOrDefault();
+
+        if (spawnableObject == null)
+        {
+            spawnableObject = Instantiate(target, parentTransform);
+        }
+        else
+        {
+            pool.InactiveObjects.Remove(spawnableObject);
+            spawnableObject.SetActive(true);
+        }
+
+        return spawnableObject;
+    }
 
     public static void ReturnObjectToPool(GameObject target)
     {
