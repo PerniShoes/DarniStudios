@@ -20,15 +20,14 @@ namespace Benjathemaker
         private Vector3 dropTargetPos;
         private bool isDropping = true;
 
-        void Start()
+        public void DropGem()
         {
             startPos = transform.position;
 
-            // Random direction for initial "drop"
             Vector2 random2D = Random.insideUnitCircle.normalized;
             dropTargetPos = startPos + new Vector3(random2D.x, Random.Range(0.2f, 0.6f), random2D.y) * dropMoveDistance;
 
-            // Start simple drop animation
+            isDropping = true;
             StartCoroutine(DropAnimation());
         }
 

@@ -9,9 +9,14 @@ public class EnemyAI : MonoBehaviour
 
     public bool isDead = false;
 
-    void Start()
+    public EnemyHP enemyHP;
+
+    void Awake()
     {
-        // Auto find player (by tag)
+        enemyHP = GetComponent<EnemyHP>();
+    }
+    void Start()
+    { 
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");

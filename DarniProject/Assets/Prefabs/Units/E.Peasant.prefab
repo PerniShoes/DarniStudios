@@ -684,9 +684,6 @@ PrefabInstance:
       addedObject: {fileID: -1913004125582441606}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a127a5b0eb1b4cd41a173eb56c98783e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 23437033324468822}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a127a5b0eb1b4cd41a173eb56c98783e, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5215423965757713194}
   m_SourcePrefab: {fileID: 100100000, guid: a127a5b0eb1b4cd41a173eb56c98783e, type: 3}
 --- !u!4 &95043731663620623 stripped
@@ -845,20 +842,7 @@ MonoBehaviour:
   attackRange: 3
   animator: {fileID: 2722828699185014972}
   isDead: 0
---- !u!114 &23437033324468822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2562387189551011770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce8b8f9da372f95409c1d52b7f2f7aaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDrop
-  expPrefab: {fileID: 543725697735843016, guid: 57377efc0a877474ab0478d4ce8180c2, type: 3}
-  expAmount: 10
+  enemyHP: {fileID: 5215423965757713194}
 --- !u!114 &5215423965757713194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,9 +856,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
   maxHealth: 100
+  currentHealth: 0
   healthBar: {fileID: 0}
   animator: {fileID: 2722828699185014972}
-  healthCanvasPrefab: {fileID: 0}
+  isDead: 0
+  expPrefab: {fileID: 543725697735843016, guid: 57377efc0a877474ab0478d4ce8180c2, type: 3}
+  expAmount: 10
 --- !u!4 &2937680931886157056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a127a5b0eb1b4cd41a173eb56c98783e, type: 3}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform bottomWall;
 
     private float timer;
-    private static int aliveEnemies = 0;
+    public static int aliveEnemies = 0;
 
     private void Start()
     {
@@ -41,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnGroup()
     {
+
         for (int i = 0; i < groupSize; i++)
         {
             if (aliveEnemies >= maxAlive) break;
@@ -50,13 +52,19 @@ public class EnemySpawner : MonoBehaviour
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             GameObject enemy = ObjectPoolManager.SpawnObject(prefab, spawnPos, Quaternion.identity, ObjectPoolManager.PoolType.Enemies);
-
+            
+            // Shouldn't need to call GetComponent everytime
+            // Code bellow is not good, just made to work for now
             var ai = enemy.GetComponent<EnemyAI>();
             if (ai != null)
+            {
+                ai.enemyHP.currentHealth = ai.enemyHP.maxHealth;
+                ai.enemyHP.healthBar.SetHealth(ai.enemyHP.currentHealth);
+                ai.enemyHP.isDead = false;
                 ai.player = player;
-
+                ai.enabled = true;
+            }
             aliveEnemies++;
-
         }
     }
 

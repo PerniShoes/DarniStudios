@@ -1,28 +1,41 @@
-﻿using System.Collections;
+﻿using Benjathemaker;
+using System.Collections;
 using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
     [Header("Health Settings")]
     public int maxHealth;
-    private int currentHealth;
+    public int currentHealth;
 
     [Header("References")]
     public HealthBar healthBar;
     public Animator animator;
 
-    private bool isDead = false;
+    public bool isDead = false;
 
-    public delegate void EnemyDeathEvent(EnemyHP enemy);
-    private float destroyTime = 1.5f;
+    [Header("EXP Drop Settings")]
+    public GameObject expPrefab;
+    public int expAmount = 10;
+
+    private float destroyTime = 0.6f;
     // Not sure why I store the Coroutine instead of just calling it, tbh
-    Coroutine _returnToPoolTimerCoroutine; 
+    Coroutine _returnToPoolTimerCoroutine;
 
+    private EnemyAI ai;
 
+    void Awake()
+    {
+        // This seems like it shouldn't be needed (it is rn)
+        if (healthBar == null)
+            healthBar = GetComponentInChildren<HealthBar>();
+    }
     void Start()
     {
         maxHealth = 300;
         currentHealth = maxHealth;
+
+        ai = GetComponent<EnemyAI>();
 
         if (healthBar != null)
             healthBar.SetMaxHealth(maxHealth);
@@ -34,7 +47,7 @@ public class EnemyHP : MonoBehaviour
         // Debug damage
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            TakeDamage(25);
+            TakeDamage(maxHealth/2);
         }
     }
 
@@ -55,13 +68,15 @@ public class EnemyHP : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        EnemyAI ai = GetComponent<EnemyAI>();
         if (ai != null) ai.enabled = false;
 
         if (animator != null)
             animator.SetBool("isDead", true);
 
-
+        var gem = ObjectPoolManager.SpawnObject(expPrefab, gameObject.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Gems);
+        // This could probably be better
+        var gemAnim = gem.GetComponent<SimpleGemsAnim>();
+        gemAnim.DropGem();
         _returnToPoolTimerCoroutine = StartCoroutine(ReturnToPoolAfterTime());
     }
 
@@ -73,6 +88,7 @@ public class EnemyHP : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        EnemySpawner.aliveEnemies -= 1;
 
         ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
