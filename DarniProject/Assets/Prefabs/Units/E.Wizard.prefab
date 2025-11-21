@@ -2583,8 +2583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   player: {fileID: 4966764568821044428, guid: 7e6d2a7e78aaaf743abb15d91f83e39b, type: 3}
-  moveSpeed: 3
-  attackRange: 3
+  moveSpeed: 6
+  attackRange: 6
   animator: {fileID: 3597474402998861915}
   isDead: 0
   enemyHP: {fileID: 2798947337272728415}

@@ -44,7 +44,7 @@ namespace FullOpaqueVFX
             {
                 GameObject obj = ObjectPoolManager.SpawnObject(prefab, position, rotation, ObjectPoolManager.PoolType.ParticleSystem);
                 
-                ApplyColorToParticles(obj);
+                //ApplyColorToParticles(obj);
                 return obj;
             }
             return null;

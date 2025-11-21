@@ -1144,8 +1144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 4966764568821044428, guid: 7e6d2a7e78aaaf743abb15d91f83e39b, type: 3}
-  moveSpeed: 3
-  attackRange: 3
+  moveSpeed: 10
+  attackRange: 2
   animator: {fileID: 7614455473049354546}
   isDead: 0
   enemyHP: {fileID: 5901255938102397396}

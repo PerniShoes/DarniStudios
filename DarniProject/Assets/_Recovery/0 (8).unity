@@ -1112,7 +1112,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 3f8edc1303d6471da7f7f506d0b0c1d7, type: 2}
     - target: {fileID: 1924020323832420889, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: targetRandomEnemy
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3269263784554324420, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_Name
@@ -1120,7 +1120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3269263784554324420, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4058602336130843155, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3316,10 +3316,6 @@ PrefabInstance:
       propertyPath: currentSpell
       value: 
       objectReference: {fileID: 11400000, guid: 67858d5269f74de6902da67b1c1b6c62, type: 2}
-    - target: {fileID: 1924020323832420889, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
-      propertyPath: targetRandomEnemy
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3269263784554324420, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_Name
       value: SpellManager 1
@@ -3443,7 +3439,7 @@ PrefabInstance:
       objectReference: {fileID: 8801956376047450021}
     - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: maxAlive
-      value: 150
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: groupSize
