@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
@@ -13,14 +14,16 @@ public class EnemyHP : MonoBehaviour
     private bool isDead = false;
 
     public delegate void EnemyDeathEvent(EnemyHP enemy);
-    public event EnemyDeathEvent OnDeath;
+    private float destroyTime = 1.5f;
+    // Not sure why I store the Coroutine instead of just calling tbh
+    Coroutine _returnToPoolTimerCoroutine; 
+
 
     void Start()
     {
         maxHealth = 300;
         currentHealth = maxHealth;
 
-        // Automatycznie przypisz pasek życia, jeśli nie został ustawiony w Inspectorze
         if (healthBar == null)
             healthBar = GetComponentInChildren<HealthBar>();
 
@@ -31,7 +34,7 @@ public class EnemyHP : MonoBehaviour
 
     void Update()
     {
-        // Test damage (delete after tests)
+        // Debug damage
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             TakeDamage(25);
@@ -55,22 +58,27 @@ public class EnemyHP : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        // Stop AI
         EnemyAI ai = GetComponent<EnemyAI>();
         if (ai != null) ai.enabled = false;
 
-        // Death Anim
         if (animator != null)
             animator.SetBool("isDead", true);
 
-        // DeleteHealthBar
-        if (healthBar != null)
-            Destroy(healthBar.gameObject);
 
-        // Let other scripts know that enemy is dead
-        OnDeath?.Invoke(this);
-
-        // Delete Ragdoll After few Seconds
-        Destroy(gameObject, 1.5f);
+        _returnToPoolTimerCoroutine = StartCoroutine(ReturnToPoolAfterTime());
+        // Destroy(gameObject, 1.5f);
     }
+
+    private IEnumerator ReturnToPoolAfterTime()
+    {
+        float elapsedTime = 0f;
+        while(elapsedTime < destroyTime)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        ObjectPoolManager.ReturnObjectToPool(gameObject);
+    }
+
 }

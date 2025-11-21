@@ -25,9 +25,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        FindWalls(); // Always find walls at start
+        FindWalls();
     }
-
     private void Update()
     {
         if (!player || enemyPrefabs.Length == 0) return;
@@ -91,7 +90,6 @@ public class EnemySpawner : MonoBehaviour
         return (pos.x > leftX && pos.x < rightX && pos.z < topZ && pos.z > bottomZ);
     }
 
-    // Auto-finds walls each time the game starts
     private void FindWalls()
     {
         leftWall = GameObject.Find("LeftWall")?.transform ?? GameObject.FindGameObjectWithTag("WallLeft")?.transform;

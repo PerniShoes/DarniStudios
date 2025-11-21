@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3537020336870205102}
@@ -24740,6 +24740,7 @@ GameObject:
   - component: {fileID: 7394514075992331181}
   - component: {fileID: 5988442413728414270}
   - component: {fileID: 4475562679410733982}
+  - component: {fileID: 1329308933769411360}
   m_Layer: 0
   m_Name: VFX_Electric_Nova_Main
   m_TagString: Untagged
@@ -24757,7 +24758,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8796768463759834256}
@@ -24781,7 +24782,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 3
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -29699,6 +29700,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceFieldTarget: {fileID: 0}
+--- !u!114 &1329308933769411360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432329435647163445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c287e8a4c74084b8d37b25e014a454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReturnParticlesToPool
 --- !u!1 &7582948752728742522
 GameObject:
   m_ObjectHideFlags: 0

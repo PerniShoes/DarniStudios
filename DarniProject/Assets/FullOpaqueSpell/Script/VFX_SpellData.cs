@@ -42,8 +42,8 @@ namespace FullOpaqueVFX
         {
             if (prefab != null)
             {
-                GameObject obj = Instantiate(prefab, position, rotation);
-                obj.transform.localScale *= 5;
+                GameObject obj = ObjectPoolManager.SpawnObject(prefab, position, rotation, ObjectPoolManager.PoolType.ParticleSystem);
+                //obj.transform.localScale *= 5;
                 
                 ApplyColorToParticles(obj);
                 return obj;
@@ -57,13 +57,13 @@ namespace FullOpaqueVFX
             if (spellObject == null || spellColor == Color.white) return;
             ParticleSystem[] particleSystems = spellObject.GetComponentsInChildren<ParticleSystem>();
 
-            foreach (ParticleSystem ps in particleSystems)
-            {
-                var main = ps.main; 
-                main.startSizeMultiplier *= 5f;     
-                main.startSpeedMultiplier *= 1f;    
+            //foreach (ParticleSystem ps in particleSystems)
+            //{
+            //    var main = ps.main; 
+            //    main.startSizeMultiplier *= 5f;     
+            //    main.startSpeedMultiplier *= 1f;    
                 
-            }
+            //}
 
             foreach (ParticleSystem ps in particleSystems)
             {

@@ -19,7 +19,6 @@ public class EnemyAI : MonoBehaviour
                 player = playerObj.transform;
         }
 
-        // Auto assign Animator if not set
         if (animator == null)
             animator = GetComponent<Animator>();
 

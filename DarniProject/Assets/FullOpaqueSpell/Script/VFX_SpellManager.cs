@@ -129,6 +129,7 @@ namespace FullOpaqueVFX
             //    }
             //}
 
+            // Comment/change this, it's confusing xd (it's for automatic name finding for tracker I believe)
             string name = gameObject.name;
             char lastLetter = name[name.Length - 1];
             // Works only on 0-9 for now

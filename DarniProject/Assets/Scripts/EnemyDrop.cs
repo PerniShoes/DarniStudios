@@ -29,7 +29,7 @@ public class EnemyDrop : MonoBehaviour
         }
 
         enemyHP = GetComponent<EnemyHP>();
-        enemyHP.OnDeath += DropExp;
+        // enemyHP.OnDeath += DropExp;
     }
 
     void DropExp(EnemyHP enemy)

@@ -319,7 +319,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.4
+      scalar: 1
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -4969,6 +4969,7 @@ GameObject:
   - component: {fileID: 6050192256935298810}
   - component: {fileID: 1768360877758259329}
   - component: {fileID: 442871820326893306}
+  - component: {fileID: 7624731707464186094}
   m_Layer: 0
   m_Name: VFX_Electric_Rain_Main
   m_TagString: Untagged
@@ -4986,7 +4987,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3018743489671078485}
@@ -5007,7 +5008,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -5251,7 +5252,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 1
       minScalar: 0.15
       maxCurve:
         serializedVersion: 2
@@ -9911,6 +9912,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceFieldTarget: {fileID: 0}
+--- !u!114 &7624731707464186094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300406336262876018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c287e8a4c74084b8d37b25e014a454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &3461728670547204042
 GameObject:
   m_ObjectHideFlags: 0
