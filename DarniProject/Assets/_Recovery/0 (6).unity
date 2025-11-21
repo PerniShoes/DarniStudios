@@ -3439,11 +3439,11 @@ PrefabInstance:
       objectReference: {fileID: 8801956376047450021}
     - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: maxAlive
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: groupSize
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: m_Enabled
@@ -3459,7 +3459,7 @@ PrefabInstance:
       objectReference: {fileID: 8490003123620361702}
     - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: spawnInterval
-      value: 1.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6996451360933855986, guid: d51078f32000d5149a60e3aa43066728, type: 3}
       propertyPath: maxDistanceFromPlayer
