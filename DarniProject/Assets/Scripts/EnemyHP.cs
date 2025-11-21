@@ -73,10 +73,6 @@ public class EnemyHP : MonoBehaviour
         if (animator != null)
             animator.SetBool("isDead", true);
 
-        var gem = ObjectPoolManager.SpawnObject(expPrefab, gameObject.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Gems);
-        // This could probably be better
-        var gemAnim = gem.GetComponent<SimpleGemsAnim>();
-        gemAnim.DropGem();
         _returnToPoolTimerCoroutine = StartCoroutine(ReturnToPoolAfterTime());
     }
 
@@ -89,6 +85,11 @@ public class EnemyHP : MonoBehaviour
             yield return null;
         }
         EnemySpawner.aliveEnemies -= 1;
+
+        var gem = ObjectPoolManager.SpawnObject(expPrefab, gameObject.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Gems);
+        // This could probably be better
+        var gemAnim = gem.GetComponent<SimpleGemsAnim>();
+        gemAnim.DropGem();
 
         ObjectPoolManager.ReturnObjectToPool(gameObject);
     }

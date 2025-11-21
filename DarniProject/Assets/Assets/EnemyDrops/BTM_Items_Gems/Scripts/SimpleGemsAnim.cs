@@ -8,13 +8,13 @@ namespace Benjathemaker
         [HideInInspector] public bool isBeingAttracted = false;
 
         [Header("Idle Animation")]
-        public float rotationSpeed = 50f;    // How fast the gem spins
-        public float floatAmplitude = 0.2f;  // Floating height
-        public float floatFrequency = 1f;    // Floating speed
+        public float rotationSpeed = 50f;    
+        public float floatAmplitude = 0.2f;  
+        public float floatFrequency = 1f;    
 
         [Header("Drop Animation")]
-        public float dropMoveDistance = 0.5f;  // How far it moves away after spawn
-        public float dropDuration = 0.3f;      // How long the drop animation lasts
+        public float dropMoveDistance = 0.3f;  
+        public float dropDuration = 0.3f;      
 
         private Vector3 startPos;
         private Vector3 dropTargetPos;
@@ -25,7 +25,7 @@ namespace Benjathemaker
             startPos = transform.position;
 
             Vector2 random2D = Random.insideUnitCircle.normalized;
-            dropTargetPos = startPos + new Vector3(random2D.x, Random.Range(0.2f, 0.6f), random2D.y) * dropMoveDistance;
+            dropTargetPos = startPos + new Vector3(random2D.x, Random.Range(0.1f, 0.3f), random2D.y) * dropMoveDistance;
 
             isDropping = true;
             StartCoroutine(DropAnimation());

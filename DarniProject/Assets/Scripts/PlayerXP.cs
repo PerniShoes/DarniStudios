@@ -47,6 +47,7 @@ public class PlayerXP : MonoBehaviour
         // This definitely can be better (loop over gems that are close, not all of them
         foreach (Transform gem in gemsFolder)
         {
+            if (gem.gameObject.activeSelf == false) continue;
             float dist = Vector3.Distance(playerPos, gem.position);
 
             if (dist <= absorbDistance)
