@@ -57,7 +57,7 @@ public class KillCounter : MonoBehaviour
 
         Vector3 spawnPosition = player.position + randomDirection * spawnDistance;
 
-        Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
+        ObjectPoolManager.SpawnObject(bossPrefab, spawnPosition, Quaternion.identity,ObjectPoolManager.PoolType.Other);
        
     }
 

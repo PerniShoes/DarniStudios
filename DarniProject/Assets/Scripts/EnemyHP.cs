@@ -32,10 +32,13 @@ public class EnemyHP : MonoBehaviour
     }
     void Start()
     {
-        maxHealth = 300;
-        currentHealth = maxHealth;
+        if (maxHealth <= 0 || currentHealth <= 0)
+        {
+            maxHealth = 300;
+            currentHealth = maxHealth;
+        }
 
-        ai = GetComponent<EnemyAI>();
+        ai = GetComponent<EnemyAI>();     
 
         if (healthBar != null)
             healthBar.SetMaxHealth(maxHealth);
