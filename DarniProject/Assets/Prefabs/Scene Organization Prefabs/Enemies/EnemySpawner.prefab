@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230467604928749198}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -108.7, y: -12.2, z: 107.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &6996451360933855986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,15 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   player: {fileID: 0}
   enemyPrefabs:
-  - {fileID: 2562387189551011770, guid: 267a08666dc694c45978cf486704f46e, type: 3}
-  - {fileID: 1375347908875949487, guid: b9e605381cf98e84b967d222a75545c0, type: 3}
-  - {fileID: 8641431865094123137, guid: 16146fef7528de04aa411180f184b84d, type: 3}
-  - {fileID: 3288254386758905007, guid: 6a317347bea9a9043bc5b2eacf262b42, type: 3}
+  - {fileID: 5173682316960584813, guid: c35230e1353ba2d4aa9d4de1322a3be0, type: 3}
+  - {fileID: 3115597556522140560, guid: a0fb7c68d5345294494fbf1cd1171006, type: 3}
+  - {fileID: 4247008753979249170, guid: 45202779307431d49919950a58e03156, type: 3}
+  - {fileID: 2908304746419636894, guid: 30066b34cc3b17b4f89c0abd0acc0a49, type: 3}
+  - {fileID: 5003258377370771283, guid: 89f6912e49c7ff843af9d4e63dffb214, type: 3}
+  - {fileID: 6249928512469895433, guid: 9322a5ced2ac7b245b633279dfc55578, type: 3}
   spawnInterval: 1.5
-  groupSize: 4
-  maxAlive: 60
-  spawnRadius: 40
-  minDistanceFromPlayer: 5
+  groupSize: 40
+  maxAlive: 150
+  minDistanceFromPlayer: 35
+  maxDistanceFromPlayer: 40
   groupSpread: 5
   leftWall: {fileID: 0}
   rightWall: {fileID: 0}

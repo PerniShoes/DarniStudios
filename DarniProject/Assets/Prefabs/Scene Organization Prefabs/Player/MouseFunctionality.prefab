@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   mouseTarget: {fileID: 3006948923561066164}
-  targetHeight: 1
+  targetHeight: 1.2
 --- !u!1 &5282445911617886609
 GameObject:
   m_ObjectHideFlags: 0

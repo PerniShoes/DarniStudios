@@ -72,6 +72,11 @@ public class EnemyHP : MonoBehaviour
 
         if (animator != null)
             animator.SetBool("isDead", true);
+        // DODAŁEM ABY KILLCOUNTER DZIAŁAŁ POPRAWNIE
+        KillCounter killCounter = Object.FindFirstObjectByType<KillCounter>();
+        if (killCounter != null)
+            killCounter.AddKill();
+
 
         _returnToPoolTimerCoroutine = StartCoroutine(ReturnToPoolAfterTime());
     }
