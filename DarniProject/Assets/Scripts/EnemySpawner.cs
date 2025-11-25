@@ -55,15 +55,15 @@ public class EnemySpawner : MonoBehaviour
             
             // Shouldn't need to call GetComponent everytime
             // Code bellow is not good, just made to work for now
-            var ai = enemy.GetComponent<EnemyAI>();
-            if (ai != null)
-            {
-                ai.enemyHP.currentHealth = ai.enemyHP.maxHealth;
-                ai.enemyHP.healthBar.SetHealth(ai.enemyHP.currentHealth);
-                ai.enemyHP.isDead = false;
-                ai.player = player;
-                ai.enabled = true;
-            }
+            //var ai = enemy.GetComponent<EnemyAI>();
+            //if (ai != null)
+            //{
+            //    ai.enemyHP.currentHealth = ai.enemyHP.maxHealth;
+            //    ai.enemyHP.healthBar.SetHealth(ai.enemyHP.currentHealth);
+            //    ai.enemyHP.isDead = false;
+            //    ai.player = player;
+            //    ai.enabled = true;
+            //}
             aliveEnemies++;
         }
     }

@@ -51,25 +51,21 @@ public class ObjectPoolManager : MonoBehaviour
 
     public static GameObject SpawnObject(GameObject target, Vector3 position, Quaternion rotation, PoolType poolType = PoolType.None)
     {
-        // Tries to find a pool of objects for target
         PooledObjectInfo pool = ObjectPools.Find(storedPools => storedPools.LookupString == target.name);
 
         if(pool == null)
         {
-            // Didnt find a pool like that, so we create a new pool for it
             pool = new PooledObjectInfo() { LookupString = target.name };
             ObjectPools.Add(pool);
         }
 
-        // We check if there is an inactive object in the pool
         GameObject spawnableObject = pool.InactiveObjects.FirstOrDefault();
 
         if(spawnableObject == null)
         {
             GameObject parentObject = SetParentObject(poolType);
-
-            // Didnt find an inactive object so we Instantiate it
             spawnableObject = Instantiate(target, position, rotation);
+
 
             if (parentObject != null)
             {
