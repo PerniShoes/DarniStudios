@@ -348,15 +348,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a064164a7778a44087505fa6363f4c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100.66217
+      value: 95.56135
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a064164a7778a44087505fa6363f4c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000076293945
+      value: -0.000005722046
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a064164a7778a44087505fa6363f4c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 82.45927
+      value: 82.818855
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a064164a7778a44087505fa6363f4c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_LightProbeUsage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -83797103039508812, guid: 7a064164a7778a44087505fa6363f4c4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d17cc2bfa08040544848ea88c68a2a90, type: 2}
     - target: {fileID: 919132149155446097, guid: 7a064164a7778a44087505fa6363f4c4, type: 3}
       propertyPath: m_Name
       value: E.SkinyAlien
