@@ -445,15 +445,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfd734a1bf3b5ba45882f809a9af91af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 109.23
+      value: 108.11991
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfd734a1bf3b5ba45882f809a9af91af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000042915344
+      value: -0.0000009536743
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfd734a1bf3b5ba45882f809a9af91af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 43.54
+      value: 80.00931
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfd734a1bf3b5ba45882f809a9af91af, type: 3}
       propertyPath: m_LocalRotation.w
@@ -498,6 +498,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dfd734a1bf3b5ba45882f809a9af91af, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756795029129564413, guid: dfd734a1bf3b5ba45882f809a9af91af, type: 3}
+      propertyPath: m_RayTracingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756795029129564413, guid: dfd734a1bf3b5ba45882f809a9af91af, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756795029129564413, guid: dfd734a1bf3b5ba45882f809a9af91af, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

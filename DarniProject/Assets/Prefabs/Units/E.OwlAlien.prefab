@@ -509,15 +509,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c0249277e39fef74a901b000afbfc87a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 98.040924
+      value: 93.83603
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c0249277e39fef74a901b000afbfc87a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000009536743
+      value: -0.0000038146973
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c0249277e39fef74a901b000afbfc87a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 75.292336
+      value: 82.74748
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c0249277e39fef74a901b000afbfc87a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -550,6 +550,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c0249277e39fef74a901b000afbfc87a, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -610672108182065141, guid: c0249277e39fef74a901b000afbfc87a, type: 3}
+      propertyPath: m_RayTracingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -610672108182065141, guid: c0249277e39fef74a901b000afbfc87a, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -610672108182065141, guid: c0249277e39fef74a901b000afbfc87a, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c0249277e39fef74a901b000afbfc87a, type: 3}
       propertyPath: m_Name

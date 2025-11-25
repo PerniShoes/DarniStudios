@@ -314,15 +314,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04514be2d738b6b45ae966660cf400ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 116.58
+      value: 94.59496
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04514be2d738b6b45ae966660cf400ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000019073486
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04514be2d738b6b45ae966660cf400ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 39.56122
+      value: 79.34147
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 04514be2d738b6b45ae966660cf400ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -511,6 +511,18 @@ PrefabInstance:
     - target: {fileID: 1889657945145093097, guid: 04514be2d738b6b45ae966660cf400ba, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664098864995057252, guid: 04514be2d738b6b45ae966660cf400ba, type: 3}
+      propertyPath: m_RayTracingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664098864995057252, guid: 04514be2d738b6b45ae966660cf400ba, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664098864995057252, guid: 04514be2d738b6b45ae966660cf400ba, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3486277650100817849, guid: 04514be2d738b6b45ae966660cf400ba, type: 3}
       propertyPath: m_Layer
