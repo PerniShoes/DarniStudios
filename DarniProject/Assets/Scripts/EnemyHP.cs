@@ -12,15 +12,17 @@ public class EnemyHP : MonoBehaviour
     public HealthBar healthBar;
     public Animator animator;
 
-    public bool isDead = false;
+    public bool isDead;
+    public bool isBoss;
 
     [Header("EXP Drop Settings")]
     public GameObject expPrefab;
     public int expAmount = 10;
 
     private float destroyTime = 0.6f;
-    // Not sure why I store the Coroutine instead of just calling it, tbh
-    Coroutine _returnToPoolTimerCoroutine;
+    KillCounter killCounter;
+
+      Coroutine _returnToPoolTimerCoroutine;
 
     private EnemyAI ai;
 
@@ -29,6 +31,7 @@ public class EnemyHP : MonoBehaviour
         // This seems like it shouldn't be needed (it is rn)
         if (healthBar == null)
             healthBar = GetComponentInChildren<HealthBar>();
+        killCounter = Object.FindFirstObjectByType<KillCounter>();
     }
     void Start()
     {
@@ -75,8 +78,7 @@ public class EnemyHP : MonoBehaviour
 
         if (animator != null)
             animator.SetBool("isDead", true);
-        // DODAŁEM ABY KILLCOUNTER DZIAŁAŁ POPRAWNIE
-        KillCounter killCounter = Object.FindFirstObjectByType<KillCounter>();
+
         if (killCounter != null)
             killCounter.AddKill();
 
@@ -98,8 +100,12 @@ public class EnemyHP : MonoBehaviour
         // This could probably be better
         var gemAnim = gem.GetComponent<SimpleGemsAnim>();
         gemAnim.DropGem();
-
+        if (isBoss)
+        {
+            killCounter.OnBossDefeated();
+        }
         ObjectPoolManager.ReturnObjectToPool(gameObject);
+       
     }
 
 }
