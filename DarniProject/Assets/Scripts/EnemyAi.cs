@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
         enemyHP = GetComponent<EnemyHP>();
     }
     void Start()
-    { 
+    {   
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");

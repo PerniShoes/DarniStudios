@@ -19,11 +19,12 @@ public class PlayerTestHP : MonoBehaviour
         {
             TakeDamage(20);
         }
-        void TakeDamage(int damage)
-        {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
+     
+    }
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
 
-        }
     }
 }
