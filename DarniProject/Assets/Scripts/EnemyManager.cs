@@ -24,7 +24,8 @@ public class EnemyViewData
     public GameObject gameObjectRef;
     public Animator animator;
     public Rigidbody rb;
-    public UnitStats statsReference; 
+    public UnitStats statsReference;
+    public HealthBar healthbarReference;
 }
 
 public class EnemyManager : MonoBehaviour
@@ -92,12 +93,17 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0; i < groupSize; i++)
         {
-            if (availableSlot >= maxAlive) break;
+            if (aliveEnemies >= maxAlive - 1) break;
 
             Vector3 spawnPos = GetRandomSpawnPosition();
             if (!IsInsideWalls(spawnPos)) continue; // To fix, it should find a position inside walls, not skip if it didn't
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+
+            if (availableSlot >= maxAlive && !ObjectPoolManager.HasInactive(prefab))
+            {
+                return; // Skips spawning, to fix
+            }
             GameObject enemyView = ObjectPoolManager.SpawnObject(prefab, spawnPos, Quaternion.identity, ObjectPoolManager.PoolType.Enemies);
 
             int slotIndex = -1;
@@ -120,6 +126,7 @@ public class EnemyManager : MonoBehaviour
                 enemyViewData[slotIndex].rb = enemyView.GetComponent<Rigidbody>();
                 enemyViewData[slotIndex].animator = enemyView.GetComponent<Animator>();
                 enemyViewData[slotIndex].statsReference = enemyView.GetComponent<UnitStats>();
+                enemyViewData[slotIndex].healthbarReference = enemyView.GetComponentInChildren<HealthBar>();
 
                 availableSlot++;
             }
@@ -137,7 +144,8 @@ public class EnemyManager : MonoBehaviour
             enemies[slotIndex].moveSpeed = stats.moveSpeed;
             enemies[slotIndex].attackRange = stats.attackRange;
             enemies[slotIndex].destroyDelay = stats.destroyDelay;
-
+            enemyViewData[slotIndex].healthbarReference.SetHealth(100); // This works with %... Have to rewrite Healthbar
+            aliveEnemies++;
         }
     }
     void UpdateEnemy(ref EnemyData enemy, EnemyViewData enemyView)
@@ -163,12 +171,17 @@ public class EnemyManager : MonoBehaviour
         }
 
         Animator animator = enemyView.animator;
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("Death")) 
+        { 
+            return; 
+        }
+        
         if (toPlayer.magnitude > enemy.attackRange)
         {
             if (animator != null)
             {
                 animator.SetBool("isAttack", false);
-                AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
                 if (!stateInfo.IsName("attack"))
                 {
                     animator.SetBool("isMoveing", true);
@@ -187,14 +200,53 @@ public class EnemyManager : MonoBehaviour
 
         if (moveDirection != Vector3.zero)
         {
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
             if (!stateInfo.IsName("attack"))
             {
                 enemy.rotation = Quaternion.LookRotation(moveDirection);
                 enemyView.gameObjectRef.transform.rotation = enemy.rotation;
             }
         }
+    }
+
+    public void DamageEnemy(ref GameObject enemy, int damage)
+    {
+        for (int i = 0; i < enemyViewData.Length; i++)
+        {
+            if (enemyViewData[i] != null && enemyViewData[i].gameObjectRef == enemy)
+            {
+                enemies[i].currentHealth -= damage;
+                enemyViewData[i].healthbarReference.SetHealth(enemies[i].currentHealth);
+
+                if (enemies[i].currentHealth <= 0 && !enemies[i].isDead)
+                {
+                    enemies[i].isDead = true;
+
+                    enemyViewData[i].animator.SetBool("isDead", true);
+
+                    killCounter.AddKill();
+                    if (expPrefab != null)
+                    {
+                        ObjectPoolManager.SpawnObject(
+                            expPrefab,
+                            enemy.transform.position,
+                            Quaternion.identity,
+                            ObjectPoolManager.PoolType.Gems
+                        );
+                    }
+
+                    StartCoroutine(ReturnEnemyToPool(i));
+                }
+
+                return; 
+            }
+        }
+    }
+    private IEnumerator ReturnEnemyToPool(int index)
+    {
+        yield return new WaitForSeconds(enemies[index].destroyDelay);
+
+        ObjectPoolManager.ReturnObjectToPool(enemyViewData[index].gameObjectRef);
+        --aliveEnemies;
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -233,165 +285,3 @@ public class EnemyManager : MonoBehaviour
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//using Benjathemaker;
-//using System.Collections;
-//using UnityEngine;
-
-//public class EnemyManager : MonoBehaviour
-//{
-//    [Header("Health Settings")]
-//    public int maxHealth;
-//    public int currentHealth;
-//    public bool isDead = false;
-//    public bool isBoss = false;
-
-//    [Header("Movement Settings")]
-//    public float moveSpeed = 3.5f;
-//    public float attackRange = 2f;
-
-//    [Header("References")]
-//    public HealthBar healthBar;
-//    public Animator animator;
-//    public Transform player;
-
-//    [Header("EXP Drop Settings")]
-//    public GameObject expPrefab;
-//    public int expAmount = 10;
-
-//    private float destroyTime = 0.6f;
-//    private Coroutine destroyCoroutine;
-//    private KillCounter killCounter;
-
-//    void Awake()
-//    {
-
-//        if (healthBar == null)
-//            healthBar = GetComponentInChildren<HealthBar>();
-
-
-//        killCounter = Object.FindFirstObjectByType<KillCounter>();
-
-//        if (player == null)
-//        {
-//            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-//            if (playerObj != null)
-//                player = playerObj.transform;
-//        }
-
-
-//        if (animator == null)
-//            animator = GetComponentInChildren<Animator>();
-//    }
-
-//    void Start()
-//    {
-//        currentHealth = maxHealth;
-
-//        if (healthBar != null)
-//            healthBar.SetMaxHealth(maxHealth);
-//    }
-
-//    void Update()
-//    {
-//        if (isDead) return;
-
-//        if (player != null)
-//        {
-//            Vector3 direction = player.position - transform.position;
-//            direction.y = 0f;
-
-//            if (direction.magnitude > attackRange)
-//            {
-//                transform.position += direction.normalized * moveSpeed * Time.deltaTime;
-//                animator.SetBool("isMoveing", true);
-//                animator.SetBool("isAttack", false);
-//            }
-//            else
-//            {
-//                animator.SetBool("isMoveing", false);
-//                animator.SetBool("isAttack", true);
-//            }
-
-//            if (direction != Vector3.zero)
-//                transform.rotation = Quaternion.LookRotation(direction);
-//        }
-
-//        // Debug damage
-//        if (Input.GetKeyDown(KeyCode.KeypadEnter))
-//            TakeDamage(maxHealth / 2);
-//    }
-
-//    public void TakeDamage(int damage)
-//    {
-//        if (isDead) return;
-
-//        currentHealth -= damage;
-//        if (healthBar != null)
-//            healthBar.SetHealth(currentHealth);
-
-//        if (currentHealth <= 0)
-//            Die();
-//    }
-
-//    void Die()
-//    {
-//        if (isDead) return;
-//        isDead = true;
-
-//        animator.SetBool("isDead", true);
-
-//        if (killCounter != null)
-//            killCounter.AddKill();
-
-//        if (isBoss && killCounter != null)
-//            killCounter.OnBossDefeated();
-
-//        destroyCoroutine = StartCoroutine(ReturnToPoolAfterTime());
-//    }
-
-//    private IEnumerator ReturnToPoolAfterTime()
-//    {
-//        yield return new WaitForSeconds(destroyTime);
-//        EnemySpawner.aliveEnemies -= 1;
-
-//        if (expPrefab != null)
-//        {
-//            var gem = ObjectPoolManager.SpawnObject(expPrefab, transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Gems);
-//            var gemAnim = gem.GetComponent<SimpleGemsAnim>();
-//            if (gemAnim != null)
-//                gemAnim.DropGem();
-//        }
-
-//        ObjectPoolManager.ReturnObjectToPool(gameObject);
-//    }
-//}

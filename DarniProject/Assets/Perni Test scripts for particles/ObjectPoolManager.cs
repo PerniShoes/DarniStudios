@@ -1,8 +1,9 @@
-using UnityEngine;
+using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using System.Linq;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ObjectPoolManager : MonoBehaviour
 {
@@ -47,6 +48,21 @@ public class ObjectPoolManager : MonoBehaviour
         _otherHolder.transform.SetParent(_objectPoolHolder.transform);
 
 
+    }
+
+    public static bool HasInactive(GameObject prefab)
+    {
+        PooledObjectInfo pool = ObjectPools.Find(storedPools => storedPools.LookupString == prefab.name);
+        if(pool == null)
+        {
+            return true;
+        }
+        GameObject spawnableObject = pool.InactiveObjects.FirstOrDefault();
+        if (spawnableObject == null)
+        {
+            return false;
+        }
+        return true;
     }
 
     public static GameObject SpawnObject(GameObject target, Vector3 position, Quaternion rotation, PoolType poolType = PoolType.None)
