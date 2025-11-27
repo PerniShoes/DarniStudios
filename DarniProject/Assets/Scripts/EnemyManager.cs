@@ -1,8 +1,9 @@
-
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public struct EnemyData
 {
@@ -14,13 +15,18 @@ public struct EnemyData
     public bool isBoss;
     public float moveSpeed;
     public float attackRange;
+    public Vector3 targetOffset;
 
-    // public HealthBar healthBar;
-    // public Animator animator;
     public float destroyDelay;
-    public UnitStats statsReference; 
-
 }
+public class EnemyViewData
+{
+    public GameObject gameObjectRef;
+    public Animator animator;
+    public Rigidbody rb;
+    public UnitStats statsReference; 
+}
+
 public class EnemyManager : MonoBehaviour
 {
     [Header("Spawn Settings")]
@@ -29,6 +35,7 @@ public class EnemyManager : MonoBehaviour
     public float minDistanceFromPlayer;
     public float maxDistanceFromPlayer;
     public float groupSpread;
+    public float targetRadiusAroundPlayer;
 
     private Transform leftWall;
     private Transform rightWall;
@@ -37,19 +44,18 @@ public class EnemyManager : MonoBehaviour
 
     private float spawnIntervalTimer;
 
-    //
-
     public Transform player;
     public KillCounter killCounter;
     public GameObject expPrefab;
     public static int aliveEnemies = 0;
     public GameObject[] enemyPrefabs;
 
-
-    static public int maxAlive = 400;
+    static public int maxAlive = 100;
     EnemyData[] enemies = new EnemyData[maxAlive];
-    public List<GameObject> enemyViews = new List<GameObject>(); 
+    EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
+    private int availableSlot = 0;
 
+    private int updateIndex = 0;
     void Start()
     {
         SetWalls();
@@ -63,21 +69,30 @@ public class EnemyManager : MonoBehaviour
             SpawnGroup();
         }
 
-
-        for (int i = 0; i < enemyViews.Count; i++)
-        {
-            if (!enemyViews[i].activeSelf) continue;
-
-            UpdateEnemy(ref enemies[i], enemyViews[i]);
-        }
     }
 
+    private void FixedUpdate()
+    {
+        int enemiesPerFrame = enemyViewData.Length / 1;
+        for (int i = 0; i < enemiesPerFrame; i++)
+        {
+            if (enemyViewData[updateIndex] == null || !enemyViewData[updateIndex].gameObjectRef.activeSelf)
+            {
+                updateIndex = (updateIndex + 1) % enemyViewData.Length;
+                continue;
+            }
+
+            UpdateEnemy(ref enemies[updateIndex], enemyViewData[updateIndex]);
+            updateIndex = (updateIndex + 1) % enemyViewData.Length;
+        }
+
+    }
     private void SpawnGroup()
     {
 
         for (int i = 0; i < groupSize; i++)
         {
-            if (aliveEnemies >= maxAlive) break;
+            if (availableSlot >= maxAlive) break;
 
             Vector3 spawnPos = GetRandomSpawnPosition();
             if (!IsInsideWalls(spawnPos)) continue; // To fix, it should find a position inside walls, not skip if it didn't
@@ -85,20 +100,34 @@ public class EnemyManager : MonoBehaviour
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             GameObject enemyView = ObjectPoolManager.SpawnObject(prefab, spawnPos, Quaternion.identity, ObjectPoolManager.PoolType.Enemies);
 
-            int slotIndex;
-            if (enemyViews.Contains(enemyView)) 
+            int slotIndex = -1;
+            for (int index = 0; index < enemyViewData.Length; index++)
             {
-                slotIndex = enemyViews.IndexOf(enemyView);
-            }
-            else 
-            {
-                slotIndex = enemyViews.Count;
-                enemyViews.Add(enemyView);
-                enemies[slotIndex].statsReference = prefab.GetComponent<UnitStats>();
+                if (enemyViewData[index] != null && enemyViewData[index].gameObjectRef == enemyView)
+                {
+                    slotIndex = index;
+                    break;
+                }
             }
 
-            UnitStats stats = enemies[slotIndex].statsReference;
+            // Newly Instantiated Object
+            if (slotIndex == -1)
+            {
+                slotIndex = availableSlot;
 
+                enemyViewData[slotIndex] = new EnemyViewData();
+                enemyViewData[slotIndex].gameObjectRef = enemyView;
+                enemyViewData[slotIndex].rb = enemyView.GetComponent<Rigidbody>();
+                enemyViewData[slotIndex].animator = enemyView.GetComponent<Animator>();
+                enemyViewData[slotIndex].statsReference = enemyView.GetComponent<UnitStats>();
+
+                availableSlot++;
+            }
+
+            UnitStats stats = enemyViewData[slotIndex].statsReference;
+
+            Vector2 randomCircle = Random.insideUnitCircle * targetRadiusAroundPlayer;
+            enemies[slotIndex].targetOffset = new Vector3(randomCircle.x, 0f, randomCircle.y);
             enemies[slotIndex].position = spawnPos;
             enemies[slotIndex].rotation = Quaternion.identity;
             enemies[slotIndex].maxHealth = stats.maxHealth;
@@ -109,10 +138,64 @@ public class EnemyManager : MonoBehaviour
             enemies[slotIndex].attackRange = stats.attackRange;
             enemies[slotIndex].destroyDelay = stats.destroyDelay;
 
-            aliveEnemies++;
         }
     }
+    void UpdateEnemy(ref EnemyData enemy, EnemyViewData enemyView)
+    {
+        if (player == null) return;
+   
+        Vector3 targetPosition = player.position + enemy.targetOffset;
+        Vector3 toTarget = targetPosition - enemyView.rb.position;
+        toTarget.y = 0f;
+        float distanceToTarget = toTarget.magnitude;
 
+        Vector3 toPlayer = player.position - enemyView.rb.position;
+        toPlayer.y = 0f;
+
+        Vector3 moveDirection;
+        if (toPlayer.magnitude > targetRadiusAroundPlayer)
+        {
+            moveDirection = toTarget.normalized;
+        }
+        else
+        {
+            moveDirection = (player.position - enemyView.rb.position).normalized;
+        }
+
+        Animator animator = enemyView.animator;
+        if (toPlayer.magnitude > enemy.attackRange)
+        {
+            if (animator != null)
+            {
+                animator.SetBool("isAttack", false);
+                AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+                if (!stateInfo.IsName("attack"))
+                {
+                    animator.SetBool("isMoveing", true);
+                    enemyView.rb.MovePosition(enemyView.rb.position + moveDirection * enemy.moveSpeed * Time.fixedDeltaTime);
+                }
+            }
+        }
+        else
+        {
+            if (animator != null)
+            {
+                animator.SetBool("isMoveing", false);
+                animator.SetBool("isAttack", true);
+            }
+        }
+
+        if (moveDirection != Vector3.zero)
+        {
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+            if (!stateInfo.IsName("attack"))
+            {
+                enemy.rotation = Quaternion.LookRotation(moveDirection);
+                enemyView.gameObjectRef.transform.rotation = enemy.rotation;
+            }
+        }
+    }
 
     private Vector3 GetRandomSpawnPosition()
     {
@@ -127,38 +210,6 @@ public class EnemyManager : MonoBehaviour
 
         return pos;
     }
-
-
-    void UpdateEnemy(ref EnemyData enemy, GameObject enemyView)
-    {
-
-        if (player != null)
-        {
-            Vector3 direction = player.position - enemy.position;
-            direction.y = 0f;
-
-            if (direction.magnitude > enemy.attackRange)
-            {
-                enemy.position += direction.normalized * enemy.moveSpeed * Time.deltaTime;
-               //animator.SetBool("isMoveing", true);
-               // animator.SetBool("isAttack", false);
-            }
-            else
-            {
-               // animator.SetBool("isMoveing", false);
-               // animator.SetBool("isAttack", true);
-            }
-
-            if (direction != Vector3.zero)
-            {
-                enemy.rotation = Quaternion.LookRotation(direction);
-            }
-        }
-
-    }
-
-
-
     private bool IsInsideWalls(Vector3 pos)
     {
         if (!leftWall || !rightWall || !topWall || !bottomWall) return true;

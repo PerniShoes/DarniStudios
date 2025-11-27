@@ -356,15 +356,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896424a8924e807418de004677e734a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 75.595795
+      value: 82.21617
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896424a8924e807418de004677e734a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000019073486
+      value: -0.000014305115
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896424a8924e807418de004677e734a2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 89.74508
+      value: 87.04195
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896424a8924e807418de004677e734a2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -764,7 +764,7 @@ Rigidbody:
   m_GameObject: {fileID: 5173682316960584813}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 2
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -821,8 +821,8 @@ MonoBehaviour:
   currentHealth: 300
   isDead: 0
   isBoss: 0
-  moveSpeed: 5
-  attackRange: 6
+  moveSpeed: 19
+  attackRange: 3
   healthBar: {fileID: 585530461886094976}
   animator: {fileID: 8968407863680894761}
   destroyDelay: 1.5
@@ -992,6 +992,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2031937488347057638, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.85858
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031937488347057638, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65298444
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031937488347057638, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.85858
+      objectReference: {fileID: 0}
     - target: {fileID: 3734339833905641380, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
       propertyPath: m_Name
       value: HealthCanvas
@@ -1151,6 +1163,18 @@ PrefabInstance:
     - target: {fileID: 7230903123937213290, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
       propertyPath: gradient.m_NumColorKeys
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816591898360108726, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.85858
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816591898360108726, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65298444
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816591898360108726, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.85858
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
