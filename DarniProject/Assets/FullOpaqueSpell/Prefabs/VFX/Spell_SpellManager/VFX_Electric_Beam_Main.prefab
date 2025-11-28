@@ -19807,7 +19807,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 100
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -24586,6 +24586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b198dbea064e21446b716899d22715ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParticleEnemyDetector
+  enemyManager: {fileID: 0}
   damageParticleSystem: {fileID: 8186873374910894776}
   enemyLayer:
     serializedVersion: 2
@@ -29682,7 +29683,7 @@ ParticleSystem:
   m_GameObject: {fileID: 7167181305839799247}
   serializedVersion: 8
   lengthInSec: 1
-  simulationSpeed: 3
+  simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -29756,7 +29757,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -29927,7 +29928,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 3
       minScalar: 0.03
       maxCurve:
         serializedVersion: 2
@@ -34565,6 +34566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b198dbea064e21446b716899d22715ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParticleEnemyDetector
+  enemyManager: {fileID: 0}
   damageParticleSystem: {fileID: 1213305923956055593}
   enemyLayer:
     serializedVersion: 2

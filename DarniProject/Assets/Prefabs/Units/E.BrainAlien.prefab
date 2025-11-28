@@ -3061,7 +3061,8 @@ MonoBehaviour:
   isDead: 0
   isBoss: 0
   moveSpeed: 25
-  attackRange: 1
+  attackRange: 2
+  damage: 2
   healthBar: {fileID: 6357996006052358723}
   animator: {fileID: 389684209797092298}
   destroyDelay: 1.5

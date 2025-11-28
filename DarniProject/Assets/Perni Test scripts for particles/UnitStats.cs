@@ -9,6 +9,7 @@ public class UnitStats : MonoBehaviour
     public bool isBoss;
     public float moveSpeed;
     public float attackRange;
+    public int damage;
 
     [Header("References")]
     public HealthBar healthBar;

@@ -15,6 +15,7 @@ public struct EnemyData
     public bool isBoss;
     public float moveSpeed;
     public float attackRange;
+    public int damage;
     public Vector3 targetOffset;
 
     public float destroyDelay;
@@ -26,6 +27,7 @@ public class EnemyViewData
     public Rigidbody rb;
     public UnitStats statsReference;
     public HealthBar healthbarReference;
+    public bool wasAttackingLastFrame;
 }
 
 public class EnemyManager : MonoBehaviour
@@ -46,12 +48,13 @@ public class EnemyManager : MonoBehaviour
     private float spawnIntervalTimer;
 
     public Transform player;
+    public PlayerTestHP playerHPScript;
     public KillCounter killCounter;
     public GameObject expPrefab;
     public static int aliveEnemies = 0;
     public GameObject[] enemyPrefabs;
 
-    static public int maxAlive = 100;
+    static public int maxAlive = 5;
     EnemyData[] enemies = new EnemyData[maxAlive];
     EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
     private int availableSlot = 0;
@@ -93,7 +96,7 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0; i < groupSize; i++)
         {
-            if (aliveEnemies >= maxAlive - 1) break;
+            if (aliveEnemies >= maxAlive) break;
 
             Vector3 spawnPos = GetRandomSpawnPosition();
             if (!IsInsideWalls(spawnPos)) continue; // To fix, it should find a position inside walls, not skip if it didn't
@@ -144,6 +147,7 @@ public class EnemyManager : MonoBehaviour
             enemies[slotIndex].moveSpeed = stats.moveSpeed;
             enemies[slotIndex].attackRange = stats.attackRange;
             enemies[slotIndex].destroyDelay = stats.destroyDelay;
+            enemies[slotIndex].damage = stats.damage;
             enemyViewData[slotIndex].healthbarReference.SetHealth(100); // This works with %... Have to rewrite Healthbar
             aliveEnemies++;
         }
@@ -176,7 +180,19 @@ public class EnemyManager : MonoBehaviour
         { 
             return; 
         }
+
+        bool isAttackingNow = stateInfo.IsName("attack");
         
+        if (enemyView.wasAttackingLastFrame && !isAttackingNow)
+        {
+            // Placeholder checking. Have to account for things like units moving inside animation, shape of attack, AOE, etc.
+            if (toPlayer.sqrMagnitude < enemy.attackRange * enemy.attackRange)
+            {
+                DamagePlayer(enemy.damage);
+            }
+        }
+        enemyView.wasAttackingLastFrame = isAttackingNow;
+
         if (toPlayer.magnitude > enemy.attackRange)
         {
             if (animator != null)
@@ -208,6 +224,10 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void DamagePlayer(int damage)
+    {
+        playerHPScript.TakeDamage(damage);
+    }
     public void DamageEnemy(ref GameObject enemy, int damage)
     {
         for (int i = 0; i < enemyViewData.Length; i++)

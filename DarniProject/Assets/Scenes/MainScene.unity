@@ -1960,7 +1960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3269263784554324420, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4058602336130843155, guid: 173e31a906a7fb34ab969892fd47f208, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2183,7 +2183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1701053195
 Transform:
   m_ObjectHideFlags: 0
@@ -2955,6 +2955,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5394228012547623173}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
+      propertyPath: playerHP
+      value: 
+      objectReference: {fileID: 3735229534259674329}
+    - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: groupSize
       value: 40
       objectReference: {fileID: 0}
@@ -2962,6 +2966,22 @@ PrefabInstance:
       propertyPath: killCounter
       value: 
       objectReference: {fileID: 763319623558384511}
+    - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
+      propertyPath: spawnInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
+      propertyPath: playerHPScript
+      value: 
+      objectReference: {fileID: 4025574327722206658}
+    - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
+      propertyPath: maxDistanceFromPlayer
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
+      propertyPath: minDistanceFromPlayer
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: enemyPrefabs.Array.size
       value: 3
@@ -3104,6 +3124,10 @@ PrefabInstance:
     - target: {fileID: 1711327887296591521, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853710439428505828, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_Name
+      value: PlayerHP
       objectReference: {fileID: 0}
     - target: {fileID: 6560255302378039551, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
       propertyPath: m_Pivot.x
@@ -3708,8 +3732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368efdef162337940832d8a0a2aa93bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTestHP
-  maxHealth: 1000
-  currentHealth: 1000
+  maxHealth: 500
+  currentHealth: 500
   healthBar: {fileID: 3735229534259674329}
 --- !u!4 &4381350314504882166
 Transform:
