@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum AttackTypes
+{
+    Lunge,
+    Melee
+}
+
 public class UnitStats : MonoBehaviour
 {
     [Header("Stats")]
@@ -10,6 +16,9 @@ public class UnitStats : MonoBehaviour
     public float moveSpeed;
     public float attackRange;
     public int damage;
+    public bool isRanged;
+    public AttackTypes attackType;
+    public float damageTriggerNormalizedTime;
 
     [Header("References")]
     public HealthBar healthBar;

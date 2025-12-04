@@ -3063,6 +3063,9 @@ MonoBehaviour:
   moveSpeed: 25
   attackRange: 2
   damage: 2
+  isRanged: 0
+  attackType: 1
+  damageTriggerNormalizedTime: 0.7
   healthBar: {fileID: 6357996006052358723}
   animator: {fileID: 389684209797092298}
   destroyDelay: 1.5

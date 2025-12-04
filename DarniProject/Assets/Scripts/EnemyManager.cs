@@ -15,6 +15,9 @@ public struct EnemyData
     public bool isBoss;
     public float moveSpeed;
     public float attackRange;
+    public AttackTypes attackType;
+    public float damageTriggerNormalizedTime;
+    public bool isRanged;
     public int damage;
     public Vector3 targetOffset;
 
@@ -27,7 +30,8 @@ public class EnemyViewData
     public Rigidbody rb;
     public UnitStats statsReference;
     public HealthBar healthbarReference;
-    public bool wasAttackingLastFrame;
+    public float lastAttackAnimStep;
+
 }
 
 public class EnemyManager : MonoBehaviour
@@ -54,7 +58,7 @@ public class EnemyManager : MonoBehaviour
     public static int aliveEnemies = 0;
     public GameObject[] enemyPrefabs;
 
-    static public int maxAlive = 5;
+    static public int maxAlive = 10;
     EnemyData[] enemies = new EnemyData[maxAlive];
     EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
     private int availableSlot = 0;
@@ -146,6 +150,11 @@ public class EnemyManager : MonoBehaviour
             enemies[slotIndex].isBoss = stats.isBoss;
             enemies[slotIndex].moveSpeed = stats.moveSpeed;
             enemies[slotIndex].attackRange = stats.attackRange;
+            enemies[slotIndex].isRanged = stats.isRanged;
+            enemies[slotIndex].attackType = stats.attackType;
+            enemies[slotIndex].damageTriggerNormalizedTime = stats.damageTriggerNormalizedTime;
+
+
             enemies[slotIndex].destroyDelay = stats.destroyDelay;
             enemies[slotIndex].damage = stats.damage;
             enemyViewData[slotIndex].healthbarReference.SetHealth(100); // This works with %... Have to rewrite Healthbar
@@ -181,18 +190,33 @@ public class EnemyManager : MonoBehaviour
             return; 
         }
 
-        bool isAttackingNow = stateInfo.IsName("attack");
-        
-        if (enemyView.wasAttackingLastFrame && !isAttackingNow)
+
+        ////////// Attack damage dealing logic
+        if (!stateInfo.IsName("attack"))
         {
-            // Placeholder checking. Have to account for things like units moving inside animation, shape of attack, AOE, etc.
-            if (toPlayer.sqrMagnitude < enemy.attackRange * enemy.attackRange)
+            enemyView.lastAttackAnimStep = -1;
+        }
+        else
+        {
+            float t = stateInfo.normalizedTime;
+            float interval = 1f;
+            float offset = enemy.damageTriggerNormalizedTime;
+            int currentStep = Mathf.FloorToInt((t - offset) / interval);
+
+            if (currentStep != enemyView.lastAttackAnimStep && t >= offset)
             {
-                DamagePlayer(enemy.damage);
+                enemyView.lastAttackAnimStep = currentStep;
+
+                float distanceTolerance = 0.5f;
+                // Placeholder checking. Have to account for things like units moving, shape of attack, AOE, etc.
+                if (toPlayer.sqrMagnitude < (enemy.attackRange * enemy.attackRange) + distanceTolerance)
+                {
+                    DamagePlayer(enemy.damage);
+                }
             }
         }
-        enemyView.wasAttackingLastFrame = isAttackingNow;
-
+        ////////// 
+        ///
         if (toPlayer.magnitude > enemy.attackRange)
         {
             if (animator != null)
