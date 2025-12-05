@@ -25,6 +25,8 @@ public struct EnemyData
     public float lungeDuration;
     public Vector3 targetOffset;
     public Vector3 attackTargetPosition;
+    public bool isStunned;
+    public float stunTimer;
 
     public float destroyDelay;
 }
@@ -159,6 +161,7 @@ public class EnemyManager : MonoBehaviour
             enemies[slotIndex].isRanged = stats.isRanged;
             enemies[slotIndex].attackType = stats.attackType;
             enemies[slotIndex].attackAOERadius = stats.attackAOERadius;
+            enemies[slotIndex].isStunned = false;
 
             enemies[slotIndex].lungeDuration = stats.lungeDuration; // LungeSpeed depends on Range 
             enemies[slotIndex].damageTriggerNormalizedTime = stats.damageTriggerNormalizedTime;
@@ -173,7 +176,22 @@ public class EnemyManager : MonoBehaviour
     void UpdateEnemy(ref EnemyData enemy, EnemyViewData enemyView)
     {
         if (player == null) return;
-   
+        float temporaryStunDuartion = 3f;
+        if (enemy.isStunned)
+        {
+            enemy.stunTimer += Time.deltaTime;
+            if(enemy.stunTimer >= temporaryStunDuartion)
+            {
+                enemy.stunTimer = 0f;
+                enemy.isStunned = false;
+                enemyView.animator.SetBool("isStunned", false);
+            }
+            else
+            {
+                return;
+            }
+        }
+
         Vector3 targetPosition = player.position + enemy.targetOffset;
         Vector3 toTarget = targetPosition - enemyView.rb.position;
         toTarget.y = 0f;
@@ -283,6 +301,12 @@ public class EnemyManager : MonoBehaviour
                                             + distanceTolerance)
                     {
                         DamagePlayer(enemy.damage);
+                    }
+                    else
+                    {
+                        enemy.isStunned = true;
+                        animator.SetBool("isStunned", true);
+
                     }
                 }
             }
