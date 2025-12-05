@@ -404,15 +404,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896424a8924e807418de004677e734a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 98.32532
+      value: 86.41873
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896424a8924e807418de004677e734a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000076293945
+      value: 0.0000030994415
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896424a8924e807418de004677e734a2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 76.56066
+      value: 79.79
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896424a8924e807418de004677e734a2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1742,6 +1742,7 @@ MonoBehaviour:
   damage: 10
   isRanged: 0
   attackType: 1
+  attackAOERadius: 1
   damageTriggerNormalizedTime: 0.4
   healthBar: {fileID: 585530461886094976}
   animator: {fileID: 8968407863680894761}

@@ -1446,10 +1446,12 @@ MonoBehaviour:
   isDead: 0
   isBoss: 0
   moveSpeed: 5
-  attackRange: 20
+  attackRange: 70
   damage: 30
   isRanged: 0
   attackType: 0
+  lungeDuration: 0.5
+  attackAOERadius: 3
   damageTriggerNormalizedTime: 0.7
   healthBar: {fileID: 3213888230711299525}
   animator: {fileID: 544258168390792820}

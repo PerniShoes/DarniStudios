@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 public struct EnemyData
 {
@@ -19,7 +21,10 @@ public struct EnemyData
     public float damageTriggerNormalizedTime;
     public bool isRanged;
     public int damage;
+    public float attackAOERadius;
+    public float lungeDuration;
     public Vector3 targetOffset;
+    public Vector3 attackTargetPosition;
 
     public float destroyDelay;
 }
@@ -58,7 +63,7 @@ public class EnemyManager : MonoBehaviour
     public static int aliveEnemies = 0;
     public GameObject[] enemyPrefabs;
 
-    static public int maxAlive = 10;
+    static public int maxAlive = 1;
     EnemyData[] enemies = new EnemyData[maxAlive];
     EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
     private int availableSlot = 0;
@@ -141,6 +146,7 @@ public class EnemyManager : MonoBehaviour
             UnitStats stats = enemyViewData[slotIndex].statsReference;
 
             Vector2 randomCircle = Random.insideUnitCircle * targetRadiusAroundPlayer;
+
             enemies[slotIndex].targetOffset = new Vector3(randomCircle.x, 0f, randomCircle.y);
             enemies[slotIndex].position = spawnPos;
             enemies[slotIndex].rotation = Quaternion.identity;
@@ -152,6 +158,9 @@ public class EnemyManager : MonoBehaviour
             enemies[slotIndex].attackRange = stats.attackRange;
             enemies[slotIndex].isRanged = stats.isRanged;
             enemies[slotIndex].attackType = stats.attackType;
+            enemies[slotIndex].attackAOERadius = stats.attackAOERadius;
+
+            enemies[slotIndex].lungeDuration = stats.lungeDuration; // LungeSpeed depends on Range 
             enemies[slotIndex].damageTriggerNormalizedTime = stats.damageTriggerNormalizedTime;
 
 
@@ -191,27 +200,90 @@ public class EnemyManager : MonoBehaviour
         }
 
 
-        ////////// Attack damage dealing logic
+        ////////// Attack logic
         if (!stateInfo.IsName("attack"))
         {
             enemyView.lastAttackAnimStep = -1;
+            enemy.attackTargetPosition = Vector3.zero;
         }
         else
         {
+            if (enemy.attackTargetPosition == Vector3.zero) 
+            {
+                enemy.attackTargetPosition = player.position;
+            }
+
             float t = stateInfo.normalizedTime;
+            // Attack loops
+            if (t % 1 <= 0.05)
+            {
+                enemy.rotation = Quaternion.LookRotation(moveDirection);
+                enemyView.gameObjectRef.transform.rotation = enemy.rotation;
+                enemy.attackTargetPosition = player.position;
+            }
+
             float interval = 1f;
             float offset = enemy.damageTriggerNormalizedTime;
             int currentStep = Mathf.FloorToInt((t - offset) / interval);
 
+            ///////////////// Lunge
+
+            //////////////////////      ALL HERE <--- Should probably be stored outside and done once, not everytime
+            float startLungePoint = 0.55f;
+            float lungeTargetOffset = 2f;
+            float lungeAnimNormalizedLength = offset - startLungePoint;
+            AnimatorClipInfo clipInfo = animator.GetCurrentAnimatorClipInfo(0)[0];
+            float clipLength = clipInfo.clip.length;
+            float originalLungeAnimTime = lungeAnimNormalizedLength * clipLength;
+
+            float lungeSpeed = enemy.attackRange / enemy.lungeDuration;
+            float animSpeedMultiplier = originalLungeAnimTime / enemy.lungeDuration;
+            animator.SetFloat("LungeSpeed", animSpeedMultiplier);
+            //////////////////////      ALL HERE
+
+            if (enemy.attackType == AttackTypes.Lunge && (t % 1f) >= startLungePoint && (t % 1f) < offset)
+            {
+                Vector3 dir = (enemy.attackTargetPosition - enemyView.gameObjectRef.transform.position).normalized;
+                Vector3 enemyPos = enemyView.gameObjectRef.transform.position;
+                Vector3 targetPos = enemyPos;
+                if (toTarget.sqrMagnitude > 0.0001f)
+                {
+                    targetPos = enemy.attackTargetPosition - toTarget.normalized * lungeTargetOffset;
+                }
+
+                float step = lungeSpeed * Time.deltaTime;
+                Vector3 newPos = Vector3.MoveTowards(
+                    enemyPos,
+                    targetPos,
+                    step);
+
+                enemyView.rb.MovePosition(newPos);
+            }
+          
+            /////////////////
+
+            // Deal damage logic
             if (currentStep != enemyView.lastAttackAnimStep && t >= offset)
             {
                 enemyView.lastAttackAnimStep = currentStep;
 
-                float distanceTolerance = 0.5f;
+                float distanceTolerance = 0.3f;
                 // Placeholder checking. Have to account for things like units moving, shape of attack, AOE, etc.
-                if (toPlayer.sqrMagnitude < (enemy.attackRange * enemy.attackRange) + distanceTolerance)
+                if (enemy.attackType == AttackTypes.Melee)
                 {
-                    DamagePlayer(enemy.damage);
+                    if (toPlayer.sqrMagnitude < (enemy.attackRange * enemy.attackRange)
+                        + distanceTolerance)
+                    {
+                        DamagePlayer(enemy.damage);
+                    }
+                }
+                else if(enemy.attackType == AttackTypes.Lunge)
+                {
+                    if (toPlayer.sqrMagnitude < (enemy.attackAOERadius * enemy.attackAOERadius)
+                                            + distanceTolerance)
+                    {
+                        DamagePlayer(enemy.damage);
+                    }
                 }
             }
         }

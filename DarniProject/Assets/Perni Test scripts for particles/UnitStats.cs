@@ -6,6 +6,9 @@ public enum AttackTypes
     Melee
 }
 
+
+// This class is not optimal
+// As it is now, every unit will get variables like "lungeSpeed", even if their attack type is not Lunge
 public class UnitStats : MonoBehaviour
 {
     [Header("Stats")]
@@ -18,6 +21,8 @@ public class UnitStats : MonoBehaviour
     public int damage;
     public bool isRanged;
     public AttackTypes attackType;
+    public float lungeDuration;
+    public float attackAOERadius;
     public float damageTriggerNormalizedTime;
 
     [Header("References")]

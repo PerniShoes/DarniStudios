@@ -3065,6 +3065,7 @@ MonoBehaviour:
   damage: 2
   isRanged: 0
   attackType: 1
+  attackAOERadius: 1
   damageTriggerNormalizedTime: 0.7
   healthBar: {fileID: 6357996006052358723}
   animator: {fileID: 389684209797092298}
