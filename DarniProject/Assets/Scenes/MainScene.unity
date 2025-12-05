@@ -2984,7 +2984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: enemyPrefabs.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: targetRadiusAroundPlayer
@@ -2997,11 +2997,11 @@ PrefabInstance:
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: 'enemyPrefabs.Array.data[1]'
       value: 
-      objectReference: {fileID: 8403424727952329332, guid: a0fb7c68d5345294494fbf1cd1171006, type: 3}
+      objectReference: {fileID: 5173682316960584813, guid: c35230e1353ba2d4aa9d4de1322a3be0, type: 3}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: 'enemyPrefabs.Array.data[2]'
       value: 
-      objectReference: {fileID: 5077927999399343093, guid: 8f29dd21c36a95749a1f008588a34d2a, type: 3}
+      objectReference: {fileID: 8403424727952329332, guid: a0fb7c68d5345294494fbf1cd1171006, type: 3}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: 'enemyPrefabs.Array.data[3]'
       value: 

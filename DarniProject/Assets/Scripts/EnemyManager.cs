@@ -65,7 +65,7 @@ public class EnemyManager : MonoBehaviour
     public static int aliveEnemies = 0;
     public GameObject[] enemyPrefabs;
 
-    static public int maxAlive = 1;
+    static public int maxAlive = 25;
     EnemyData[] enemies = new EnemyData[maxAlive];
     EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
     private int availableSlot = 0;
@@ -163,13 +163,13 @@ public class EnemyManager : MonoBehaviour
             enemies[slotIndex].attackAOERadius = stats.attackAOERadius;
             enemies[slotIndex].isStunned = false;
 
-            enemies[slotIndex].lungeDuration = stats.lungeDuration; // LungeSpeed depends on Range 
+            enemies[slotIndex].lungeDuration = stats.lungeDuration; // LungeSpeed depends on Range and duration
             enemies[slotIndex].damageTriggerNormalizedTime = stats.damageTriggerNormalizedTime;
 
 
             enemies[slotIndex].destroyDelay = stats.destroyDelay;
             enemies[slotIndex].damage = stats.damage;
-            enemyViewData[slotIndex].healthbarReference.SetHealth(100); // This works with %... Have to rewrite Healthbar
+            enemyViewData[slotIndex].healthbarReference.SetHealth(100); //  Healthbar needs a rewrite, weird behaviour with % 
             aliveEnemies++;
         }
     }
@@ -247,37 +247,41 @@ public class EnemyManager : MonoBehaviour
             ///////////////// Lunge
 
             //////////////////////      ALL HERE <--- Should probably be stored outside and done once, not everytime
-            float startLungePoint = 0.55f;
-            float lungeTargetOffset = 2f;
-            float lungeAnimNormalizedLength = offset - startLungePoint;
-            AnimatorClipInfo clipInfo = animator.GetCurrentAnimatorClipInfo(0)[0];
-            float clipLength = clipInfo.clip.length;
-            float originalLungeAnimTime = lungeAnimNormalizedLength * clipLength;
-
-            float lungeSpeed = enemy.attackRange / enemy.lungeDuration;
-            float animSpeedMultiplier = originalLungeAnimTime / enemy.lungeDuration;
-            animator.SetFloat("LungeSpeed", animSpeedMultiplier);
-            //////////////////////      ALL HERE
-
-            if (enemy.attackType == AttackTypes.Lunge && (t % 1f) >= startLungePoint && (t % 1f) < offset)
+            ///
+            if (enemy.attackType == AttackTypes.Lunge)
             {
-                Vector3 dir = (enemy.attackTargetPosition - enemyView.gameObjectRef.transform.position).normalized;
-                Vector3 enemyPos = enemyView.gameObjectRef.transform.position;
-                Vector3 targetPos = enemyPos;
-                if (toTarget.sqrMagnitude > 0.0001f)
+                float startLungePoint = 0.55f;
+                float lungeTargetOffset = 2f;
+                float lungeAnimNormalizedLength = offset - startLungePoint;
+                AnimatorClipInfo clipInfo = animator.GetCurrentAnimatorClipInfo(0)[0];
+                float clipLength = clipInfo.clip.length;
+                float originalLungeAnimTime = lungeAnimNormalizedLength * clipLength;
+
+                float lungeSpeed = enemy.attackRange / enemy.lungeDuration;
+                float animSpeedMultiplier = originalLungeAnimTime / enemy.lungeDuration;
+                animator.SetFloat("LungeSpeed", animSpeedMultiplier);
+
+                //////////////////////      ALL HERE
+
+                if ((t % 1f) >= startLungePoint && (t % 1f) < offset)
                 {
-                    targetPos = enemy.attackTargetPosition - toTarget.normalized * lungeTargetOffset;
+                    Vector3 dir = (enemy.attackTargetPosition - enemyView.gameObjectRef.transform.position).normalized;
+                    Vector3 enemyPos = enemyView.gameObjectRef.transform.position;
+                    Vector3 targetPos = enemyPos;
+                    if (toTarget.sqrMagnitude > 0.0001f)
+                    {
+                        targetPos = enemy.attackTargetPosition - toTarget.normalized * lungeTargetOffset;
+                    }
+
+                    float step = lungeSpeed * Time.deltaTime;
+                    Vector3 newPos = Vector3.MoveTowards(
+                        enemyPos,
+                        targetPos,
+                        step);
+
+                    enemyView.rb.MovePosition(newPos);
                 }
-
-                float step = lungeSpeed * Time.deltaTime;
-                Vector3 newPos = Vector3.MoveTowards(
-                    enemyPos,
-                    targetPos,
-                    step);
-
-                enemyView.rb.MovePosition(newPos);
             }
-          
             /////////////////
 
             // Deal damage logic
