@@ -2450,9 +2450,6 @@ PrefabInstance:
       addedObject: {fileID: 2798947337272728415}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a127a5b0eb1b4cd41a173eb56c98783e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2967252557214049081}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a127a5b0eb1b4cd41a173eb56c98783e, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6885187887868842282}
   m_SourcePrefab: {fileID: 100100000, guid: a127a5b0eb1b4cd41a173eb56c98783e, type: 3}
 --- !u!1 &7009013672043708666 stripped
@@ -2567,20 +2564,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
   maxHealth: 100
-  healthBar: {fileID: 713930159726242049}
+  currentHealth: 0
+  healthBar: {fileID: 0}
   animator: {fileID: 3597474402998861915}
---- !u!114 &2967252557214049081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7009013672043708666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce8b8f9da372f95409c1d52b7f2f7aaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDrop
+  isDead: 0
   expPrefab: {fileID: 543725697735843016, guid: 57377efc0a877474ab0478d4ce8180c2, type: 3}
   expAmount: 10
 --- !u!114 &6885187887868842282
@@ -2596,10 +2583,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   player: {fileID: 4966764568821044428, guid: 7e6d2a7e78aaaf743abb15d91f83e39b, type: 3}
-  moveSpeed: 3
-  attackRange: 3
+  moveSpeed: 6
+  attackRange: 6
   animator: {fileID: 3597474402998861915}
   isDead: 0
+  enemyHP: {fileID: 2798947337272728415}
 --- !u!4 &7642279127528364608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a127a5b0eb1b4cd41a173eb56c98783e, type: 3}
@@ -2726,17 +2714,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
---- !u!114 &713930159726242049 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7230903123937213290, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}
-  m_PrefabInstance: {fileID: 7904160007508300395}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba5b55e3c39bfd4692e1e065f3a2587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!224 &4545579752234224784 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5954905589971721979, guid: f68c1bfee6d16bc43996d2454d2d763f, type: 3}

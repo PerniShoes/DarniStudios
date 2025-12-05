@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -21,13 +22,12 @@ public class EnemySpawner : MonoBehaviour
     public Transform bottomWall;
 
     private float timer;
-    private static int aliveEnemies = 0;
+    public static int aliveEnemies = 0;
 
     private void Start()
     {
-        FindWalls(); // Always find walls at start
+        FindWalls();
     }
-
     private void Update()
     {
         if (!player || enemyPrefabs.Length == 0) return;
@@ -42,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnGroup()
     {
+
         for (int i = 0; i < groupSize; i++)
         {
             if (aliveEnemies >= maxAlive) break;
@@ -50,20 +51,23 @@ public class EnemySpawner : MonoBehaviour
             if (!IsInsideWalls(spawnPos)) continue;
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-            GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
-
-            var ai = enemy.GetComponent<EnemyAI>();
-            if (ai != null)
-                ai.player = player;
-
+            GameObject enemy = ObjectPoolManager.SpawnObject(prefab, spawnPos, Quaternion.identity, ObjectPoolManager.PoolType.Enemies);
+            
+            // Shouldn't need to call GetComponent everytime
+            // Code bellow is not good, just made to work for now
+            //var ai = enemy.GetComponent<EnemyAI>();
+            //if (ai != null)
+            //{
+            //    ai.enemyHP.currentHealth = ai.enemyHP.maxHealth;
+            //    ai.enemyHP.healthBar.SetHealth(ai.enemyHP.currentHealth);
+            //    ai.enemyHP.isDead = false;
+            //    ai.player = player;
+            //    ai.enabled = true;
+            //}
             aliveEnemies++;
-
-            var destroyHandler = enemy.AddComponent<EnemyDestroyHandler>();
-            destroyHandler.OnDestroyed += () => aliveEnemies = Mathf.Max(0, aliveEnemies - 1);
         }
     }
 
-    // Generates a valid random spawn position around the player
     private Vector3 GetRandomSpawnPosition()
     {
         float distance = Random.Range(minDistanceFromPlayer, maxDistanceFromPlayer);
@@ -77,8 +81,6 @@ public class EnemySpawner : MonoBehaviour
 
         return pos;
     }
-
-    // Check if a point is within map walls
     private bool IsInsideWalls(Vector3 pos)
     {
         if (!leftWall || !rightWall || !topWall || !bottomWall) return true;
@@ -90,8 +92,6 @@ public class EnemySpawner : MonoBehaviour
 
         return (pos.x > leftX && pos.x < rightX && pos.z < topZ && pos.z > bottomZ);
     }
-
-    // Auto-finds walls each time the game starts
     private void FindWalls()
     {
         leftWall = GameObject.Find("LeftWall")?.transform ?? GameObject.FindGameObjectWithTag("WallLeft")?.transform;
@@ -106,9 +106,4 @@ public class EnemySpawner : MonoBehaviour
                   $"\nBottom: {(bottomWall ? bottomWall.name : "❌")}");
     }
 
-    public class EnemyDestroyHandler : MonoBehaviour
-    {
-        public System.Action OnDestroyed;
-        private void OnDestroy() => OnDestroyed?.Invoke();
-    }
 }

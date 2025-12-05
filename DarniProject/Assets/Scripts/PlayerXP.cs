@@ -1,96 +1,71 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro; // ← dodaj to
 using System.Collections.Generic;
 
 public class PlayerXP : MonoBehaviour
 {
     [Header("XP Settings")]
-    public int currentXP = 0;
-    public int currentLevel = 1;
-    public int xpToNextLevel = 100;
-    public float xpGrowthRate = 1.2f;
+    public int currentXP;
+    public int currentLevel;
+    public int xpToNextLevel;
+    public float xpGrowthRate;
 
     [Header("Pickup Settings")]
-    public float pickupRange = 3f;
-    public float absorbDistance = 0.6f;
-    public float pickupSpeed = 8f;
-    public int expPerGem = 10;
+    public float pickupRange;
+    public float absorbDistance;
+    public float pickupSpeed;
+    public int expPerGem;
 
     [Header("UI")]
-    public Slider xpBar;
-    public Text levelText;
+    public Slider xpBar;                 // >:C 
+    public Text levelText;               // Stary UI Text 
+    public TextMeshProUGUI levelTMP;     // Nowy TMP text 
 
-    private List<Transform> activeGems = new List<Transform>();
-    private float gemRefreshTimer = 0f;
-    private const float gemRefreshInterval = 2f;
+
+
+    private Transform gemsFolder;
+    void Awake()
+    {
+        gemsFolder = GameObject.Find("Gems").transform;
+    }
 
     private void Start()
     {
         UpdateUI();
-        RefreshGemList();
+
     }
 
     private void Update()
     {
-        gemRefreshTimer += Time.deltaTime;
-        if (gemRefreshTimer >= gemRefreshInterval)
-        {
-            gemRefreshTimer = 0f;
-            RefreshGemList();
-        }
-
         AttractAndAbsorbGems();
-    }
-
-    private void RefreshGemList()
-    {
-        activeGems.Clear();
-        GameObject[] gems = GameObject.FindGameObjectsWithTag("Gem");
-        foreach (var gem in gems)
-        {
-            if (gem != null)
-                activeGems.Add(gem.transform);
-        }
     }
 
     private void AttractAndAbsorbGems()
     {
-        if (activeGems.Count == 0) return;
-
-        for (int i = activeGems.Count - 1; i >= 0; i--)
+        Vector3 playerPos = transform.position + Vector3.up * 0.8f;
+        // This definitely can be better (loop over gems that are close, not all of them
+        foreach (Transform gem in gemsFolder)
         {
-            Transform gem = activeGems[i];
-            if (gem == null)
-            {
-                activeGems.RemoveAt(i);
-                continue;
-            }
-
-            Vector3 playerPos = transform.position + Vector3.up * 0.8f;
+            if (gem.gameObject.activeSelf == false) continue;
             float dist = Vector3.Distance(playerPos, gem.position);
 
-            
-            if (dist <= pickupRange)
+            if (dist <= absorbDistance)
             {
-                // Faster if close to player
-                float dynamicSpeed = Mathf.Lerp(pickupSpeed * 0.5f, pickupSpeed * 2f, 1f - (dist / pickupRange));
+                gem.position = Vector3.MoveTowards(gem.position, playerPos, pickupSpeed * Time.deltaTime);
 
-                gem.position = Vector3.MoveTowards(gem.position, playerPos, dynamicSpeed * Time.deltaTime);
-
+                // GetComponent called too often
                 var anim = gem.GetComponent<Benjathemaker.SimpleGemsAnim>();
                 if (anim != null)
                     anim.isBeingAttracted = true;
             }
 
-            
             dist = Vector3.Distance(playerPos, gem.position);
 
-            // If close eat
-            if (dist <= absorbDistance)
+            if (dist <= pickupRange)
             {
                 AddExp(expPerGem);
-                Destroy(gem.gameObject);
-                activeGems.RemoveAt(i);
+                ObjectPoolManager.ReturnObjectToPool(gem.gameObject);
             }
         }
     }
@@ -101,7 +76,6 @@ public class PlayerXP : MonoBehaviour
 
         currentXP += amount;
 
-        // LVL UP
         while (currentXP >= xpToNextLevel)
         {
             currentXP -= xpToNextLevel;
@@ -117,8 +91,11 @@ public class PlayerXP : MonoBehaviour
         if (xpBar != null)
             xpBar.value = (float)currentXP / xpToNextLevel;
 
-        //if (levelText != null)
-        //    levelText.text = $"LVL {currentLevel}";
+        if (levelText != null)
+            levelText.text = $"LVL {currentLevel}";
+
+        if (levelTMP != null)
+            levelTMP.text = $"{currentLevel}"; // ← nowy TMP text
     }
 
     private void OnDrawGizmosSelected()

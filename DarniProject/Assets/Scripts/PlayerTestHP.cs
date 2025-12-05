@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerTestHP : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth;
     public int currentHealth;
 
     public HealthBar healthBar;
@@ -12,18 +12,10 @@ public class PlayerTestHP : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
 
     }
-    void Update()
+    public void TakeDamage(int damage)
     {
-        // I ADDED THIS TO CHECK IF HEALTH BAR WORKS YOU CAN DELETE IT //
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            TakeDamage(20);
-        }
-        void TakeDamage(int damage)
-        {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
 
-        }
     }
 }

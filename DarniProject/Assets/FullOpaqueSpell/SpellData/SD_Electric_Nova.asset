@@ -17,7 +17,7 @@ MonoBehaviour:
   spellBurstPrefab: {fileID: 8026296608122095936, guid: f8dde93cbfb346569c9f1957e01018a9, type: 3}
   mainSpellPrefab: {fileID: 7432329435647163445, guid: 7ec74c1f423049e0a4bec07b1b5405e4, type: 3}
   castTime: 0
-  cooldown: 10
+  cooldown: 4
   activationKey: 101
   shakeEnabled: 0
   shakeStrengthIncantation: 0.01
@@ -26,7 +26,7 @@ MonoBehaviour:
   shakeDurationIncantation: 1
   shakeDurationBurst: 0.2
   shakeDurationImpact: 0.2
-  spellColor: {r: 1, g: 0.6666667, b: 0, a: 1}
+  spellColor: {r: 1, g: 0.049011994, b: 0, a: 1}
   spellTargetBehavior: 1
   spellTracking: 0
   spawnOnGround: 0

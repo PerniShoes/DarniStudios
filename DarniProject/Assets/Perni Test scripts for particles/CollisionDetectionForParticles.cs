@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
 public class ParticleEnemyDetector : MonoBehaviour
 {
+    public EnemyManager enemyManager;
     public ParticleSystem damageParticleSystem;
     public LayerMask enemyLayer;
     public float detectionRadius = 0.1f;
@@ -12,6 +14,7 @@ public class ParticleEnemyDetector : MonoBehaviour
 
     void Start()
     {
+        enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         detectionRadius = damageParticleSystem.main.startSize.constant;
         particles = new ParticleSystem.Particle[damageParticleSystem.main.maxParticles];
     }
@@ -29,8 +32,7 @@ public class ParticleEnemyDetector : MonoBehaviour
             for (int j = 0; j < hitsCount; j++)
             {
                 GameObject enemyObj = hitBuffer[j].gameObject;
-                EnemyHP enemyHealth = enemyObj.GetComponent<EnemyHP>();
-                enemyHealth.TakeDamage(1);
+                enemyManager.DamageEnemy(ref enemyObj, 100);
             }
         }
     }
