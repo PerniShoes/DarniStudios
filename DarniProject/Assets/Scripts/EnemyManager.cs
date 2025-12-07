@@ -65,7 +65,7 @@ public class EnemyManager : MonoBehaviour
     public static int aliveEnemies = 0;
     public GameObject[] enemyPrefabs;
 
-    static public int maxAlive = 25;
+    static public int maxAlive = 50;
     EnemyData[] enemies = new EnemyData[maxAlive];
     EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
     private int availableSlot = 0;

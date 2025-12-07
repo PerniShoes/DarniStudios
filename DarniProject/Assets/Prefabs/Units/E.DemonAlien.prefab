@@ -1446,7 +1446,7 @@ MonoBehaviour:
   isDead: 0
   isBoss: 0
   moveSpeed: 5
-  attackRange: 25
+  attackRange: 23
   damage: 30
   isRanged: 0
   attackType: 0
