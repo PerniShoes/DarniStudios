@@ -17,7 +17,7 @@ MonoBehaviour:
   spellBurstPrefab: {fileID: 8026296608122095936, guid: f8dde93cbfb346569c9f1957e01018a9, type: 3}
   mainSpellPrefab: {fileID: 3300406336262876018, guid: dc12ba30641f4ef198ab9c6f887d25eb, type: 3}
   castTime: 0
-  cooldown: 0.5
+  cooldown: 9
   activationKey: 101
   shakeEnabled: 0
   shakeStrengthIncantation: 0.01

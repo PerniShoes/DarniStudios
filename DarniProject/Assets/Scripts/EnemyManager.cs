@@ -65,7 +65,7 @@ public class EnemyManager : MonoBehaviour
     public static int aliveEnemies = 0;
     public GameObject[] enemyPrefabs;
 
-    static public int maxAlive = 25;
+    static public int maxAlive = 50;
     EnemyData[] enemies = new EnemyData[maxAlive];
     EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
     private int availableSlot = 0;
@@ -110,13 +110,13 @@ public class EnemyManager : MonoBehaviour
             if (aliveEnemies >= maxAlive) break;
 
             Vector3 spawnPos = GetRandomSpawnPosition();
-            if (!IsInsideWalls(spawnPos)) continue; // To fix, it should find a position inside walls, not skip if it didn't
+            if (!IsInsideWalls(spawnPos)) continue; // FIX, it should find a position inside walls, not skip if it didn't
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
             if (availableSlot >= maxAlive && !ObjectPoolManager.HasInactive(prefab))
             {
-                return; // Skips spawning, to fix
+                return; // Skips spawning, FIX
             }
             GameObject enemyView = ObjectPoolManager.SpawnObject(prefab, spawnPos, Quaternion.identity, ObjectPoolManager.PoolType.Enemies);
 
@@ -246,7 +246,7 @@ public class EnemyManager : MonoBehaviour
 
             ///////////////// Lunge
 
-            //////////////////////      ALL HERE <--- Should probably be stored outside and done once, not everytime
+            //////////////////////  ALL HERE <--- Should probably be stored outside and done once, not everytime
             ///
             if (enemy.attackType == AttackTypes.Lunge)
             {
@@ -261,7 +261,7 @@ public class EnemyManager : MonoBehaviour
                 float animSpeedMultiplier = originalLungeAnimTime / enemy.lungeDuration;
                 animator.SetFloat("LungeSpeed", animSpeedMultiplier);
 
-                //////////////////////      ALL HERE
+                //////////////////////  ALL HERE
 
                 if ((t % 1f) >= startLungePoint && (t % 1f) < offset)
                 {

@@ -29,11 +29,14 @@ public class Movement : MonoBehaviour
     private float dashRecharge = 0f;
 
     [Header("Dash UI")]
+    public DashChargesSetup dashChargesSetup;
     public List<Image> dashCharges = new List<Image>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (totalDashes < 0) totalDashes = 0;
+        dashChargesSetup.SetSlotAmount(totalDashes);
         currentDashCharges = totalDashes;
 
     }
@@ -118,6 +121,15 @@ public class Movement : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+        // Debug/Testing
+        else if (Input.GetKeyDown(KeyCode.V))
+        {
+            dashChargesSetup.AddDashChargeSlots(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            dashChargesSetup.RemoveDashChargeSlots(1);
+        }
 
 
     }
@@ -151,7 +163,6 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(delayBetweenDashes);
         canDash = true;
     }
-
     private void UpdateDashUI()
     {
         bool skipRest = false;
@@ -173,6 +184,22 @@ public class Movement : MonoBehaviour
             }
         }
     }
+    public void SetDashImageReference(Image imageRef)
+    {
+        dashCharges.Add(imageRef);
+    }
 
+    public void SetTotalDashCharges(int amount)
+    {
+        if(currentDashCharges > amount)
+        {
+            currentDashCharges = amount;
+        }
+        else if(amount > totalDashes)
+        {
+            currentDashCharges += amount - totalDashes;
+        }
+        totalDashes = amount;
+    }
 
 }
