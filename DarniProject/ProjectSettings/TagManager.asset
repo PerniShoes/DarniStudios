@@ -12,6 +12,7 @@ TagManager:
   - WallBottom
   - Gem
   - UMAIgnore
+  - Obstacles
   layers:
   - Default
   - TransparentFX
