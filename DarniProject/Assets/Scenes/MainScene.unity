@@ -3098,10 +3098,10 @@ MonoBehaviour:
   acceleration: 150
   deceleration: 150
   topSpeed: 17
-  totalDashes: 4
+  totalDashes: 3
   dashDuration: 0.1
-  dashSpeed: 120
-  dashCooldown: 2
+  dashSpeed: 110
+  dashCooldown: 2.5
   delayBetweenDashes: 0.3
   trailRenderer: {fileID: 74583284289541419}
   dashCharges:
@@ -3903,6 +3903,10 @@ PrefabInstance:
     - target: {fileID: 6413508219248403316, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -31.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631484826831326158, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
