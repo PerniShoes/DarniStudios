@@ -110,13 +110,13 @@ public class EnemyManager : MonoBehaviour
             if (aliveEnemies >= maxAlive) break;
 
             Vector3 spawnPos = GetRandomSpawnPosition();
-            if (!IsInsideWalls(spawnPos)) continue; // To fix, it should find a position inside walls, not skip if it didn't
+            if (!IsInsideWalls(spawnPos)) continue; // FIX, it should find a position inside walls, not skip if it didn't
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
             if (availableSlot >= maxAlive && !ObjectPoolManager.HasInactive(prefab))
             {
-                return; // Skips spawning, to fix
+                return; // Skips spawning, FIX
             }
             GameObject enemyView = ObjectPoolManager.SpawnObject(prefab, spawnPos, Quaternion.identity, ObjectPoolManager.PoolType.Enemies);
 

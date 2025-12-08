@@ -773,6 +773,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5337083737424593103, guid: d08fc2ca4934ace4486e326aeabe2cb0, type: 3}
   m_PrefabInstance: {fileID: 2944650707719999483}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &303641157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3798082420488798795, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+  m_PrefabInstance: {fileID: 5093696536663365148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &485238881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6307949690185285116, guid: 71615c499a99ae54a82d3827276c40fe, type: 3}
@@ -1037,6 +1042,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -1108100253261171142, guid: 090d7df222fc64a47abfe34e327fa152, type: 3}
   m_PrefabInstance: {fileID: 751198598}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &832001147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4742683511396601346, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+  m_PrefabInstance: {fileID: 5093696536663365148}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &843429510 stripped
 Transform:
@@ -3104,6 +3114,7 @@ MonoBehaviour:
   dashCooldown: 2.5
   delayBetweenDashes: 0.3
   trailRenderer: {fileID: 74583284289541419}
+  dashUI: {fileID: 7782454946944730112}
   dashCharges:
   - {fileID: 50595644}
   - {fileID: 27091513}
@@ -3820,9 +3831,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4381350314504882166}
     m_Modifications:
+    - target: {fileID: 3429519331383956956, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429519331383956956, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429519331383956956, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429519331383956956, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429519331383956956, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429519331383956956, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539392894789637460, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3798082420488798795, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
       propertyPath: m_Name
       value: Dash UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742683511396601346, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037718351296419344, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6413508219248403316, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
       propertyPath: m_Pivot.x
@@ -3904,14 +3951,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -31.13
       objectReference: {fileID: 0}
-    - target: {fileID: 6631484826831326158, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -60
+    - target: {fileID: 8766907273355612267, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3798082420488798795, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7782454946944730112}
   m_SourcePrefab: {fileID: 100100000, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
 --- !u!4 &5394228012547623173
 Transform:
@@ -4014,6 +4064,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6413508219248403316, guid: 4893cd2a9a95ed140bb92f6ce163a24f, type: 3}
   m_PrefabInstance: {fileID: 5093696536663365148}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7782454946944730112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303641157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233fd750adf0e6848ad66503215a0a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  chargeSlotTemplate: {fileID: 832001147}
+  horizontalOffset: 10
 --- !u!4 &8034131950338668879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1607290893094476069, guid: 71615c499a99ae54a82d3827276c40fe, type: 3}

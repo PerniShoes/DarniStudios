@@ -14,8 +14,8 @@ public class ObjectPoolManager : MonoBehaviour
     private static GameObject _particleSystemHolder;
     private static GameObject _enemiesHolder;
     private static GameObject _gemsHolder;
+    private static GameObject _UIHolder;
     private static GameObject _otherHolder;
-
 
     public enum PoolType
     {
@@ -23,10 +23,11 @@ public class ObjectPoolManager : MonoBehaviour
         Enemies,
         Gems,
         Other,
+        UI,
         None
     }
 
-    public static PoolType PoolingType;
+    private static PoolType PoolingType;
     private void Awake()
     {
         SetupFolderStructure();
@@ -44,14 +45,25 @@ public class ObjectPoolManager : MonoBehaviour
         _gemsHolder = new GameObject("Gems");
         _gemsHolder.transform.SetParent(_objectPoolHolder.transform);
 
+        _UIHolder = new GameObject("UI");
+        _UIHolder.transform.SetParent(_objectPoolHolder.transform);
+
         _otherHolder = new GameObject("Other");
         _otherHolder.transform.SetParent(_objectPoolHolder.transform);
-
 
     }
 
     public static bool HasInactive(GameObject prefab)
     {
+        // This function stems from having single ObjectPools manage limitted amount of objects with multiple prefabs 
+        // EnemyManager - EM, ObjectPoolManager - OPM
+
+        // E.g.: EM wants max 3 alive enemies. It has: X, Y, Z. Active: X Inactive: Y, Z
+        // EM knows how many objects are active/alive, but doesn't know which ones. It sees 1 alive object (correct)
+        // EM calls OPM to spawn an enemy, randomly choosing one from X, Y, Z. It lands on X
+        // OPM tries to spawn an X enemy, but sees no inactive objects to use. So it creates a second X enemy
+        // Now there are 4 objects in the pool: X, X, Y, Z (instead of 3 max)
+
         PooledObjectInfo pool = ObjectPools.Find(storedPools => storedPools.LookupString == prefab.name);
         if(pool == null)
         {
@@ -152,6 +164,8 @@ public class ObjectPoolManager : MonoBehaviour
                 return _enemiesHolder;
             case PoolType.Gems:
                 return _gemsHolder;
+            case PoolType.UI:
+                return _UIHolder;
             case PoolType.Other:
                 return _otherHolder;
             case PoolType.None:

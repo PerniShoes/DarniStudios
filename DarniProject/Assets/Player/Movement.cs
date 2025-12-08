@@ -29,11 +29,13 @@ public class Movement : MonoBehaviour
     private float dashRecharge = 0f;
 
     [Header("Dash UI")]
+    public DashChargesSetup dashUI;
     public List<Image> dashCharges = new List<Image>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        dashUI.SetSlotAmount(totalDashes);
         currentDashCharges = totalDashes;
 
     }
