@@ -8,13 +8,13 @@ using static UnityEngine.GraphicsBuffer;
 public class ObjectPoolManager : MonoBehaviour
 {
     public static List<PooledObjectInfo> ObjectPools = new List<PooledObjectInfo>();
+    public GameObject DashChargesFolderUi;
 
     private GameObject _objectPoolHolder;
-
     private static GameObject _particleSystemHolder;
     private static GameObject _enemiesHolder;
     private static GameObject _gemsHolder;
-    private static GameObject _UIHolder;
+    private static GameObject _DashUIHolder;
     private static GameObject _otherHolder;
 
     public enum PoolType
@@ -23,7 +23,7 @@ public class ObjectPoolManager : MonoBehaviour
         Enemies,
         Gems,
         Other,
-        UI,
+        DashUI,
         None
     }
 
@@ -45,8 +45,7 @@ public class ObjectPoolManager : MonoBehaviour
         _gemsHolder = new GameObject("Gems");
         _gemsHolder.transform.SetParent(_objectPoolHolder.transform);
 
-        _UIHolder = new GameObject("UI");
-        _UIHolder.transform.SetParent(_objectPoolHolder.transform);
+        _DashUIHolder = DashChargesFolderUi;
 
         _otherHolder = new GameObject("Other");
         _otherHolder.transform.SetParent(_objectPoolHolder.transform);
@@ -164,8 +163,8 @@ public class ObjectPoolManager : MonoBehaviour
                 return _enemiesHolder;
             case PoolType.Gems:
                 return _gemsHolder;
-            case PoolType.UI:
-                return _UIHolder;
+            case PoolType.DashUI:
+                return _DashUIHolder;
             case PoolType.Other:
                 return _otherHolder;
             case PoolType.None:

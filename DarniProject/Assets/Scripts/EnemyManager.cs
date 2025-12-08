@@ -246,7 +246,7 @@ public class EnemyManager : MonoBehaviour
 
             ///////////////// Lunge
 
-            //////////////////////      ALL HERE <--- Should probably be stored outside and done once, not everytime
+            //////////////////////  ALL HERE <--- Should probably be stored outside and done once, not everytime
             ///
             if (enemy.attackType == AttackTypes.Lunge)
             {
@@ -261,7 +261,7 @@ public class EnemyManager : MonoBehaviour
                 float animSpeedMultiplier = originalLungeAnimTime / enemy.lungeDuration;
                 animator.SetFloat("LungeSpeed", animSpeedMultiplier);
 
-                //////////////////////      ALL HERE
+                //////////////////////  ALL HERE
 
                 if ((t % 1f) >= startLungePoint && (t % 1f) < offset)
                 {
