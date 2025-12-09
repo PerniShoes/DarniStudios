@@ -43,7 +43,7 @@ public class StateManager : MonoBehaviour
 
     }
 
-    private void PauseOrUnpauseGame()
+    public void PauseOrUnpauseGame()
     {
         if (isPaused)
         {
@@ -55,16 +55,14 @@ public class StateManager : MonoBehaviour
         }
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
-
         pauseUi.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
-    private void UnpauseGame()
+    public void UnpauseGame()
     {
-
         pauseUi.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;

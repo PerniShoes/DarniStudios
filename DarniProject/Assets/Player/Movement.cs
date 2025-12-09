@@ -32,7 +32,6 @@ public class Movement : MonoBehaviour
     public DashChargesSetup dashChargesSetup;
     public List<Image> dashCharges = new List<Image>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (totalDashes < 0) totalDashes = 0;
@@ -41,7 +40,6 @@ public class Movement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (StateManager.Instance.IsPaused) return;
