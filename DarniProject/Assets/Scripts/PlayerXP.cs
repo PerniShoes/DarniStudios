@@ -22,14 +22,14 @@ public class PlayerXP : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip levelUpSound;
-    public float levelUpVolume = 0.8f;
+    public float levelUpVolume;
 
     private AudioSource audioSource;
     private Transform gemsFolder;
 
     void Awake()
     {
-        gemsFolder = GameObject.Find("Gems").transform;
+        //gemsFolder = GameObject.Find("Gems").transform;
 
         // Add or find AudioSource
         audioSource = GetComponent<AudioSource>();
@@ -41,6 +41,7 @@ public class PlayerXP : MonoBehaviour
 
     void Start()
     {
+        gemsFolder = GameObject.Find("Gems").transform;
         UpdateUI();
     }
 
@@ -55,6 +56,7 @@ public class PlayerXP : MonoBehaviour
 
         foreach (Transform gem in gemsFolder)
         {
+            // This loop is checking every active gem everytime. Even if for example 90% of them are far far away
             if (!gem.gameObject.activeSelf) continue;
 
             float dist = Vector3.Distance(playerPos, gem.position);
@@ -62,6 +64,7 @@ public class PlayerXP : MonoBehaviour
             if (dist <= absorbDistance)
             {
                 gem.position = Vector3.MoveTowards(gem.position, playerPos, pickupSpeed * Time.deltaTime);
+                // Get component shouldn't be called everytime here. It should be stored/cached somewhere per gem
                 var anim = gem.GetComponent<Benjathemaker.SimpleGemsAnim>();
                 if (anim != null) anim.isBeingAttracted = true;
             }

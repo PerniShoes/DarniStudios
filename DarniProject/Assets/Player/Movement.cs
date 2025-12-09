@@ -44,6 +44,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (StateManager.Instance.IsPaused) return;
+
         if (!isDashing)
         {
             float speed = new Vector3(body.linearVelocity.x, 0f, body.linearVelocity.z).magnitude / 8f;
@@ -61,6 +63,7 @@ public class Movement : MonoBehaviour
                 dashRecharge = 0f;
             }
         }
+
     }
 
     private void FixedUpdate()
