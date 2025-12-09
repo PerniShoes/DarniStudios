@@ -1,6 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerXP : MonoBehaviour
 {
@@ -27,11 +29,17 @@ public class PlayerXP : MonoBehaviour
     private AudioSource audioSource;
     private Transform gemsFolder;
 
+    [Header("LevelUpBonuses")]
+    public List<LevelUpBonus> allUnlockableSpells = new();
+    public List<LevelUpBonus> allStatBonusUnlocks = new();
+    public Dictionary<LevelUpBonus, int> statBonusesLevels = new();
+    public Dictionary<LevelUpBonus, int> spellSlots = new();
+
+
     void Awake()
     {
         //gemsFolder = GameObject.Find("Gems").transform;
 
-        // Add or find AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -42,6 +50,9 @@ public class PlayerXP : MonoBehaviour
     void Start()
     {
         gemsFolder = GameObject.Find("Gems").transform;
+        LoadAllLevelUpBonuses();
+
+
         UpdateUI();
     }
 
@@ -82,20 +93,53 @@ public class PlayerXP : MonoBehaviour
         if (amount <= 0) return;
 
         currentXP += amount;
-        bool leveledUp = false;
 
         while (currentXP >= xpToNextLevel)
         {
             currentXP -= xpToNextLevel;
             currentLevel++;
             xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpGrowthRate);
-            leveledUp = true;
+            // sound
+            PlayLevelUpSound();
+            // pause
+
+            // choose
+            ShowLevelUpChoices();
+
+            // unpause
+
+
         }
 
-        if (leveledUp)
-            PlayLevelUpSound();
-
         UpdateUI();
+    }
+
+    private void ShowLevelUpChoices()
+    {
+        // Stay in here until chosen
+
+
+
+    }
+
+    //public LevelUpBonus[] GetRandomChoices(int count)
+    //{
+    //    // If unlocking spell, remove it from the "Unlockable" list
+    //    // If replacing a spell, can add the old one back to the list
+
+
+    //    // If choosing a statBonus, check for maxLevel, if it's maxed, remove from list
+
+
+    //    // For now for testing only adding stat bonuses
+      
+
+    //}
+
+    private void LoadAllLevelUpBonuses()
+    {
+        allUnlockableSpells = Resources.LoadAll<LevelUpBonus>("LevelUpBonuses/SpellUnlocks").ToList();
+        allStatBonusUnlocks = Resources.LoadAll<LevelUpBonus>("LevelUpBonuses/StatBonuses").ToList();
     }
 
     private void PlayLevelUpSound()
