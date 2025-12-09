@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // ← dodaj to
-using System.Collections.Generic;
+using TMPro;
 
 public class PlayerXP : MonoBehaviour
 {
@@ -18,25 +17,34 @@ public class PlayerXP : MonoBehaviour
     public int expPerGem;
 
     [Header("UI")]
-    public Slider xpBar;                 // >:C 
-    public Text levelText;               // Stary UI Text 
-    public TextMeshProUGUI levelTMP;     // Nowy TMP text 
+    public Slider xpBar;
+    public TextMeshProUGUI levelTMP;
 
+    [Header("Audio")]
+    public AudioClip levelUpSound;
+    public float levelUpVolume = 0.8f;
 
-
+    private AudioSource audioSource;
     private Transform gemsFolder;
+
     void Awake()
     {
         gemsFolder = GameObject.Find("Gems").transform;
+
+        // Add or find AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
     }
 
-    private void Start()
+    void Start()
     {
         UpdateUI();
-
     }
 
-    private void Update()
+    void Update()
     {
         AttractAndAbsorbGems();
     }
@@ -44,23 +52,19 @@ public class PlayerXP : MonoBehaviour
     private void AttractAndAbsorbGems()
     {
         Vector3 playerPos = transform.position + Vector3.up * 0.8f;
-        // This definitely can be better (loop over gems that are close, not all of them
+
         foreach (Transform gem in gemsFolder)
         {
-            if (gem.gameObject.activeSelf == false) continue;
+            if (!gem.gameObject.activeSelf) continue;
+
             float dist = Vector3.Distance(playerPos, gem.position);
 
             if (dist <= absorbDistance)
             {
                 gem.position = Vector3.MoveTowards(gem.position, playerPos, pickupSpeed * Time.deltaTime);
-
-                // GetComponent called too often
                 var anim = gem.GetComponent<Benjathemaker.SimpleGemsAnim>();
-                if (anim != null)
-                    anim.isBeingAttracted = true;
+                if (anim != null) anim.isBeingAttracted = true;
             }
-
-            dist = Vector3.Distance(playerPos, gem.position);
 
             if (dist <= pickupRange)
             {
@@ -75,15 +79,26 @@ public class PlayerXP : MonoBehaviour
         if (amount <= 0) return;
 
         currentXP += amount;
+        bool leveledUp = false;
 
         while (currentXP >= xpToNextLevel)
         {
             currentXP -= xpToNextLevel;
             currentLevel++;
             xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpGrowthRate);
+            leveledUp = true;
         }
 
+        if (leveledUp)
+            PlayLevelUpSound();
+
         UpdateUI();
+    }
+
+    private void PlayLevelUpSound()
+    {
+        if (levelUpSound != null && audioSource != null)
+            audioSource.PlayOneShot(levelUpSound, levelUpVolume);
     }
 
     private void UpdateUI()
@@ -91,11 +106,8 @@ public class PlayerXP : MonoBehaviour
         if (xpBar != null)
             xpBar.value = (float)currentXP / xpToNextLevel;
 
-        if (levelText != null)
-            levelText.text = $"LVL {currentLevel}";
-
         if (levelTMP != null)
-            levelTMP.text = $"{currentLevel}"; // ← nowy TMP text
+            levelTMP.text = $"{currentLevel}";
     }
 
     private void OnDrawGizmosSelected()
