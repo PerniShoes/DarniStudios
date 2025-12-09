@@ -3063,7 +3063,7 @@ MonoBehaviour:
   acceleration: 150
   deceleration: 150
   topSpeed: 17
-  totalDashes: 3
+  totalDashes: 2
   dashDuration: 0.1
   dashSpeed: 110
   dashCooldown: 1.5
@@ -3979,7 +3979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   playerMovement: {fileID: 1220992352545078486}
   chargeSlotTemplate: {fileID: 832001147}
-  chargeTemplateScale: 0.2
+  chargeTemplateScale: 0.15
   horizontalOffset: 10
 --- !u!1001 &8191631731524428994
 PrefabInstance:

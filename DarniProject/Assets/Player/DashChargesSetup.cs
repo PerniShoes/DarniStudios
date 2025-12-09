@@ -9,16 +9,9 @@ public class DashChargesSetup : MonoBehaviour
     public float chargeTemplateScale;
     public float horizontalOffset;
     // private float slotHeight; // Not used
-    private float slotWidth;
-    private int amountOfSlots = 0;
+    private float slotWidth = 100f;
+    private int amountOfSlots;
 
-    void Start()
-    {
-        RectTransform slotTransform = chargeSlotTemplate.GetComponent<RectTransform>();
-        // slotHeight = 100f * chargeTemplateScale;
-        slotWidth = 100f * chargeTemplateScale;
-
-    }
     public void SetSlotAmount(int amount)
     {
         if (amount < 0) amount = 0;
@@ -30,7 +23,7 @@ public class DashChargesSetup : MonoBehaviour
         }
         amountOfSlots = amount;
 
-        float spacing = slotWidth + horizontalOffset;
+        float spacing = slotWidth * chargeTemplateScale + horizontalOffset;
         float centerIndex = (amount - 1) / 2f;
 
         playerMovement.dashCharges.Clear();
