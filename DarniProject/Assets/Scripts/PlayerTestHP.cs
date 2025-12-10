@@ -35,10 +35,15 @@ public class PlayerTestHP : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         UpdateHealthText();
     }
-
+    public void SetMaxHealth(int value)
+    {
+        healthBar.SetMaxHealth(value);
+        UpdateHealthText();
+    }
     void UpdateHealthText()
     {
         if (healthText != null)
             healthText.text = $"{currentHealth} / {maxHealth}";
     }
+
 }

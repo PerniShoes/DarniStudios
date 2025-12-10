@@ -202,5 +202,14 @@ public class Movement : MonoBehaviour
         }
         totalDashes = amount;
     }
+    public void AddDashChargeSlots(int amount)
+    {
+        dashChargesSetup.AddDashChargeSlots(amount);
+    }
+    public void RemoveDashChargeSlots(int amount)
+    {
+        dashChargesSetup.RemoveDashChargeSlots(amount);
+    }
+
 
 }

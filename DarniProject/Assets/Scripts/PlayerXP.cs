@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FullOpaqueVFX;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -30,10 +31,17 @@ public class PlayerXP : MonoBehaviour
     private Transform gemsFolder;
 
     [Header("LevelUpBonuses")]
+    // Left to unlock
     public List<LevelUpBonus> allUnlockableSpells = new();
     public List<LevelUpBonus> allStatBonusUnlocks = new();
+    // Already unlocked
     public Dictionary<LevelUpBonus, int> statBonusesLevels = new();
     public Dictionary<LevelUpBonus, int> spellSlots = new();
+
+
+    [Header("StatAccess")]
+    public PlayerTestHP healthStats;
+    public Movement movementStats;
 
 
     void Awake()
@@ -119,6 +127,11 @@ public class PlayerXP : MonoBehaviour
         // Stay in here until chosen
 
 
+
+    }
+
+    public void UnlockSpell(SpellData spellToUnlock)
+    {
 
     }
 

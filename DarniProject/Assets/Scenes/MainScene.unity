@@ -2658,6 +2658,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2139999024}
     - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
+      propertyPath: healthStats
+      value: 
+      objectReference: {fileID: 4025574327722206658}
+    - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: levelUpSound
       value: 
       objectReference: {fileID: 8300000, guid: 8b5eddfcd6d1af741b9713ea41814ec3, type: 3}
@@ -2665,6 +2669,10 @@ PrefabInstance:
       propertyPath: levelUpVolume
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
+      propertyPath: movementStats
+      value: 
+      objectReference: {fileID: 1220992352545078486}
     - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: xpToNextLevel
       value: 5
