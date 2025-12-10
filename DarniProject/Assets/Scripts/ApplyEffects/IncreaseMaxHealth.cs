@@ -1,8 +1,8 @@
 using UnityEngine;
 public class IncreaseMaxHealth : ApplyEffect
 {
-    public override void Apply(PlayerXP player, int value)
+    public override void Apply(PlayerXP player, float value)
     {
-        player.healthStats.SetMaxHealth(value);
+        player.healthStats.SetMaxHealth((int)value);
     }
 }

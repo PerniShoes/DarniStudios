@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-public class Heal : ApplyEffect
+public class ReduceDashCooldown : ApplyEffect
 {
     public override void Apply(PlayerXP player, float value)
     {
-        player.healthStats.Heal((int)value);
+        player.movementStats.dashCooldown -= value;
     }
 }
