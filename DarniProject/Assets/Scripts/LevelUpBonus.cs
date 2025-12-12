@@ -7,7 +7,7 @@ public abstract class LevelUpBonus : ScriptableObject
     public Sprite icon;
 
 
-    public abstract void ApplyOrUnlock(PlayerXP playerLevelManager, int skillLevel);
+    public abstract void ApplyOrUnlock(PlayerXP playerLevelManager);
  
 
 

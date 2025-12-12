@@ -7,7 +7,7 @@ public class SkillUnlock : LevelUpBonus
 {
     public SpellData spellToUnlock;
 
-    public override void ApplyOrUnlock(PlayerXP playerLevelManager, int skillLevel)
+    public override void ApplyOrUnlock(PlayerXP playerLevelManager)
     {
         playerLevelManager.UnlockSpell(spellToUnlock);
     }

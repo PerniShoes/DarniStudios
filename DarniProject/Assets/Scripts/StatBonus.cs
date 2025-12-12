@@ -5,13 +5,22 @@ public class StatBonus : LevelUpBonus
 {
     public float[] valuesPerLevel;
     public ApplyEffect effect;
+    private int currentSkillLevel = 0;
 
-    public override void ApplyOrUnlock(PlayerXP playerLevelManager, int skillLevel)
+    public override void ApplyOrUnlock(PlayerXP playerLevelManager)
     {
-        float value = GetValue(skillLevel);
+        float value = GetValue(currentSkillLevel);
         effect.Apply(playerLevelManager, value);
+        currentSkillLevel++;
     }
-
+    public float GetCurrentSkillLevel()
+    {
+        return currentSkillLevel;
+    }
+    public float GetMaxSkillLevel()
+    {
+        return valuesPerLevel.Length;
+    }
     // Temporary safety function to avoid out of bounds access
     protected float GetValue(int level)
     {
