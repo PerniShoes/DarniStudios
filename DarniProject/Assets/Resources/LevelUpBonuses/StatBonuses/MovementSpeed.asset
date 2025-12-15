@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 077a7997356d4654c9ba151e7af46d4a, type: 3}
-  m_Name: Stat Bonus
+  m_Name: MovementSpeed
   m_EditorClassIdentifier: Assembly-CSharp::StatBonus
   bonusName: 
   description: 
   icon: {fileID: 0}
-  valuesPerLevel: 
+  valuesPerLevel: []
+  effect: {fileID: 0}

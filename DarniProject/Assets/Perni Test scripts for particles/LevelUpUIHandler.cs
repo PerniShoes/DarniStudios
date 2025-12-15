@@ -38,5 +38,6 @@ public class LevelUpUI : MonoBehaviour
         bonus.ApplyOrUnlock(player);
 
         gameObject.SetActive(false);
+        StateManager.Instance.UnpauseGame();
     }
 }

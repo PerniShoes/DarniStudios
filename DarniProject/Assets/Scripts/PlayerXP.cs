@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class PlayerXP : MonoBehaviour
 {
@@ -102,20 +103,17 @@ public class PlayerXP : MonoBehaviour
 
         currentXP += amount;
 
+        // Level up
         while (currentXP >= xpToNextLevel)
         {
             currentXP -= xpToNextLevel;
             currentLevel++;
             xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpGrowthRate);
-            // sound
+
             PlayLevelUpSound();
-            // pause
-
-            // choose
+            StateManager.Instance.PauseGame();
             ShowLevelUpChoices();
-
-            // unpause
-
+            // Game is Unpaused in LevelUpUIHandler in OnBonusSelected()
 
         }
 
@@ -124,9 +122,8 @@ public class PlayerXP : MonoBehaviour
 
     private void ShowLevelUpChoices()
     {
-        // Stay in here until chosen
-
-
+        LevelUpBonus[] choices = GetRandomChoices(3);
+        LevelUpUI.Instance.ShowOptions(this, choices);
 
     }
 
@@ -135,19 +132,27 @@ public class PlayerXP : MonoBehaviour
 
     }
 
-    //public LevelUpBonus[] GetRandomChoices(int count)
-    //{
-    //    // If unlocking spell, remove it from the "Unlockable" list
-    //    // If replacing a spell, can add the old one back to the list
+    public LevelUpBonus[] GetRandomChoices(int count)
+    {
+        // If unlocking spell, remove it from the "Unlockable" list
+        // If replacing a spell, can add the old one back to the list
+        // If choosing a statBonus, check for maxLevel, if it's maxed, remove from list
+        // For now for testing only adding stat bonuses
 
 
-    //    // If choosing a statBonus, check for maxLevel, if it's maxed, remove from list
+        // Coppies the whole list. Choose random index (store used ones) for better performance
+        List<LevelUpBonus> pool = new List<LevelUpBonus>(allStatBonusUnlocks);
+        LevelUpBonus[] choices = new LevelUpBonus[count];
 
+        for (int i = 0; i < count; i++)
+        {
+            int index = Random.Range(0, pool.Count);
+            choices[i] = pool[index];
+            pool.RemoveAt(index); 
+        }
+        return choices;
 
-    //    // For now for testing only adding stat bonuses
-      
-
-    //}
+    }
 
     private void LoadAllLevelUpBonuses()
     {

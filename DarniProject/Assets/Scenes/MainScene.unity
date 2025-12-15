@@ -806,6 +806,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4250169317240160903, guid: f0a44ec72a3fbb24cba3f1daa881391f, type: 3}
   m_PrefabInstance: {fileID: 3895408863929521807}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &971500838
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 103.8147
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 206.43298
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949763118275382574, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763138542642534292, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
+      propertyPath: m_Name
+      value: Drakonit_monster_lod_0 (set_2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48d1bf9fa19e4484697cdeb3622fd018, type: 3}
 --- !u!1 &1172650131
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,3 +3657,4 @@ SceneRoots:
   - {fileID: 8184917746558602047}
   - {fileID: 1803624870}
   - {fileID: 1836738719}
+  - {fileID: 971500838}
