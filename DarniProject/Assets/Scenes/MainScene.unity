@@ -2786,11 +2786,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: totalDashes
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: dashCooldown
-      value: 1.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: dashChargesSetup
@@ -2798,7 +2798,7 @@ PrefabInstance:
       objectReference: {fileID: 7782454946944730112}
     - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: delayBetweenDashes
-      value: 0.15
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: xpBar

@@ -68,6 +68,12 @@ public class PlayerXP : MonoBehaviour
     void Update()
     {
         AttractAndAbsorbGems();
+
+        // LevelUp for testing
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            AddExp(xpToNextLevel);
+        }
     }
 
     private void AttractAndAbsorbGems()

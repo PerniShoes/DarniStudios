@@ -15,5 +15,9 @@ MonoBehaviour:
   bonusName: Speedster
   description: 
   icon: {fileID: 21300000, guid: 759c8ab96abd79540bef561df1bdf9fc, type: 3}
-  valuesPerLevel: []
+  valuesPerLevel:
+  - 1
+  - 2
+  - 3
+  - 5
   effect: {fileID: 11400000, guid: aa0c512c385a6d34d881913370b4b49a, type: 2}

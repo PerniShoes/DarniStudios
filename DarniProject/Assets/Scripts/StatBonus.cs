@@ -24,6 +24,10 @@ public class StatBonus : LevelUpBonus
     // Temporary safety function to avoid out of bounds access
     protected float GetValue(int level)
     {
+        if (valuesPerLevel.Length == 0)
+        {
+            return 0;
+        }
         return valuesPerLevel[Mathf.Clamp(level, 0, valuesPerLevel.Length - 1)];
     }
 

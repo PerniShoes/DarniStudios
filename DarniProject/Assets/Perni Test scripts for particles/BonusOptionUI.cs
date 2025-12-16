@@ -4,6 +4,7 @@ using TMPro;
 
 public class BonusOptionUI : MonoBehaviour
 {
+    public Button buttonRef;
     public Image iconImage;
     public TextMeshProUGUI label;
     private LevelUpBonus assignedBonus;
@@ -20,6 +21,8 @@ public class BonusOptionUI : MonoBehaviour
         {
             iconImage.sprite = bonus.icon;
         }
+        buttonRef.onClick.RemoveAllListeners();
+        buttonRef.onClick.AddListener(OnClick);
     }
     public void OnClick()
     {

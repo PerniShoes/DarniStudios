@@ -15,5 +15,9 @@ MonoBehaviour:
   bonusName: Dashy dasher
   description: 
   icon: {fileID: 21300000, guid: e64bf34d142c33d4e88472163c708e2d, type: 3}
-  valuesPerLevel: []
+  valuesPerLevel:
+  - 0.2
+  - 0.3
+  - 0.5
+  - 1
   effect: {fileID: 11400000, guid: a13096ebaad96a74daa53e2b82f21c1b, type: 2}

@@ -15,5 +15,9 @@ MonoBehaviour:
   bonusName: Titan
   description: 
   icon: {fileID: 21300000, guid: 7a62ff47a7bcd9a45addf81dec2b505e, type: 3}
-  valuesPerLevel: []
+  valuesPerLevel:
+  - 15
+  - 30
+  - 45
+  - 90
   effect: {fileID: 11400000, guid: b647b6650943ab84dbbc5b66ffd96e0b, type: 2}
