@@ -15,6 +15,7 @@ public class PlayerTestHP : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(currentHealth);
         UpdateHealthText();
     }
 
@@ -40,6 +41,13 @@ public class PlayerTestHP : MonoBehaviour
         healthBar.SetMaxHealth(value);
         UpdateHealthText();
     }
+    public void SetHealth(int value)
+    {
+        healthBar.SetHealth(value);
+        UpdateHealthText();
+    }
+
+
     void UpdateHealthText()
     {
         if (healthText != null)

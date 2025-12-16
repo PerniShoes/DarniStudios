@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 
 public struct EnemyData
 {
@@ -65,7 +62,7 @@ public class EnemyManager : MonoBehaviour
     public static int aliveEnemies = 0;
     public GameObject[] enemyPrefabs;
 
-    static public int maxAlive = 0;
+    static public int maxAlive = 20;
     EnemyData[] enemies = new EnemyData[maxAlive];
     EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
     private int availableSlot = 0;

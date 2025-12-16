@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [CreateAssetMenu(fileName = "ReduceDashCooldown", menuName = "LevelUp/Effects/ReduceDashCooldown")]
 public class ReduceDashCooldown : ApplyEffect

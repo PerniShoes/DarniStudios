@@ -4,6 +4,7 @@ public class BackgroundMusic : MonoBehaviour
 {
     public AudioClip musicClip;
     [Range(0f, 1f)] public float volume;
+    public bool playMusicOnAwake;
 
     private AudioSource audioSource;
 
@@ -13,6 +14,9 @@ public class BackgroundMusic : MonoBehaviour
         audioSource.clip = musicClip;
         audioSource.volume = volume;
         audioSource.loop = true;
-        //audioSource.Play(); // Turned off temporarily 
+        if (playMusicOnAwake)
+        {
+            audioSource.Play();
+        }
     }
 }

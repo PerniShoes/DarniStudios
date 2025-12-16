@@ -4,7 +4,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class PlayerXP : MonoBehaviour
 {
@@ -128,7 +127,7 @@ public class PlayerXP : MonoBehaviour
 
     private void ShowLevelUpChoices()
     {
-        LevelUpBonus[] choices = GetRandomChoices(5);
+        LevelUpBonus[] choices = GetRandomChoices(3);
         LevelUpUI.Instance.ShowOptions(this, choices);
 
     }

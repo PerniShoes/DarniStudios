@@ -2208,6 +2208,18 @@ PrefabInstance:
       value: Default
       objectReference: {fileID: 0}
     - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_fontSize
+      value: 44.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_margin.x
+      value: -353.70975
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_margin.z
+      value: -107.80647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
       propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
@@ -2224,6 +2236,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4278190080
       objectReference: {fileID: 0}
@@ -2232,12 +2256,24 @@ PrefabInstance:
       value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_horizontalMapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272064526231906660, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3408044023253890367, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 3408044023253890367, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 3408044023253890367, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -33
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6560255302378039551, guid: 842b0f175d7db4a4daa295d129f09834, type: 3}
       propertyPath: m_Pivot.x
@@ -2818,7 +2854,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 8b5eddfcd6d1af741b9713ea41814ec3, type: 3}
     - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: levelUpVolume
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: movementStats
@@ -2840,6 +2876,10 @@ PrefabInstance:
       propertyPath: cdTracker
       value: 
       objectReference: {fileID: 1888623588}
+    - target: {fileID: 2808155013487852822, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5297359664387601687, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.74
@@ -2908,6 +2948,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 213021671}
+    - target: {fileID: 8041125338317521283, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3214,12 +3258,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3230176345535791109, guid: 27c68f77485d8cc46a8be5b703db391e, type: 3}
       propertyPath: volume
-      value: 0.565
+      value: 0.049
       objectReference: {fileID: 0}
     - target: {fileID: 3230176345535791109, guid: 27c68f77485d8cc46a8be5b703db391e, type: 3}
       propertyPath: musicClip
       value: 
       objectReference: {fileID: 8300000, guid: 7b5bdb95a17e37346b902324c9cfc6af, type: 3}
+    - target: {fileID: 3230176345535791109, guid: 27c68f77485d8cc46a8be5b703db391e, type: 3}
+      propertyPath: playMusicOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6608222380482888761, guid: 27c68f77485d8cc46a8be5b703db391e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 94.28481
