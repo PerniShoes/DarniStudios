@@ -29,7 +29,8 @@ public class RenderTestMode : MonoBehaviour
         if (isApplied == state) return;
         isApplied = state;
 
-        var meshFilters = FindObjectsOfType<MeshFilter>(true);
+        // var meshFilters = FindObjectsOfType<MeshFilter>(true); <- depracated. Not sure if the bellow works, so just left both
+        var meshFilters = Object.FindObjectsByType<MeshFilter>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
         foreach (var mf in meshFilters)
         {

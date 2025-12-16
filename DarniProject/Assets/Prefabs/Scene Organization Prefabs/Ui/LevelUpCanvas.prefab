@@ -428,6 +428,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5346112594499128509}
     m_Modifications:
+    - target: {fileID: 1169492356609809467, guid: 754f53614f1be5b4a927eab59a569ce2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1169492356609809467, guid: 754f53614f1be5b4a927eab59a569ce2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1169492356609809467, guid: 754f53614f1be5b4a927eab59a569ce2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2623322066846746088, guid: 754f53614f1be5b4a927eab59a569ce2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -511,6 +523,10 @@ PrefabInstance:
     - target: {fileID: 5192619234460530471, guid: 754f53614f1be5b4a927eab59a569ce2, type: 3}
       propertyPath: m_Name
       value: Ui Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192619234460530471, guid: 754f53614f1be5b4a927eab59a569ce2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
