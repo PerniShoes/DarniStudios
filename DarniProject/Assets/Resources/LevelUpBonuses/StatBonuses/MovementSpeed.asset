@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077a7997356d4654c9ba151e7af46d4a, type: 3}
   m_Name: MovementSpeed
   m_EditorClassIdentifier: Assembly-CSharp::StatBonus
-  bonusName: 
+  bonusName: Speedster
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 759c8ab96abd79540bef561df1bdf9fc, type: 3}
   valuesPerLevel: []
-  effect: {fileID: 0}
+  effect: {fileID: 11400000, guid: aa0c512c385a6d34d881913370b4b49a, type: 2}

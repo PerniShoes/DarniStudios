@@ -122,7 +122,7 @@ public class PlayerXP : MonoBehaviour
 
     private void ShowLevelUpChoices()
     {
-        LevelUpBonus[] choices = GetRandomChoices(3);
+        LevelUpBonus[] choices = GetRandomChoices(5);
         LevelUpUI.Instance.ShowOptions(this, choices);
 
     }

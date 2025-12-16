@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077a7997356d4654c9ba151e7af46d4a, type: 3}
   m_Name: DashChargeSlot
   m_EditorClassIdentifier: Assembly-CSharp::StatBonus
-  bonusName: 
+  bonusName: More Dash!
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6dacd68038fcc0142831aa7f2789951d, type: 3}
   valuesPerLevel: []
   effect: {fileID: 11400000, guid: 7a14e132373b3b942b39c445a535d143, type: 2}

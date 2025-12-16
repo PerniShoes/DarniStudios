@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077a7997356d4654c9ba151e7af46d4a, type: 3}
   m_Name: Dash Cooldown
   m_EditorClassIdentifier: Assembly-CSharp::StatBonus
-  bonusName: 
+  bonusName: Dashy dasher
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e64bf34d142c33d4e88472163c708e2d, type: 3}
   valuesPerLevel: []
+  effect: {fileID: 11400000, guid: a13096ebaad96a74daa53e2b82f21c1b, type: 2}
