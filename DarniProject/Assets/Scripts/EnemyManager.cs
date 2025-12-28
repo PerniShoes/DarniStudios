@@ -6,7 +6,6 @@ using UnityEngine;
 
 public struct EnemyData
 {
-    public Vector3 position;
     public Quaternion rotation;
     public int maxHealth;
     public int currentHealth;
@@ -62,7 +61,7 @@ public class EnemyManager : MonoBehaviour
     public static int aliveEnemies = 0;
     public GameObject[] enemyPrefabs;
 
-    static public int maxAlive = 20;
+    static public int maxAlive = 60;
     EnemyData[] enemies = new EnemyData[maxAlive];
     EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
     List<int> aliveEnemyIndices = new();
@@ -150,7 +149,6 @@ public class EnemyManager : MonoBehaviour
             Vector2 randomCircle = Random.insideUnitCircle * targetRadiusAroundPlayer;
 
             enemies[slotIndex].targetOffset = new Vector3(randomCircle.x, 0f, randomCircle.y);
-            enemies[slotIndex].position = spawnPos;
             enemies[slotIndex].rotation = Quaternion.identity;
             enemies[slotIndex].maxHealth = stats.maxHealth;
             enemies[slotIndex].currentHealth = stats.currentHealth;
@@ -365,7 +363,7 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < aliveEnemyIndices.Count; i++)
         {
             int enemyIndex = aliveEnemyIndices[i];
-            Vector3 enemyPos = enemies[enemyIndex].position;
+            Vector3 enemyPos = enemyViewData[enemyIndex].rb.position;
 
             if((enemyPos - playerPos).sqrMagnitude > rangeSqr)
             {

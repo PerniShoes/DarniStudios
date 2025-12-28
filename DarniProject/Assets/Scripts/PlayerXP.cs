@@ -73,6 +73,11 @@ public class PlayerXP : MonoBehaviour
         {
             AddExp(xpToNextLevel);
         }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            // Stops level ups
+            xpToNextLevel = 100000;
+        }
     }
 
     private void AttractAndAbsorbGems()

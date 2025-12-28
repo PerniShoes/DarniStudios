@@ -25,7 +25,7 @@ namespace FullOpaqueVFX
             }
 
             // if speed or range = 0.0f ==> not set
-            if (currentSpell.speed > 0.0f || currentSpell.range > 0.0f)
+            if (currentSpell.speed > 0.0f && currentSpell.range > 0.0f)
             {
                 AdjustParticleSystemForRange(currentSpell.mainSpellPrefab, currentSpell.range, currentSpell.speed);
             }
@@ -45,7 +45,7 @@ namespace FullOpaqueVFX
             {
                 if (targetRandomEnemy)
                 {
-                    GameObject found = enemyManager.GetRandomAliveEnemy();
+                    GameObject found = enemyManager.GetRandomAliveEnemyInRange(currentSpell.range);
 
                     target = null;
                     if (found != null)
@@ -62,22 +62,50 @@ namespace FullOpaqueVFX
                 }
                 }
         }
+        
+
+        // Not used rn
+        void AdjustSubEmitters(ParticleSystem parent, float parentLifetime)
+        {
+            var subEmitters = parent.subEmitters;
+
+            for (int i = 0; i < subEmitters.subEmittersCount; i++)
+            {
+                ParticleSystem sub = subEmitters.GetSubEmitterSystem(i);
+                var main = sub.main;
+
+                if (!main.loop)
+                {
+                    main.startLifetime = Mathf.Min(main.startLifetime.constant, parentLifetime);
+                }
+            }
+        }
 
         void AdjustParticleSystemForRange(GameObject spellObject, float range, float speed)
         {
             if (spellObject == null) return;
 
+            ParticleSystem mainPS = spellObject.GetComponent<ParticleSystem>();
+
+            var main = mainPS.main;
+
+            if (!main.loop)
+            {
+                main.startSpeed = speed;
+                main.startLifetime = range / speed;
+            }
+
             ParticleSystem[] particleSystems = spellObject.GetComponentsInChildren<ParticleSystem>();
 
             foreach (ParticleSystem ps in particleSystems)
             {
-                var main = ps.main;
-
-                if (!main.loop)
+                var childMain = ps.main;
+                if (!childMain.loop)
                 {
-                    main.startLifetime = range / speed;
+                    childMain.startLifetime = range / speed;
                 }
             }
+
         }
 
         private IEnumerator CastSpell()
