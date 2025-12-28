@@ -14,6 +14,7 @@ TagManager:
   - UMAIgnore
   - Obstacles
   - GameStateCanvas
+  - EnemyManager
   layers:
   - Default
   - TransparentFX

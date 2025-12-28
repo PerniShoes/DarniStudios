@@ -2050,6 +2050,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3534032926032699351, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
+      propertyPath: m_TagString
+      value: EnemyManager
+      objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: player
       value: 
@@ -2060,7 +2064,7 @@ PrefabInstance:
       objectReference: {fileID: 3735229534259674329}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: groupSize
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: killCounter
@@ -2068,7 +2072,7 @@ PrefabInstance:
       objectReference: {fileID: 763319623558384511}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: spawnInterval
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: playerHPScript
@@ -2872,13 +2876,25 @@ PrefabInstance:
       propertyPath: cdTracker
       value: 
       objectReference: {fileID: 1888623588}
+    - target: {fileID: 1230940951756523211, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
+      propertyPath: targetRandomEnemy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1905716763080364281, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: cdTracker
       value: 
       objectReference: {fileID: 1888623588}
+    - target: {fileID: 1905716763080364281, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
+      propertyPath: targetRandomEnemy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2808155013487852822, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287569530303851300, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5297359664387601687, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2940,6 +2956,10 @@ PrefabInstance:
       propertyPath: cdTracker
       value: 
       objectReference: {fileID: 1888623588}
+    - target: {fileID: 6375527766016539230, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
+      propertyPath: targetRandomEnemy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6460792488457298681, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: m_Mesh
       value: 

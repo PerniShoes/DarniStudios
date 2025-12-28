@@ -65,6 +65,9 @@ public class EnemyManager : MonoBehaviour
     static public int maxAlive = 20;
     EnemyData[] enemies = new EnemyData[maxAlive];
     EnemyViewData[] enemyViewData = new EnemyViewData[maxAlive];
+    List<int> aliveEnemyIndices = new();
+
+
     private int availableSlot = 0;
 
     private int updateIndex = 0;
@@ -163,10 +166,11 @@ public class EnemyManager : MonoBehaviour
             enemies[slotIndex].lungeDuration = stats.lungeDuration; // LungeSpeed depends on Range and duration
             enemies[slotIndex].damageTriggerNormalizedTime = stats.damageTriggerNormalizedTime;
 
-
             enemies[slotIndex].destroyDelay = stats.destroyDelay;
             enemies[slotIndex].damage = stats.damage;
             enemyViewData[slotIndex].healthbarReference.SetHealth(100); //  Healthbar needs a rewrite, weird behaviour with % 
+            
+            aliveEnemyIndices.Add(slotIndex);
             aliveEnemies++;
         }
     }
@@ -344,7 +348,53 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+    public GameObject GetRandomAliveEnemyInRange(float range)
+    {
+        if (aliveEnemyIndices.Count == 0)
+        {
+            return null;
+        }
 
+        float rangeSqr = range * range;
+
+        int chosenIndex = -1;
+        int validCount = 0;
+
+        Vector3 playerPos = player.position;
+
+        for (int i = 0; i < aliveEnemyIndices.Count; i++)
+        {
+            int enemyIndex = aliveEnemyIndices[i];
+            Vector3 enemyPos = enemies[enemyIndex].position;
+
+            if((enemyPos - playerPos).sqrMagnitude > rangeSqr)
+            {
+                continue;
+            }
+
+            validCount++;
+
+            if (Random.Range(0, validCount) == 0)
+            {
+                chosenIndex = enemyIndex;
+            }
+        }
+
+        if (chosenIndex == -1)
+            return null;
+
+        return enemyViewData[chosenIndex].gameObjectRef;
+    }
+    public GameObject GetRandomAliveEnemy()
+    {
+        if (aliveEnemyIndices.Count == 0)
+        {
+            return null;
+        }
+        int index = aliveEnemyIndices[Random.Range(0, aliveEnemyIndices.Count)];
+
+        return enemyViewData[index].gameObjectRef;
+    }
     public void DamagePlayer(int damage)
     {
         playerHPScript.TakeDamage(damage);
@@ -361,7 +411,7 @@ public class EnemyManager : MonoBehaviour
                 if (enemies[i].currentHealth <= 0 && !enemies[i].isDead)
                 {
                     enemies[i].isDead = true;
-
+                    aliveEnemyIndices.Remove(i);
                     enemyViewData[i].animator.SetBool("isDead", true);
 
                     killCounter.AddKill();

@@ -19,6 +19,8 @@ namespace FullOpaqueVFX
         public GameObject spellBurstPrefab;
         public GameObject mainSpellPrefab;
 
+        public float speed = 0f;
+        public float range = 0f;
         public float castTime = 2f;
         public float cooldown = 3f;
 

@@ -11,22 +11,43 @@ namespace FullOpaqueVFX
         private bool isOnCooldown = false;
         private CameraShake cameraShake;
         public CoolddownTracker cdTracker;
+        public EnemyManager enemyManager;
+        private bool spellNeedsUpdate = true;
 
         void Start()
         {
             if (!Application.isPlaying) return;
+            GameObject temp = GameObject.FindWithTag("EnemyManager");
+
+            if(temp != null)
+            {
+                enemyManager = temp.GetComponent<EnemyManager>();
+            }
+
+            // if speed or range = 0.0f ==> not set
+            if (currentSpell.speed > 0.0f || currentSpell.range > 0.0f)
+            {
+                AdjustParticleSystemForRange(currentSpell.mainSpellPrefab, currentSpell.range, currentSpell.speed);
+            }
+            spellNeedsUpdate = false;
         }
 
         void Update()
         {
             if (!Application.isPlaying) return;
 
+            if (spellNeedsUpdate)
+            {
+                AdjustParticleSystemForRange(currentSpell.mainSpellPrefab, currentSpell.range, currentSpell.speed);
+                spellNeedsUpdate = false;
+            }
             if (currentSpell != null && !isOnCooldown)
             {
                 if (targetRandomEnemy)
                 {
-                    GameObject found = GameObject.FindWithTag("Enemy");
+                    GameObject found = enemyManager.GetRandomAliveEnemy();
 
+                    target = null;
                     if (found != null)
                     {
                         Vector3 pos = found.transform.position;
@@ -35,7 +56,27 @@ namespace FullOpaqueVFX
                         target.position = pos;
                     }
                 }
-                StartCoroutine(CastSpell());
+                if (target != null)
+                {
+                    StartCoroutine(CastSpell());
+                }
+                }
+        }
+
+        void AdjustParticleSystemForRange(GameObject spellObject, float range, float speed)
+        {
+            if (spellObject == null) return;
+
+            ParticleSystem[] particleSystems = spellObject.GetComponentsInChildren<ParticleSystem>();
+
+            foreach (ParticleSystem ps in particleSystems)
+            {
+                var main = ps.main;
+
+                if (!main.loop)
+                {
+                    main.startLifetime = range / speed;
+                }
             }
         }
 
