@@ -1733,16 +1733,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa437fd665de39940a047d2fb6e956ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitStats
-  maxHealth: 300
-  currentHealth: 300
+  maxHealth: 100
+  currentHealth: 100
   isDead: 0
   isBoss: 0
-  moveSpeed: 19
-  attackRange: 3
-  damage: 10
+  moveSpeed: 27
+  attackRange: 4
+  damage: 75
   isRanged: 0
   attackType: 1
-  attackAOERadius: 1
+  lungeDuration: 0
+  attackAOERadius: 8
   damageTriggerNormalizedTime: 0.4
   healthBar: {fileID: 585530461886094976}
   animator: {fileID: 8968407863680894761}

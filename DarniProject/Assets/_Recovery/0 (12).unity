@@ -1960,7 +1960,7 @@ PrefabInstance:
       objectReference: {fileID: 5394228012547623173}
     - target: {fileID: 7395819757984369214, guid: 45ff1d4eab0c8bc40a4ec03e2df74ae7, type: 3}
       propertyPath: killGoal
-      value: 2500
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 7395819757984369214, guid: 45ff1d4eab0c8bc40a4ec03e2df74ae7, type: 3}
       propertyPath: bossPrefab
@@ -2064,7 +2064,7 @@ PrefabInstance:
       objectReference: {fileID: 3735229534259674329}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: groupSize
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: killCounter
@@ -2072,7 +2072,7 @@ PrefabInstance:
       objectReference: {fileID: 763319623558384511}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: spawnInterval
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: playerHPScript
@@ -2080,11 +2080,11 @@ PrefabInstance:
       objectReference: {fileID: 4025574327722206658}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: maxDistanceFromPlayer
-      value: 80
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: minDistanceFromPlayer
-      value: 55
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: enemyPrefabs.Array.size
@@ -2092,20 +2092,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: targetRadiusAroundPlayer
-      value: 22
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: 'enemyPrefabs.Array.data[0]'
       value: 
-      objectReference: {fileID: 5173682316960584813, guid: c35230e1353ba2d4aa9d4de1322a3be0, type: 3}
+      objectReference: {fileID: 5077927999399343093, guid: 8f29dd21c36a95749a1f008588a34d2a, type: 3}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: 'enemyPrefabs.Array.data[1]'
       value: 
-      objectReference: {fileID: 8403424727952329332, guid: a0fb7c68d5345294494fbf1cd1171006, type: 3}
+      objectReference: {fileID: 5173682316960584813, guid: c35230e1353ba2d4aa9d4de1322a3be0, type: 3}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: 'enemyPrefabs.Array.data[2]'
       value: 
-      objectReference: {fileID: 5077927999399343093, guid: 8f29dd21c36a95749a1f008588a34d2a, type: 3}
+      objectReference: {fileID: 8403424727952329332, guid: a0fb7c68d5345294494fbf1cd1171006, type: 3}
     - target: {fileID: 6972491275453018167, guid: 637d5745c1d022d46ab2b29d2ba08524, type: 3}
       propertyPath: 'enemyPrefabs.Array.data[3]'
       value: 
@@ -2825,28 +2825,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 703557949}
     m_Modifications:
     - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
-      propertyPath: topSpeed
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: totalDashes
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
-      propertyPath: acceleration
-      value: 200
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: dashCooldown
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
-      propertyPath: dashDuration
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
-      propertyPath: deceleration
-      value: 200
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 60195562028856005, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: dashChargesSetup
@@ -2869,16 +2853,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4025574327722206658}
     - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
-      propertyPath: currentLevel
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: levelUpSound
       value: 
       objectReference: {fileID: 8300000, guid: 8b5eddfcd6d1af741b9713ea41814ec3, type: 3}
     - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: levelUpVolume
-      value: 0.02
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: movementStats
@@ -2886,12 +2866,12 @@ PrefabInstance:
       objectReference: {fileID: 1220992352545078486}
     - target: {fileID: 1095118435573571987, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: xpToNextLevel
-      value: 400
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1230940951756523211, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 5394228012547623173}
+      objectReference: {fileID: 63636764}
     - target: {fileID: 1230940951756523211, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: cdTracker
       value: 
@@ -2906,15 +2886,15 @@ PrefabInstance:
       objectReference: {fileID: 1888623588}
     - target: {fileID: 1905716763080364281, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: targetRandomEnemy
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2808155013487852822, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3287569530303851300, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5297359664387601687, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2965,17 +2945,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3735229534259674329}
     - target: {fileID: 6173432453195446864, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
-      propertyPath: maxHealth
-      value: 30000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6173432453195446864, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 2133549800}
-    - target: {fileID: 6173432453195446864, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
-      propertyPath: currentHealth
-      value: 30000
-      objectReference: {fileID: 0}
     - target: {fileID: 6375527766016539230, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: target
       value: 
@@ -2998,7 +2970,7 @@ PrefabInstance:
       objectReference: {fileID: 213021671}
     - target: {fileID: 8041125338317521283, guid: 32a0020b1246fcb4bbc8943ca7b9cbdc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

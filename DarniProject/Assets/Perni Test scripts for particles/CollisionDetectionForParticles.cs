@@ -32,7 +32,7 @@ public class ParticleEnemyDetector : MonoBehaviour
             for (int j = 0; j < hitsCount; j++)
             {
                 GameObject enemyObj = hitBuffer[j].gameObject;
-                enemyManager.DamageEnemy(ref enemyObj, 100);
+                enemyManager.DamageEnemy(ref enemyObj, 1);
             }
         }
     }

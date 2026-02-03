@@ -19754,7 +19754,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -24591,7 +24591,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  detectionRadius: 3
+  detectionRadius: 5
 --- !u!114 &5344555644052377038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24725,7 +24725,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -29757,7 +29757,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -29928,7 +29928,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 1
       minScalar: 0.03
       maxCurve:
         serializedVersion: 2
@@ -34571,7 +34571,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  detectionRadius: 5
+  detectionRadius: 10
 --- !u!1 &8748352527277397207
 GameObject:
   m_ObjectHideFlags: 0
